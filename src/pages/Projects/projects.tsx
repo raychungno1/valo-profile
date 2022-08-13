@@ -88,7 +88,7 @@ export const projectList: ProjectProps[] = [
   },
   {
     title: "Mern Memories",
-    desc: "An social media application developed with React and ExpressJS.",
+    desc: "An social media application developed with the MERN stack.",
     skills: ["html", "css", "js", "react", "redux", "node", "netlify", "heroku"],
     demo: "https://raychungno1-mern-memories.netlify.app/posts",
     bg: mernMemories,
