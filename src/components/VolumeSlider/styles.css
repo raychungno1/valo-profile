@@ -1,0 +1,50 @@
+.volume-slider__container.vertical {
+  transform: rotate(90deg) translateY(-100%);
+  transform-origin: top left;
+}
+
+.volume-slider__container .volume-slider__inner {
+  padding-left: 0;
+  overflow: hidden;
+  width: 0;
+  transition: padding-left 200ms ease-in-out, width 200ms ease-in-out;
+}
+
+.volume-slider__container:hover .volume-slider__inner {
+  padding-left: 1rem;
+  width: 6rem;
+  transition: padding-left 200ms ease-in-out, width 200ms ease-in-out;
+}
+
+.volume-slider {
+  -webkit-appearance: none;
+  height: 0.2rem;
+  width: 4rem;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volume-slider__container .volume-slider::-webkit-slider-thumb {
+  background: transparent;
+  transition: background-color 200ms ease-in-out;
+}
+
+.volume-slider__container:hover .volume-slider::-webkit-slider-thumb {
+  background: white;
+  transition: background-color 200ms ease-in-out;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+}

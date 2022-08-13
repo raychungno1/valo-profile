@@ -1,0 +1,121 @@
+.home__hero-highlights {
+  clip-path: polygon(
+    -2px 67%,
+    calc(100% + 2px) 67%,
+    calc(100% + 2px) calc(100% - 20vh + 2px),
+    calc(100% + 2px - 2vh) calc(100% - 20vh + 2px + 2vh),
+    calc(100% + 2px - 2vh - 8px) calc(100% - 20vh + 2px + 2vh - 8px),
+    calc(-2px + 2vh + 8px) calc(100% - 20vh + 2px + 2vh - 8px),
+    calc(-2px + 2vh) calc(100% - 20vh + 2px + 2vh),
+    -2px calc(100% - 20vh + 2px)
+  );
+  outline: 6px solid white;
+  outline-offset: -4px;
+  z-index: 1;
+}
+
+.home__hero-highlights:before,
+.home__hero-highlights:after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 100%;
+}
+
+.home__hero-highlights:before {
+  left: 0;
+  background: linear-gradient(
+    45deg,
+    white calc(14.2vh + 4px),
+    transparent calc(14.2vh + 4px)
+  );
+}
+
+.home__hero-highlights:after {
+  top: 0;
+  right: 0;
+  background: linear-gradient(
+    -45deg,
+    white calc(14.2vh + 4px),
+    transparent calc(14.2vh + 4px)
+  );
+}
+
+.home__hero-border {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 20vh),
+    calc(100% - 20vh + 2px) calc(100% - 2px),
+    calc(20vh - 2px) calc(100% - 2px),
+    0 calc(100% - 20vh)
+  );
+  outline: 2px solid white;
+  outline-offset: -2px;
+  position: relative;
+  z-index: 1;
+}
+
+.home__hero-border:before,
+.home__hero-border:after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 100%;
+}
+
+.home__hero-border:before {
+  left: 0;
+  background: linear-gradient(
+    45deg,
+    white calc(14.2vh + 2px),
+    transparent calc(14.2vh + 2px)
+  );
+}
+
+.home__hero-border:after {
+  right: 0;
+  background: linear-gradient(
+    -45deg,
+    white calc(14.2vh + 2px),
+    transparent calc(14.2vh + 2px)
+  );
+}
+
+.home__hero-content {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 20vh),
+    calc(100% - 20vh + 2px) calc(100% - 2px),
+    calc(20vh - 2px) calc(100% - 2px),
+    0 calc(100% - 20vh)
+  );
+}
+
+.hero__bg {
+  background-color: #0a0d16;
+  background: url(../../../../images/hero-bg.png);
+  background-position: 50% 80%;
+  background-size: cover;
+  z-index: 0;
+}
+
+.hero__name {
+  font-size: clamp(3rem, 15vw, 6rem);
+  line-height: 1;
+}
+
+.hero__name-container {
+  background: rgb(0, 0, 0, 0.4);
+  outline: 2px solid rgb(255, 255, 255, 0.2);
+  outline-offset: 2px;
+  z-index: 2;
+}
+
+@media (min-width: 1024px) {
+  .hero__name {
+    font-size: clamp(4.5rem, 6vw, 6rem);
+    line-height: 1;
+  }
+}

@@ -1,0 +1,110 @@
+/* BLUE */
+
+.project-card__blue {
+  background: hsl(209, 41%, 40%);
+  transition: background-color 300ms ease-in-out;
+}
+
+.project-card__blue:hover {
+  background: hsl(209, 41%, 85%);
+  transition: background-color 300ms ease-in-out;
+}
+
+.project-card__icon-blue {
+  color: hsl(209, 41%, 85%);
+}
+
+.project-card__blue:hover > .project-card__icon-blue {
+  color: hsl(209, 41%, 40%);
+  transition: color 300ms ease-in-out;
+}
+
+/* GREEN */
+
+.project-card__green {
+  background: hsl(174, 93%, 30%);
+  transition: background-color 300ms ease-in-out;
+}
+
+.project-card__green:hover {
+  background: hsl(174, 93%, 85%);
+  transition: background-color 300ms ease-in-out;
+}
+
+.project-card__icon-green {
+  color: hsl(174, 93%, 85%);
+}
+.project-card__green:hover .project-card__icon-green {
+  color: hsl(174, 93%, 35%);
+  transition: color 300ms ease-in-out;
+}
+
+/* RED */
+
+.project-card__red {
+  background: hsl(333, 41%, 40%);
+  transition: background-color 300ms ease-in-out;
+}
+
+.project-card__red:hover {
+  background: hsl(333, 41%, 85%);
+  transition: background-color 300ms ease-in-out;
+}
+
+.project-card__icon-red {
+  color: hsl(333, 41%, 85%);
+}
+
+.project-card__red:hover .project-card__icon-red {
+  color: hsl(333, 41%, 40%);
+  transition: color 300ms ease-in-out;
+}
+
+/* YELLOW */
+
+.project-card__yellow {
+  background: hsl(43, 67%, 20%);
+  transition: background-color 300ms ease-in-out;
+}
+
+.project-card__yellow:hover {
+  background: hsl(43, 67%, 43%);
+  transition: background-color 300ms ease-in-out;
+}
+
+.project-card__icon-yellow {
+  color: hsl(43, 67%, 80%);
+}
+
+/* GENERAL STYLES */
+
+.project-card .project-card__bg-icon {
+  transition: transform 300ms ease-in-out;
+}
+
+.project-card:hover .project-card__bg-icon {
+  transform: scale(1.1);
+  transition: transform 300ms ease-in-out;
+}
+
+.project-card .project-card__icon-shadow {
+  transition: transform 300ms ease-in-out;
+}
+
+.project-card:hover .project-card__icon-shadow {
+  transform: translate(-10px, 15px);
+  transition: transform 300ms ease-in-out;
+}
+
+.project-card__shadow::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(13, 21, 43, 0) 50%
+  );
+}

@@ -1,0 +1,101 @@
+/* BLACK */
+
+.square-container__black {
+  background: rgb(0, 0, 0, 0.6);
+  outline: 2px solid rgb(255, 255, 255, 0.2);
+}
+
+.square-container__black::before,
+.square-container__black::after {
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
+/* GREEN */
+
+.square-container__green {
+  background: rgb(124, 197, 195, 0.6);
+  outline: 2px solid rgb(124, 197, 195, 0.5);
+}
+
+.square-container__green::before,
+.square-container__green::after {
+  border-top: 2px solid rgb(124, 197, 195);
+  border-bottom: 2px solid rgb(124, 197, 195);
+}
+
+/* DEFAULT STYLE */
+
+.square-container {
+  outline-offset: 2px;
+  position: relative;
+  transition: width 600ms ease-in-out, height 200ms ease-in-out, border-color 600ms ease-in-out;;
+  /* transition:  */
+}
+
+.square-container__changeOnHover {
+  transition: outline-color 600ms ease-in-out;
+}
+
+.square-container__changeOnHover:hover {
+  outline-color: #eaeeb2;
+  transition: outline-color 600ms ease-in-out;
+}
+
+.square-container::before,
+.square-container::after {
+  content: "";
+  position: absolute;
+  height: calc(100% + 8px);
+  width: 2px;
+  top: -4px;
+}
+
+.square-container::before {
+  left: -4px;
+}
+
+.square-container::after {
+  right: -4px;
+}
+
+/* CHANGE COLOR ON HOVER */
+
+.square-container__changeOnHover::before,
+.square-container__changeOnHover::after {
+  transition: border-color 600ms ease-in-out;
+}
+
+.square-container__changeOnHover:hover::before,
+.square-container__changeOnHover:hover::after {
+  border-color: #eaeeb2;
+  transition: border-color 600ms ease-in-out;
+}
+
+/* ANIMATED & DEFAULT HOVER */
+
+.square-container__animated::before,
+.square-container__animated::after {
+  transition: height 600ms ease-in-out, top 600ms ease-in-out,
+    left 600ms ease-in-out, right 600ms ease-in-out;
+}
+
+.square-container__animated:hover::before,
+.square-container__animated:hover::after,
+.square-corner__default-hover::before,
+.square-corner__default-hover::after {
+  height: calc(100% - 4px);
+  top: 2px;
+  transition: height 600ms ease-in-out, top 600ms ease-in-out,
+    left 600ms ease-in-out, right 600ms ease-in-out;
+}
+
+.square-container__animated:hover::before,
+.square-corner__default-hover::before {
+  left: 2px;
+}
+
+.square-container__animated:hover::after,
+.square-corner__default-hover::after {
+  right: 2px;
+}
