@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { frameworks, languages, tools } from "./skills";
 import { AiOutlineClose } from "react-icons/ai";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import SquareCorner from "../../components/SquareCorner";
 

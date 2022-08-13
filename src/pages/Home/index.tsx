@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { BsAwardFill, BsFillPeopleFill } from "react-icons/bs";
 import { MdSchool } from "react-icons/md";
