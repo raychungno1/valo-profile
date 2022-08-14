@@ -89,9 +89,7 @@ const NavBar = () => {
         </SquareCorner>
       </div>
       <div
-        className={`${slideClass}${
-          open ? "-active" : ""
-        } absolute top-0 lg:top-auto bottom-auto lg:bottom-0 w-full z-50`}
+        className={`absolute top-0 lg:top-auto bottom-auto lg:bottom-0 w-full z-40`}
       >
         <div className="absolute right-[5vw] lg:right-[5vh] top-[5vw] lg:top-auto bottom-auto lg:bottom-[5vh]">
           <SquareCorner
@@ -213,6 +211,22 @@ const NavBar = () => {
                 <p className="cursor-pointer">Contact</p>
               </Link>
             )}
+          </div>
+          <div className="my-2 text-4xl lg:text-2xl text-white flex items-center justify-center gap-12">
+            <a
+              href="https://linkedin.com/in/raychungno1"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <BsLinkedin className="m-1" />
+            </a>
+            <a
+              href="https://github.com/raychungno1"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <BsGithub className="m-1" />
+            </a>
           </div>
         </div>
       </div>
