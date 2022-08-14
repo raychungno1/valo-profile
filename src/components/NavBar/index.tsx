@@ -89,9 +89,9 @@ const NavBar = () => {
         </SquareCorner>
       </div>
       <div
-        className={`absolute top-0 lg:top-auto bottom-auto lg:bottom-0 w-full z-40`}
+        className={`absolute bottom-0 w-full z-40`}
       >
-        <div className="absolute right-[5vw] lg:right-[5vh] top-[5vw] lg:top-auto bottom-auto lg:bottom-[5vh]">
+        <div className="absolute right-[5vw] lg:right-[5vh] bottom-[5vh]">
           <SquareCorner
             defaultHover
             className="w-12 py-1 text-4xl text-white flex flex-col items-center gap-4"
