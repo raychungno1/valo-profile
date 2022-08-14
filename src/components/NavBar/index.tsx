@@ -100,14 +100,14 @@ const NavBar = () => {
           >
             <>
               <a
-                href="https://github.com/raychungno1"
+                href="https://linkedin.com/in/raychungno1"
                 target="_blank"
                 rel="noreferrer"
               >
                 <BsLinkedin className="m-1" />
               </a>
               <a
-                href="https://linkedin.com/in/raychungno1"
+                href="https://github.com/raychungno1"
                 target="_blank"
                 rel="noreferrer"
               >
