@@ -48,16 +48,19 @@
 .video-bg {
   position: fixed;
   pointer-events: none;
+  left: calc(50% - max(calc(100vw + 5rem), calc(177.77vh + 5rem)) / 2);
   width: max(calc(100vw + 5rem), calc(177.77vh + 5rem));
+  min-width: 100%;
   height: max(calc(56.25vw + 5rem), calc(100vh + 5rem));
   transition: opacity 500ms ease-in-out;
 }
 
 .video-img {
-  position: fixed;
+  position: absolute;
+  top: 0;
   pointer-events: none;
-  width: max(calc(100vw + 10rem), calc(177.77vh + 10rem));
-  height: max(calc(56.25vw + 10rem), calc(100vh + 10rem));
+  width: 100vw;
+  height: 100vh;
   transition: opacity 1000ms ease-in-out;
 }
 

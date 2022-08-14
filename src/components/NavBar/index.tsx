@@ -57,7 +57,7 @@ const NavBar = () => {
   return (
     <>
       <div
-        className={`video-bg -mt-16 -ml-96 lg:ml-0 ${
+        className={`video-bg -mt-16 lg:ml-0 ${
           videoVisible && path === "/" ? "" : "opacity-0"
         }`}
       >
