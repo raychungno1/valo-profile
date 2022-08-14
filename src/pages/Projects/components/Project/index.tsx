@@ -1,4 +1,3 @@
-import { Skeleton } from "@mui/material";
 import React from "react";
 import { BsGithub } from "react-icons/bs";
 import { FiExternalLink } from "react-icons/fi";

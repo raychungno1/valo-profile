@@ -1,5 +1,6 @@
 import React from "react";
 import ReactPlayer from "react-player";
+import ImageWithLoad from "../../../../components/ImageWithLoad";
 
 import SquareCorner from "../../../../components/SquareCorner";
 
@@ -20,7 +21,13 @@ const Hobbies = () => {
             rel="noreferrer"
           >
             <div className="bg-white bg-opacity-20 hover:bg-opacity-40 active:bg-opacity-20 flex gap-2 sm:gap-6 items-center">
-              <img src={YtLogo} alt="yt logo" className="w-20" />
+              <ImageWithLoad
+                img={YtLogo}
+                width={80}
+                height={80}
+                variant="rectangular"
+                className="w-full h-full object-cover"
+              />
               <div>
                 <div className="text-2xl font-bold">Legendaray</div>
                 <div className="text-sm uppercase">Check out my channel!</div>

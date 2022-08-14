@@ -103,7 +103,7 @@ const Projects = () => {
     } else {
       setSearchParams({});
     }
-  }, [filter]);
+  }, [filter, setSearchParams]);
 
   const validProject = (proj: ProjectProps) => {
     return (
