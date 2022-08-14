@@ -10,6 +10,7 @@ import core from "../images/project-bg/core.png";
 import cryptoverse from "../images/project-bg/cryptoverse.png";
 import mernMemories from "../images/project-bg/mern-memories.png";
 import valoProfile from "../images/project-bg/valo-profile.png";
+import tikTokClone from "../images/project-bg/tik-tok-clone.png";
 
 export interface ProjectProps {
   title: string;
@@ -22,11 +23,12 @@ export interface ProjectProps {
 
 export const projectList: ProjectProps[] = [
   {
-    title: "Data Structs",
-    desc: "A library of data structures implemented in C.",
-    code: "https://github.com/raychungno1/DataStructs",
-    skills: ["c", "linux"],
-    bg: dataStructs,
+    title: "Tik Tok Clone",
+    desc: "A clone of the Tik Tok social media platform.",
+    code: "https://github.com/raychungno1/tik-tok-clone",
+    demo: "https://raychungno1-tik-tok-clone.vercel.app/",
+    skills: ["html", "css", "ts", "react", "tailwind", "nextjs", "vercel"],
+    bg: tikTokClone,
   },
   {
     title: "Amazon Clone",
@@ -62,7 +64,7 @@ export const projectList: ProjectProps[] = [
   {
     title: "Profile",
     desc: "A valorant-inspired profile webpage (the site you're on right now)!",
-    skills: ["html", "css", "ts", "react", "mui", "netlify"],
+    skills: ["html", "css", "ts", "react", "tailwind", "mui", "netlify"],
     code: "https://github.com/raychungno1/valo-profile",
     demo: "https://raychungno1.netlify.app/",
     bg: valoProfile,
@@ -119,5 +121,12 @@ export const projectList: ProjectProps[] = [
     ],
     demo: "https://raychungno1-mern-memories.netlify.app/posts",
     bg: mernMemories,
+  },
+  {
+    title: "Data Structs",
+    desc: "A library of data structures implemented in C.",
+    code: "https://github.com/raychungno1/DataStructs",
+    skills: ["c", "linux"],
+    bg: dataStructs,
   },
 ];

@@ -131,6 +131,12 @@ export const frameworks: ISkill[] = [
     type: "library",
     experience: "familiar",
   },
+  {
+    value: "tailwind",
+    label: "Tailwind CSS",
+    type: "framework",
+    experience: "confident",
+  },
 ];
 
 export const tools: ISkill[] = [
@@ -177,6 +183,12 @@ export const tools: ISkill[] = [
   {
     value: "netlify",
     label: "Netlify",
+    type: "hosting",
+    experience: "familiar",
+  },
+  {
+    value: "vercel",
+    label: "Vercel",
     type: "hosting",
     experience: "familiar",
   },

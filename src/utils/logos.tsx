@@ -17,13 +17,14 @@ import rails from "../images/logos/rails.svg";
 import django from "../images/logos/django.svg";
 import react from "../images/logos/react.svg";
 import redux from "../images/logos/redux.svg";
-import nextjs from "../images/logos/nextjs.png";
+import nextjs from "../images/logos/nextjs.svg";
 import cython from "../images/logos/cython.png";
 import pygame from "../images/logos/pygame.png";
 import numpy from "../images/logos/numpy.svg";
 import jquery from "../images/logos/jquery.svg";
 import mui from "../images/logos/mui.svg";
 import chartjs from "../images/logos/chartjs.png";
+import tailwind from "../images/logos/tailwind.svg";
 
 import node from "../images/logos/node.svg";
 import linux from "../images/logos/linux.png";
@@ -42,6 +43,7 @@ import jest from "../images/logos/jest.svg";
 
 import heroku from "../images/logos/heroku.svg";
 import netlify from "../images/logos/netlify.svg";
+import vercel from "../images/logos/vercel.svg";
 
 export const logos: { [name: string]: string } = {
   python,
@@ -69,6 +71,7 @@ export const logos: { [name: string]: string } = {
   jquery,
   mui,
   chartjs,
+  tailwind,
 
   node,
   git,
@@ -87,4 +90,5 @@ export const logos: { [name: string]: string } = {
 
   heroku,
   netlify,
+  vercel,
 };
