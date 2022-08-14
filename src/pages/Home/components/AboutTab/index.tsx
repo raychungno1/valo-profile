@@ -11,7 +11,7 @@ import {
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 import SquareCorner from "../../../../components/SquareCorner";
-import { AboutInfo } from "../../about";
+import { AboutInfo } from "../../../../utils/about";
 
 interface IProps {
   title: string;

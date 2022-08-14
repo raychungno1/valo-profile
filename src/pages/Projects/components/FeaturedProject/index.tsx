@@ -6,7 +6,7 @@ import "./styles.css";
 import defaultBG from "../../../../images/home-bg.png";
 import SquareCorner from "../../../../components/SquareCorner";
 import { logos } from "../../../../utils/logos";
-import { ProjectProps } from "../../projects";
+import { ProjectProps } from "../../../../utils/projects";
 import ImageWithLoad from "../../../../components/ImageWithLoad";
 import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 

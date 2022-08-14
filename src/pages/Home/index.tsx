@@ -4,7 +4,7 @@ import { BsAwardFill, BsFillPeopleFill } from "react-icons/bs";
 import { MdSchool } from "react-icons/md";
 import { IoGameController } from "react-icons/io5";
 
-import { awards, education, experiences } from "./about";
+import { aboutMe, awards, education, experiences } from "../../utils/about";
 import AboutTab from "./components/AboutTab";
 import Hobbies from "./components/Hobbies";
 import MiniNavBar from "./components/MiniNavBar";
@@ -43,11 +43,7 @@ const Home = () => {
           </p>
           <div className="about__divider mt-10" />
           <div className="about__divider mt-2 mb-6" />
-          <p className=" pl-1 text-[#eaeeb2] mb-12">
-            I'm a software developer studying Computer Science and Engineering
-            at the Ohio State University. I love both front-end and back-end
-            development, and have a big interest in machine learning and AI.
-          </p>
+          <p className=" pl-1 text-lg text-[#eaeeb2] mb-12">{aboutMe}</p>
           <div className="mb-12">
             <MiniNavBar
               options={[

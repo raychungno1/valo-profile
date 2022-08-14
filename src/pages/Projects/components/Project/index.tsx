@@ -5,7 +5,7 @@ import ImageWithLoad from "../../../../components/ImageWithLoad";
 import SquareCorner from "../../../../components/SquareCorner";
 import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 import { logos } from "../../../../utils/logos";
-import { ProjectProps } from "../../projects";
+import { ProjectProps } from "../../../../utils/projects";
 
 import "./styles.css";
 

@@ -114,10 +114,17 @@ export const frameworks: ISkill[] = [
   },
   { value: "react", label: "React", type: "library", experience: "confident" },
   { value: "redux", label: "Redux", type: "library", experience: "confident" },
+  { value: "nextjs", label: "Next.js", type: "library", experience: "novice" },
   { value: "cython", label: "Cython", type: "library", experience: "familiar" },
   { value: "pygame", label: "Pygame", type: "library", experience: "familiar" },
   { value: "numpy", label: "NumPy", type: "library", experience: "familiar" },
   { value: "jquery", label: "jQuery", type: "library", experience: "familiar" },
+  {
+    value: "mui",
+    label: "Material UI",
+    type: "library",
+    experience: "confident",
+  },
   {
     value: "chartjs",
     label: "Chart.js",
@@ -127,7 +134,7 @@ export const frameworks: ISkill[] = [
 ];
 
 export const tools: ISkill[] = [
-  { value: "node", label: "NodeJS", type: "runtime", experience: "confident" },
+  { value: "node", label: "Node.js", type: "runtime", experience: "confident" },
   {
     value: "git",
     label: "Git",

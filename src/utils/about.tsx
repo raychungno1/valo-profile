@@ -5,16 +5,20 @@ export interface AboutInfo {
   points: string[];
 }
 
+export const aboutMe =
+  "I'm a software developer studying Computer Science and Engineering at the Ohio State University. I love both front-end and back-end development, and have a big interest in machine learning and AI.";
+
 export const experiences = [
   {
     company: "JP Morgan Chase",
     title: "Software Engineer Intern",
     date: "June - August 2022",
     points: [
-      "Decreased app maintenance time by developing a monitoring tool for microservices",
-      "Developed a full stack admin dashboard to summarize lending data and approval rates, in production",
-      "Implemented a solution to store lending data in the cloud, creating a schema and automating data storage in an Oracle database",
-      "Performed unit and integration testing to reach production code coverage requirements",
+      "Developed a web application with Java Spring Boot, Node, & React to summarize loan application data",
+      "Within one week of use, tool identified a bottleneck affecting 60% of automated loan applications, increasing automated loan approvals by 10%",
+      "Implemented a solution to store loan application data in the cloud, creating a schema & automating data storage in an Oracle database",
+      "Decreased app maintenance 33% by developing a Spring Boot Admin monitoring tool for microservices",
+      "Selected as a top 2 intern project among 113 interns and 33 teams",
     ],
   },
 ];
@@ -38,7 +42,7 @@ export const awards = [
     title: "Winner",
     date: "March 2021",
     points: [
-      "Won best visualization award (1st of 35 teams)",
+      "Won best visualization award among 35 teams",
       "Performed data analysis with RStudio, providing business insights to an anonymous data provider",
       "Used statistical techniques to identify issues and developed actionable conclusions",
     ],
@@ -48,7 +52,7 @@ export const awards = [
     title: "Winner",
     date: "August 2018 - May 2019",
     points: [
-      "Won audience choice award (1st of 30 teams)",
+      "Won audience choice award among 30 teams",
       "Cooperated in a team of 4 to produce a garage door add-on that automatically operated a garage door",
       "Developed a fully functional app through Swift using XCode with a customizable, toggleable geo-fence",
     ],

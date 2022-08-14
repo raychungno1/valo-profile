@@ -4,7 +4,7 @@ import Select from "react-select";
 import { BiError } from "react-icons/bi";
 
 import FeaturedProject from "./components/FeaturedProject";
-import { projectList, ProjectProps } from "./projects";
+import { projectList, ProjectProps } from "../../utils/projects";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 import "./styles.css";

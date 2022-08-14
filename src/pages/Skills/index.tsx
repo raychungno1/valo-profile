@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { frameworks, languages, tools } from "./skills";
+import { frameworks, languages, tools } from "../../utils/skills";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 import SquareCorner from "../../components/SquareCorner";
 
-import { ISkill } from "./skills";
+import { ISkill } from "../../utils/skills";
 import { logos } from "../../utils/logos";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import "./styles.css";

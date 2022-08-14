@@ -1,14 +1,15 @@
 // Project BG
-import dataStructs from "../../images/project-bg/data-structs.jpg";
-import amazonClone from "../../images/project-bg/amz-clone.png";
-import chessAI from "../../images/project-bg/chess-ai.png";
-import AI_ML from "../../images/project-bg/ai-ml.png";
-import trustDoor from "../../images/project-bg/trust-door1.png";
-import peerEval from "../../images/project-bg/peer-eval.png";
-import voronoi from "../../images/project-bg/voronoi.png";
-import core from "../../images/project-bg/core.png";
-import cryptoverse from "../../images/project-bg/cryptoverse.png";
-import mernMemories from "../../images/project-bg/mern-memories.png";
+import dataStructs from "../images/project-bg/data-structs.jpg";
+import amazonClone from "../images/project-bg/amz-clone.png";
+import chessAI from "../images/project-bg/chess-ai.png";
+import AI_ML from "../images/project-bg/ai-ml.png";
+import trustDoor from "../images/project-bg/trust-door1.png";
+import peerEval from "../images/project-bg/peer-eval.png";
+import voronoi from "../images/project-bg/voronoi.png";
+import core from "../images/project-bg/core.png";
+import cryptoverse from "../images/project-bg/cryptoverse.png";
+import mernMemories from "../images/project-bg/mern-memories.png";
+import valoProfile from "../images/project-bg/valo-profile.png";
 
 export interface ProjectProps {
   title: string;
@@ -59,9 +60,26 @@ export const projectList: ProjectProps[] = [
     bg: trustDoor,
   },
   {
+    title: "Profile",
+    desc: "A valorant-inspired profile webpage (the site you're on right now)!",
+    skills: ["html", "css", "ts", "react", "mui", "netlify"],
+    code: "https://github.com/raychungno1/valo-profile",
+    demo: "https://raychungno1.netlify.app/",
+    bg: valoProfile,
+  },
+  {
     title: "Learning Manager",
     desc: "A learning management system web application.",
-    skills: ["html", "css", "js", "jquery", "ruby", "rails", "postgresql", "heroku"],
+    skills: [
+      "html",
+      "css",
+      "js",
+      "jquery",
+      "ruby",
+      "rails",
+      "postgresql",
+      "heroku",
+    ],
     bg: peerEval,
   },
   {
@@ -89,7 +107,16 @@ export const projectList: ProjectProps[] = [
   {
     title: "Mern Memories",
     desc: "An social media application developed with the MERN stack.",
-    skills: ["html", "css", "js", "react", "redux", "node", "netlify", "heroku"],
+    skills: [
+      "html",
+      "css",
+      "js",
+      "react",
+      "redux",
+      "node",
+      "netlify",
+      "heroku",
+    ],
     demo: "https://raychungno1-mern-memories.netlify.app/posts",
     bg: mernMemories,
   },

@@ -17,10 +17,12 @@ import rails from "../images/logos/rails.svg";
 import django from "../images/logos/django.svg";
 import react from "../images/logos/react.svg";
 import redux from "../images/logos/redux.svg";
+import nextjs from "../images/logos/nextjs.png";
 import cython from "../images/logos/cython.png";
 import pygame from "../images/logos/pygame.png";
 import numpy from "../images/logos/numpy.svg";
 import jquery from "../images/logos/jquery.svg";
+import mui from "../images/logos/mui.svg";
 import chartjs from "../images/logos/chartjs.png";
 
 import node from "../images/logos/node.svg";
@@ -60,10 +62,12 @@ export const logos: { [name: string]: string } = {
   django,
   react,
   redux,
+  nextjs,
   cython,
   pygame,
   numpy,
   jquery,
+  mui,
   chartjs,
 
   node,
