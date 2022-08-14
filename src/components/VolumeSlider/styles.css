@@ -7,6 +7,7 @@
   padding-left: 0;
   overflow: hidden;
   width: 0;
+  display: flex;
   transition: padding-left 200ms ease-in-out, width 200ms ease-in-out;
 }
 

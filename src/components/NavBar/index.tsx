@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Squash as Hamburger } from "hamburger-react";
+import { BsLinkedin, BsGithub } from "react-icons/bs";
 
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import SquareCorner from "../SquareCorner";
@@ -87,15 +88,38 @@ const NavBar = () => {
           <Hamburger toggled={open} toggle={setOpen} size={32} color="white" />
         </SquareCorner>
       </div>
-      {/* <div className={`${slideClass}${open ? "-active" : ""} relative z-50`}>
-        <div className="absolute right-[5vw] top-[5vw]">
-          <SquareCorner animated className="w-min h-12 hover:h-36">
-            <VolumeSlider volume={volume} setVolume={setVolume} vertical />
+      <div
+        className={`${slideClass}${
+          open ? "-active" : ""
+        } absolute top-0 lg:top-auto bottom-auto lg:bottom-0 w-full z-50`}
+      >
+        <div className="absolute right-[5vw] lg:right-[5vh] top-[5vw] lg:top-auto bottom-auto lg:bottom-[5vh]">
+          <SquareCorner
+            defaultHover
+            className="w-12 py-1 text-4xl text-white flex flex-col items-center gap-4"
+          >
+            <>
+              <a
+                href="https://github.com/raychungno1"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <BsLinkedin className="m-1" />
+              </a>
+              <a
+                href="https://linkedin.com/in/raychungno1"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <BsGithub className="m-1" />
+              </a>
+              {/* <VolumeSlider volume={volume} setVolume={setVolume} vertical /> */}
+            </>
           </SquareCorner>
         </div>
-      </div> */}
+      </div>
       <div
-        className={`nav__container fixed lg:static w-full ${menuZ} ${
+        className={`nav__container fixed lg:static w-full top-0 ${menuZ} ${
           open
             ? "backdrop-blur-sm bg-black bg-opacity-50 lg:bg-transparent"
             : ""

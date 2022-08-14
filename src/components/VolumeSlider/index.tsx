@@ -26,7 +26,7 @@ const VolumeSlider = ({ volume, setVolume, vertical }: IProps) => {
       setPrevVolume(volume);
       setVolume(0);
     } else {
-      setVolume(prevVolume);
+      setVolume(prevVolume || 20);
     }
   };
 
