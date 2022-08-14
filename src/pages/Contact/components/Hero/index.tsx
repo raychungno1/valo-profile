@@ -2,6 +2,7 @@ import React from "react";
 import SquareCorner from "../../../../components/SquareCorner";
 
 import myPhoto from "../../../../images/my-photo.png";
+import heroBG from "../../../../images/hero-bg.png";
 import "./styles.css";
 
 const Hero = () => {
@@ -10,6 +11,13 @@ const Hero = () => {
       <div className="w-full h-full absolute hidden sm:block top-0 home__hero-highlights" />
       <div className="w-full h-full absolute top-0 home__hero-border" />
       <div className="w-full h-full absolute top-0 hero__bg home__hero-content md:px-10">
+        <div className="absolute left-0 w-full h-full">
+          <img
+            src={heroBG}
+            alt="profile"
+            className="w-full h-full object-cover"
+          />
+        </div>
         <div className="absolute top-0 lg:top-auto lg:bottom-0 mx-auto w-[90%] lg:w-auto h-full right-[48%] lg:right-[12%] xl:right-[15%] translate-x-1/2 lg:translate-x-0 flex items-end min-w-[400px]">
           <img src={myPhoto} alt="profile" className="mx-auto" />
         </div>

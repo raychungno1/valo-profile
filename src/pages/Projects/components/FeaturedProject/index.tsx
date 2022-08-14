@@ -7,6 +7,8 @@ import defaultBG from "../../../../images/home-bg.png";
 import SquareCorner from "../../../../components/SquareCorner";
 import { logos } from "../../../../utils/logos";
 import { ProjectProps } from "../../projects";
+import ImageWithLoad from "../../../../components/ImageWithLoad";
+import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 
 interface IProps extends ProjectProps {
   level: number;
@@ -24,6 +26,7 @@ const FeaturedProject = ({
   color = "black",
   bg = defaultBG,
 }: IProps) => {
+  const { width } = useWindowDimensions();
   const levelClassName = `project__level-${level}`;
   const posClassName = `project__pos-${position}`;
 
@@ -38,11 +41,13 @@ const FeaturedProject = ({
           animation: "fadeIn 400ms ease-in-out",
         }}
       >
-        <div className="project__bg">
-          <img
-            className="absolute w-full h-full object-cover"
-            src={bg}
-            alt="bg"
+        <div className="project__bg flex items-center justify-center">
+          <ImageWithLoad
+            img={bg}
+            width={250}
+            height={width >= 1280 ? 650 : 450}
+            variant="rectangular"
+            className="w-full h-full object-cover"
           />
         </div>
         <div className="project__main-content">
@@ -53,10 +58,12 @@ const FeaturedProject = ({
                 (skill, i) =>
                   skill !== "html" &&
                   skill !== "css" && (
-                    <img
+                    <ImageWithLoad
                       key={i}
-                      src={logos[skill]}
-                      alt="logo"
+                      img={logos[skill]}
+                      width={24}
+                      height={24}
+                      variant="circular"
                       className="h-6"
                     />
                   )

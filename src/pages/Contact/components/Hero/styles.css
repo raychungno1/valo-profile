@@ -95,7 +95,6 @@
 
 .hero__bg {
   background-color: #0a0d16;
-  background: url(../../../../images/hero-bg.png);
   background-position: 50% 80%;
   background-size: cover;
   z-index: 0;

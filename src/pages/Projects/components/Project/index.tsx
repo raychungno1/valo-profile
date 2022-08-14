@@ -1,19 +1,36 @@
+import { Skeleton } from "@mui/material";
 import React from "react";
 import { BsGithub } from "react-icons/bs";
 import { FiExternalLink } from "react-icons/fi";
+import ImageWithLoad from "../../../../components/ImageWithLoad";
 import SquareCorner from "../../../../components/SquareCorner";
+import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 import { logos } from "../../../../utils/logos";
 import { ProjectProps } from "../../projects";
 
 import "./styles.css";
 
 const Project = ({ title, desc, code, demo, skills, bg }: ProjectProps) => {
+  const { width } = useWindowDimensions();
+
   return (
     <div className="project__container relative w-full h-[400px] md:h-[200px] p-4 flex flex-col md:flex-row justify-between bg-[#101622]">
-      <div className="project__img absolute top-0 left-0 md:left-[35%] w-full md:w-[200px] lg:w-[400px] xl:w-[200px] h-3/5 md:h-full overflow-hidden">
-        <img
-          src={bg}
-          alt=""
+      <div className="project__img absolute top-0 left-0 md:left-[35%] w-full md:w-[200px] lg:w-[400px] xl:w-[200px] h-3/5 md:h-full overflow-hidden flex items-center justify-center">
+        <ImageWithLoad
+          img={bg}
+          width={
+            width >= 1280
+              ? 200
+              : width >= 1024
+              ? 400
+              : width >= 768
+              ? 200
+              : width >= 640
+              ? width / 2
+              : width
+          }
+          height={width >= 768 ? 200 : 250}
+          variant="rectangular"
           className="project__img-inner w-full h-full object-cover object-[0%,30%] blur-sm md:blur-none opacity-40 md:opacity-75"
         />
       </div>
@@ -26,7 +43,14 @@ const Project = ({ title, desc, code, demo, skills, bg }: ProjectProps) => {
             (skill, i) =>
               skill !== "html" &&
               skill !== "css" && (
-                <img key={i} src={logos[skill]} alt="logo" className="h-6" />
+                <ImageWithLoad
+                  key={i}
+                  img={logos[skill]}
+                  width={24}
+                  height={24}
+                  variant="circular"
+                  className="h-6"
+                />
               )
           )}
         </div>

@@ -10,6 +10,7 @@ import { ISkill } from "./skills";
 import { logos } from "../../utils/logos";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import "./styles.css";
+import ImageWithLoad from "../../components/ImageWithLoad";
 
 const Skills = () => {
   const { width } = useWindowDimensions();
@@ -21,7 +22,7 @@ const Skills = () => {
     if (width >= 1024 && !selected) {
       setSelected(languages[0]);
     }
-  }, [width]);
+  }, [width, selected]);
 
   const infoElement = (
     <div className="flex flex-col lg:flex-row gap-6 items-center justify-center">
@@ -130,13 +131,16 @@ const Skills = () => {
               >
                 <SquareCorner
                   key={i}
-                  className="skill__item mx-auto w-[80px] h-[80px] p-2 hover:bg-white hover:bg-opacity-20 active:bg-opacity-40 cursor-pointer"
+                  className="skill__item mx-auto w-[80px] h-[80px] hover:bg-white hover:bg-opacity-20 active:bg-opacity-40 cursor-pointer flex items-center justify-center"
                   color="black"
                   defaultHover
                 >
-                  <img
-                    src={logos[language.value]}
-                    alt="logo"
+                  <ImageWithLoad
+                    key={i}
+                    img={logos[language.value]}
+                    width={72}
+                    height={72}
+                    variant="rectangular"
                     className="mx-auto w-full h-full object-contain"
                   />
                 </SquareCorner>
@@ -165,13 +169,16 @@ const Skills = () => {
               >
                 <SquareCorner
                   key={i}
-                  className="skill__item mx-auto w-[80px] h-[80px] p-2 hover:bg-white hover:bg-opacity-20 active:bg-opacity-40 cursor-pointer"
+                  className="skill__item mx-auto w-[80px] h-[80px] hover:bg-white hover:bg-opacity-20 active:bg-opacity-40 cursor-pointer flex items-center justify-center"
                   color="black"
                   defaultHover
                 >
-                  <img
-                    src={logos[framework.value]}
-                    alt="logo"
+                  <ImageWithLoad
+                    key={i}
+                    img={logos[framework.value]}
+                    width={72}
+                    height={72}
+                    variant="rectangular"
                     className="mx-auto w-full h-full object-contain"
                   />
                 </SquareCorner>
@@ -200,13 +207,16 @@ const Skills = () => {
               >
                 <SquareCorner
                   key={i}
-                  className="skill__item mx-auto w-[80px] h-[80px] p-2 hover:bg-white hover:bg-opacity-20 active:bg-opacity-40 cursor-pointer"
+                  className="skill__item mx-auto w-[80px] h-[80px] hover:bg-white hover:bg-opacity-20 active:bg-opacity-40 cursor-pointer flex items-center justify-center"
                   color="black"
                   defaultHover
                 >
-                  <img
-                    src={logos[tool.value]}
-                    alt="logo"
+                  <ImageWithLoad
+                    key={i}
+                    img={logos[tool.value]}
+                    width={72}
+                    height={72}
+                    variant="rectangular"
                     className="mx-auto w-full h-full object-contain"
                   />
                 </SquareCorner>

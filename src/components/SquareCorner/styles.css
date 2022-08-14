@@ -49,6 +49,7 @@
   height: calc(100% + 8px);
   width: 2px;
   top: -4px;
+  z-index: 2;
 }
 
 .square-container::before {
