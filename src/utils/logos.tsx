@@ -18,7 +18,7 @@ import django from "../images/logos/django.svg";
 import react from "../images/logos/react.svg";
 import redux from "../images/logos/redux.svg";
 import nextjs from "../images/logos/nextjs.svg";
-import cython from "../images/logos/cython.png";
+import cython from "../images/logos/cython.svg";
 import pygame from "../images/logos/pygame.png";
 import numpy from "../images/logos/numpy.svg";
 import jquery from "../images/logos/jquery.svg";
