@@ -15,6 +15,7 @@ import asm from "../images/logos/asm.png";
 import springboot from "../images/logos/springboot.png";
 import rails from "../images/logos/rails.svg";
 import django from "../images/logos/django.svg";
+import express from "../images/logos/express.svg";
 import react from "../images/logos/react.svg";
 import redux from "../images/logos/redux.svg";
 import nextjs from "../images/logos/nextjs.svg";
@@ -36,6 +37,7 @@ import postgresql from "../images/logos/postgresql.svg";
 import mysql from "../images/logos/mysql.svg";
 import oracle from "../images/logos/oracle.svg";
 import firebase from "../images/logos/firebase.svg";
+import mongo from "../images/logos/mongo.svg";
 
 import junit from "../images/logos/junit.png";
 import cucumber from "../images/logos/cucumber.svg";
@@ -62,6 +64,7 @@ export const logos: { [name: string]: string } = {
   springboot,
   rails,
   django,
+  express,
   react,
   redux,
   nextjs,
@@ -83,6 +86,7 @@ export const logos: { [name: string]: string } = {
   mysql,
   oracle,
   firebase,
+  mongo,
 
   junit,
   cucumber,

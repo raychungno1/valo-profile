@@ -11,6 +11,7 @@ import cryptoverse from "../images/project-bg/cryptoverse.png";
 import mernMemories from "../images/project-bg/mern-memories.png";
 import valoProfile from "../images/project-bg/valo-profile.png";
 import tikTokClone from "../images/project-bg/tik-tok-clone.png";
+import mernAuth from "../images/project-bg/mern-auth.png";
 
 export interface ProjectProps {
   title: string;
@@ -53,6 +54,14 @@ export const projectList: ProjectProps[] = [
     demo: "https://raychungno1.github.io/ML-Visualizer/",
     skills: ["html", "css", "js"],
     bg: AI_ML,
+  },
+  {
+    title: "MERN Auth",
+    desc: "A template authentication flow using the MERN stack.",
+    code: "https://github.com/raychungno1/mern-authentication",
+    demo: "https://raychungno1-mern-auth.netlify.app/",
+    skills: ["html", "css", "js", "ts", "mongo", "express", "react", "node"],
+    bg: mernAuth,
   },
   {
     title: "Trust Door",

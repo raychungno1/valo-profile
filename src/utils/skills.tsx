@@ -112,6 +112,12 @@ export const frameworks: ISkill[] = [
     type: "framework",
     experience: "familiar",
   },
+  {
+    value: "express",
+    label: "Express.js",
+    type: "framework",
+    experience: "familiar",
+  },
   { value: "react", label: "React", type: "library", experience: "confident" },
   { value: "redux", label: "Redux", type: "library", experience: "confident" },
   { value: "nextjs", label: "Next.js", type: "library", experience: "novice" },
@@ -168,6 +174,12 @@ export const tools: ISkill[] = [
     label: "Firebase",
     type: "database",
     experience: "novice",
+  },
+  {
+    value: "mongo",
+    label: "Mongo DB",
+    type: "database",
+    experience: "familiar",
   },
 
   { value: "junit", label: "JUnit", type: "testing", experience: "confident" },
