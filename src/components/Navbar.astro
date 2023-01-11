@@ -1,0 +1,49 @@
+---
+import Hamburger from "./Hamburger.astro";
+---
+
+<Hamburger id={"navigation-toggle"} />
+<nav>
+  <ul
+    id="primary-navigation"
+    data-visible="false"
+    class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-4 bg-black bg-opacity-50 backdrop-blur-sm transition-transform duration-700 ease-in-out-quint data-[visible=false]:-translate-x-full lg:static lg:flex-row lg:bg-transparent lg:transition-none lg:data-[visible=false]:translate-x-0"
+  >
+    <li>
+      <a href="index.html">
+        <span class="uppercase">Home</span>
+      </a>
+    </li>
+    <li>
+      <a href="index.html">
+        <span class="uppercase">Projects</span>
+      </a>
+    </li>
+    <li>
+      <a href="index.html">
+        <span class="uppercase">Skills</span>
+      </a>
+    </li>
+    <li>
+      <a href="index.html">
+        <span class="uppercase">Contact</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<script>
+  const nav = document.getElementById("primary-navigation");
+  const navToggle = document.getElementById("navigation-toggle");
+
+  if (nav && navToggle) {
+    navToggle.addEventListener("click", () => {
+      const visibility = nav.getAttribute("data-visible");
+      if (visibility === "false") {
+        nav.setAttribute("data-visible", "true");
+      } else {
+        nav.setAttribute("data-visible", "false");
+      }
+    });
+  }
+</script>

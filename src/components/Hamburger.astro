@@ -1,0 +1,61 @@
+---
+export interface Props {
+  id?: string;
+}
+
+const { id = "hamburger" + Math.random() } = Astro.props;
+---
+
+<button
+  aria-controls="primary-navigation"
+  class="hamburger-button absolute top-8 left-8 z-50 aspect-square w-12 bg-gray-500 lg:hidden"
+  id={id}
+>
+  <span class="sr-only">Menu</span>
+  <svg viewBox="0 0 100 100">
+    <rect class="line top" width="80" height="10" x="10" y="25"></rect>
+    <rect class="line middle" width="80" height="10" x="10" y="45"></rect>
+    <rect class="line bottom" width="80" height="10" x="10" y="65"></rect>
+  </svg>
+</button>
+
+<script define:vars={{ id }}>
+  const button = document.getElementById(id);
+  button.addEventListener("click", () => {
+    const isOpened = button.getAttribute("aria-expanded");
+    if (!isOpened || isOpened === "false") {
+      button.setAttribute("aria-expanded", "true");
+    } else {
+      button.setAttribute("aria-expanded", "false");
+    }
+  });
+</script>
+
+<style>
+  .hamburger-button .line {
+    transition: y 200ms ease-in-out 200ms, rotate 200ms ease-in-out,
+      opacity 0ms 200ms;
+    transform-origin: center;
+  }
+
+  .hamburger-button[aria-expanded="true"] .line {
+    transition: y 200ms ease-in-out, rotate 200ms ease-in-out 200ms,
+      opacity 0ms 200ms;
+  }
+
+  .hamburger-button[aria-expanded="true"] .line:is(.top, .bottom) {
+    y: 45;
+  }
+
+  .hamburger-button[aria-expanded="true"] .line.top {
+    rotate: 45deg;
+  }
+
+  .hamburger-button[aria-expanded="true"] .line.middle {
+    opacity: 0;
+  }
+
+  .hamburger-button[aria-expanded="true"] .line.bottom {
+    rotate: -45deg;
+  }
+</style>
