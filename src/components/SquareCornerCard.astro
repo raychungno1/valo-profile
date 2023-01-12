@@ -1,0 +1,116 @@
+---
+export interface Props {
+  id?: string;
+  animation?: { border?: boolean; color?: boolean };
+  className?: string;
+  color?: "black" | "green";
+  defaultHover?: boolean;
+}
+
+const {
+  id = "square-corner-card-" + Math.random(),
+  animation = { border: false, color: false },
+  className = "",
+  color = "black",
+  defaultHover = false,
+} = Astro.props;
+
+const cardColor = {
+  black: {
+    backgroundColor: "0, 0, 0",
+    backgroundAlpha: 0.6,
+    outlineColor: "255, 255, 255",
+    outlineAlpha: "0.2",
+  },
+  green: {
+    backgroundColor: "124, 197, 195",
+    backgroundAlpha: 0.6,
+    outlineColor: "124, 197, 195",
+    outlineAlpha: "0.5",
+  },
+};
+---
+
+<div
+  class:list={[
+    "card",
+    animation.border ? "card__animate-border" : "",
+    animation.color ? "card__animate-color" : "",
+    className,
+    defaultHover ? "card__default-hover" : "",
+  ]}
+  style={`--background-color:${cardColor[color].backgroundColor}; --background-alpha:${cardColor[color].backgroundAlpha}; --outline-color:${cardColor[color].outlineColor}; --outline-alpha:${cardColor[color].outlineAlpha};`}
+  id={id}
+>
+  <slot />
+</div>
+
+<style>
+  /* Normal */
+  .card {
+    position: relative;
+    transition: width 600ms ease-in-out, height 200ms ease-in-out,
+      border-color 600ms ease-in-out;
+    background: rgba(var(--background-color), var(--background-alpha));
+    outline: 2px solid rgba(var(--outline-color), var(--outline-alpha));
+    outline-offset: 2px;
+  }
+
+  .card::before,
+  .card::after {
+    content: "";
+    position: absolute;
+    height: calc(100% + 8px);
+    width: 2px;
+    top: -4px;
+    border-top: 2px solid rgba(var(--outline-color));
+    border-bottom: 2px solid rgba(var(--outline-color));
+    transition-property: height, inset, border-color;
+    transition-duration: 600ms;
+    transition-timing-function: ease-in-out;
+    pointer-events: none;
+  }
+
+  .card::before {
+    left: -4px;
+  }
+
+  .card::after {
+    right: -4px;
+  }
+
+  /* Animate Border */
+  .card__animate-border.card__default-hover::before,
+  .card__animate-border.card__default-hover::after,
+  .card__animate-border:hover::before,
+  .card__animate-border:hover::after {
+    height: calc(100% - 4px);
+    top: 2px;
+  }
+
+  .card__animate-border.card__default-hover::before,
+  .card__animate-border:hover::before {
+    left: 2px;
+  }
+  .card__animate-border.card__default-hover::after,
+  .card__animate-border:hover::after {
+    right: 2px;
+  }
+
+  /* Animate Color */
+  .card__animate-color {
+    transition: outline-color 600ms ease-in-out;
+  }
+
+  .card__animate-color.card__default-hover,
+  .card__animate-color:hover {
+    outline-color: rgba(var(--color-highlight));
+  }
+
+  .card__animate-color.card__default-hover::before,
+  .card__animate-color.card__default-hover::after,
+  .card__animate-color:hover::before,
+  .card__animate-color:hover::after {
+    border-color: rgba(var(--color-highlight));
+  }
+</style>

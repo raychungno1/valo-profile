@@ -1,27 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar.astro";
+import SquareCornerCard from "../components/SquareCornerCard.astro";
 ---
 
 <Layout title="Ray Chung | Software Engineer">
-  <Navbar />
-  <main></main>
+  <!-- <iframe
+    class="pointer-events-none fixed -top-14 bottom-0 z-0"
+    allowfullscreen="1"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    title="Valorant Main Menu"
+    width="100%"
+    height="100%"
+    src="https://www.youtube.com/embed/KcFY64yX2bI?autoplay=1&mute=1&controls=0&origin=https%3A%2F%2Fraychungno1.netlify.app&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&widgetid=1"
+  ></iframe> -->
 </Layout>
-
-<script>
-  let resizeTimer: number;
-  window.addEventListener("resize", () => {
-    document.body.classList.add("resize-animation-stopper");
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      document.body.classList.remove("resize-animation-stopper");
-    }, 400);
-  });
-</script>
-
-<style>
-  .resize-animation-stopper * {
-    animation: none !important;
-    transition: none !important;
-  }
-</style>

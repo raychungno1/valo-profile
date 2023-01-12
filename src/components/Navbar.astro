@@ -1,38 +1,90 @@
 ---
+import { Icon } from "astro-icon";
+
 import Hamburger from "./Hamburger.astro";
+import SquareCornerCard from "./SquareCornerCard.astro";
+
+const tabs = [
+  { name: "Home", route: "/" },
+  { name: "Projects", route: "/projects" },
+  { name: "Skills", route: "/skills" },
+  { name: "Contact", route: "/contact" },
+];
 ---
 
-<Hamburger id={"navigation-toggle"} />
-<nav>
+<SquareCornerCard
+  className="absolute top-[5vw] left-[5vw] aspect-square h-12 z-50 lg:hidden"
+  color="green"
+  animation={{ border: true, color: true }}
+>
+  <Hamburger id={"navigation-toggle"} />
+</SquareCornerCard>
+<nav class="relative z-40">
   <ul
     id="primary-navigation"
     data-visible="false"
-    class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-4 bg-black bg-opacity-50 backdrop-blur-sm transition-transform duration-700 ease-in-out-quint data-[visible=false]:-translate-x-full lg:static lg:flex-row lg:bg-transparent lg:transition-none lg:data-[visible=false]:translate-x-0"
+    class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-4 border-b-2 border-white bg-black bg-opacity-50 text-center font-semibold uppercase backdrop-blur-sm transition-transform duration-700 ease-in-out-quint data-[visible=false]:-translate-x-full lg:static lg:flex-row lg:gap-16 lg:bg-transparent lg:transition-none lg:data-[visible=false]:translate-x-0"
   >
-    <li>
-      <a href="index.html">
-        <span class="uppercase">Home</span>
-      </a>
-    </li>
-    <li>
-      <a href="index.html">
-        <span class="uppercase">Projects</span>
-      </a>
-    </li>
-    <li>
-      <a href="index.html">
-        <span class="uppercase">Skills</span>
-      </a>
-    </li>
-    <li>
-      <a href="index.html">
-        <span class="uppercase">Contact</span>
-      </a>
+    {
+      tabs.map(({ name, route }, i) => (
+        <li class="w-full lg:w-auto">
+          <a
+            href={route}
+            class="text-white text-opacity-80 hover:text-opacity-100"
+          >
+            <SquareCornerCard
+              className="z-50 mx-auto w-1/2 py-3 text-3xl lg:hidden "
+              animation={{ border: true, color: true }}
+            >
+              {name}
+            </SquareCornerCard>
+            {i == 0 ? (
+              <div class="nav-home hidden text-2xl lg:block">
+                <span class="nav-home__inner">{name}</span>
+              </div>
+            ) : (
+              <span class="hidden text-xl lg:block">{name}</span>
+            )}
+          </a>
+        </li>
+      ))
+    }
+    <li class="flex items-center justify-center gap-12 text-white">
+      <div>
+        <a
+          href="https://linkedin.com/in/raychungno1"
+          target="_blank"
+          rel="noreferrer"
+          class="opacity-80 hover:opacity-100"
+        >
+          <span class="sr-only">LinkedIn</span>
+          <Icon class="w-12 lg:w-8" pack="mdi" name="linkedin" />
+        </a>
+      </div>
+      <div>
+        <a
+          href="https://github.com/raychungno1"
+          target="_blank"
+          rel="noreferrer"
+          class="opacity-80 hover:opacity-100"
+        >
+          <span class="sr-only">Github</span>
+          <Icon class="w-12 lg:w-8" pack="mdi" name="github" />
+        </a>
+      </div>
     </li>
   </ul>
 </nav>
 
 <script>
+  // Highlight active page
+  (document.querySelectorAll("nav a") as NodeListOf<HTMLAnchorElement>).forEach(
+    (link) => {
+      if (link.href === window.location.href) link.classList.add("active");
+    }
+  );
+
+  // Enables mobile responsive nav
   const nav = document.getElementById("primary-navigation");
   const navToggle = document.getElementById("navigation-toggle");
 
@@ -47,3 +99,55 @@ import Hamburger from "./Hamburger.astro";
     });
   }
 </script>
+
+<style>
+  .active {
+    color: rgba(var(--color-highlight));
+  }
+
+  .nav-home {
+    position: relative;
+  }
+
+  .nav-home::before,
+  .nav-home::after {
+    content: "";
+    position: absolute;
+    height: 101%;
+    border-left: 4px solid white;
+    top: 0;
+    transform-origin: top;
+  }
+
+  .nav-home::before {
+    left: -8px;
+    transform: skewX(45deg);
+  }
+
+  .nav-home::after {
+    right: -8px;
+    transform: skewX(-45deg);
+  }
+
+  .nav-home__inner {
+    height: 3.5rem;
+    width: 20rem;
+    color: #0c1428;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 3.5rem) 101%, 3.5rem 101%);
+    outline: 1px solid white;
+  }
+
+  .active .nav-home__inner {
+    text-decoration: underline;
+  }
+
+  .nav-home__inner:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+    outline-color: rgba(255, 255, 255, 0.2);
+  }
+</style>

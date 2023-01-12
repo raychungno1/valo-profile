@@ -3,19 +3,19 @@ export interface Props {
   id?: string;
 }
 
-const { id = "hamburger" + Math.random() } = Astro.props;
+const { id = "hamburger-" + Math.random() } = Astro.props;
 ---
 
 <button
   aria-controls="primary-navigation"
-  class="hamburger-button absolute top-8 left-8 z-50 aspect-square w-12 bg-gray-500 lg:hidden"
+  class="hamburger-button aspect-square w-12"
   id={id}
 >
   <span class="sr-only">Menu</span>
-  <svg viewBox="0 0 100 100">
-    <rect class="line top" width="80" height="10" x="10" y="25"></rect>
-    <rect class="line middle" width="80" height="10" x="10" y="45"></rect>
-    <rect class="line bottom" width="80" height="10" x="10" y="65"></rect>
+  <svg viewBox="0 0 100 100" fill="white">
+    <rect class="line top" width="70" height="6" x="15" y="26"></rect>
+    <rect class="line middle" width="70" height="6" x="15" y="47"></rect>
+    <rect class="line bottom" width="70" height="6" x="15" y="68"></rect>
   </svg>
 </button>
 
@@ -44,7 +44,7 @@ const { id = "hamburger" + Math.random() } = Astro.props;
   }
 
   .hamburger-button[aria-expanded="true"] .line:is(.top, .bottom) {
-    y: 45;
+    y: 47;
   }
 
   .hamburger-button[aria-expanded="true"] .line.top {
