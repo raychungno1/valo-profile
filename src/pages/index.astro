@@ -1,7 +1,9 @@
 ---
 import { Icon } from "astro-icon";
 import Layout from "../layouts/Layout.astro";
+import SquareCornerCard from "../components/SquareCornerCard.astro";
 import homeBG from "../images/home-bg.png";
+import ytLogo from "../images/yt-logo.jpg";
 
 const intro = {
   name: "Ray Chung",
@@ -9,11 +11,82 @@ const intro = {
   desc: "I'm a software developer studying Computer Science and Engineering at the Ohio State University. I love both front-end and back-end development, and have a big interest in machine learning and AI.",
 };
 
+interface AboutDetail {
+  company: string;
+  title: string;
+  date: string;
+  points: string[];
+  gpa?: number[];
+}
+
+const experiences: AboutDetail[] = [
+  {
+    company: "JP Morgan Chase",
+    title: "Software Engineer Intern",
+    date: "June - August 2022",
+    points: [
+      "Developed a web application with Java Spring Boot, Node, & React to summarize loan application data",
+      "Within one week of use, tool identified a bottleneck affecting 60% of automated loan applications, increasing automated loan approvals by 10%",
+      "Implemented a solution to store loan application data in the cloud, creating a schema & automating data storage in an Oracle database",
+      "Decreased app maintenance 33% by developing a Spring Boot Admin monitoring tool for microservices",
+      "Selected as a top 2 intern project among 113 interns and 33 teams",
+    ],
+  },
+  {
+    company: "Ohio State University",
+    title: "B.S. Computer Science",
+    date: "August 2019 - December 2022",
+    gpa: [3.9, 4.0],
+    points: [
+      "Graduated Summa Cum Laude with a B.S. in Computer Science & Engineering",
+      "AI specialization with coursework Neural Networks, NLP, Computer Vision",
+      "NLP research in chain-of-thought prompting",
+    ],
+  },
+];
+
+const awards: AboutDetail[] = [
+  {
+    company: "ASA DataFest",
+    title: "Winner",
+    date: "March 2021",
+    points: [
+      "Won best visualization award among 35 teams",
+      "Performed data analysis with RStudio, providing business insights to an anonymous data provider",
+      "Used statistical techniques to identify issues and developed actionable conclusions",
+    ],
+  },
+  {
+    company: "PLTW Engineering",
+    title: "Winner",
+    date: "August 2018 - May 2019",
+    points: [
+      "Won audience choice award among 30 teams",
+      "Cooperated in a team of 4 to produce a garage door add-on that automatically operated a garage door",
+      "Developed a fully functional app through Swift using XCode with a customizable, toggleable geo-fence",
+    ],
+  },
+  {
+    company: "Boy Scouts of America",
+    title: "Eagle Scout, Gold Palm",
+    date: "May 2016",
+    points: [
+      "Eagle Project - Refurbished a Tzu Chi recycling center in Shanghai, China",
+      "Earned Gold Palm beyond rank of Eagle",
+      "Order of the Arrow (OA) member",
+    ],
+  },
+];
+
 const aboutTabs = [
-  { name: "Experience", pack: "bi", iconName: "people-fill" },
-  { name: "Education", pack: "ion", iconName: "school-sharp" },
-  { name: "Awards", pack: "bi", iconName: "award-fill" },
-  { name: "Hobbies", pack: "ion", iconName: "game-controller" },
+  {
+    name: "Experience",
+    pack: "bi",
+    iconName: "people-fill",
+    details: experiences,
+  },
+  { name: "Awards", pack: "bi", iconName: "award-fill", details: awards },
+  { name: "Hobbies", pack: "ion", iconName: "game-controller", details: [] },
 ];
 ---
 
@@ -30,7 +103,7 @@ const aboutTabs = [
   />
   <div class="relative mx-auto my-10 w-[80%] max-w-7xl text-white">
     <div
-      class="mx-auto flex max-w-2xl flex-col gap-12 bg-black bg-opacity-60 px-3 py-8 backdrop-blur-sm lg:mx-0 lg:w-[768px]"
+      class="mx-auto flex max-w-2xl flex-col gap-12 bg-black bg-opacity-60 px-3 py-8 backdrop-blur-sm lg:mx-0 lg:w-4/5 lg:max-w-4xl xl:w-3/5"
     >
       <div id="about-intro" class="text-center text-xl lg:text-left">
         <p class="font-light uppercase tracking-wide">{intro.role}</p>
@@ -46,21 +119,134 @@ const aboutTabs = [
       <div id="about-tabs" class="flex items-center justify-center gap-1">
         <div class="absolute hidden h-2 w-full border-t sm:block"></div>
         {
-          aboutTabs.map(({ name, pack, iconName }, i) => (
+          aboutTabs.map(({ name, pack, iconName }, tabIdx) => (
             <div
               class="group flex w-1/4 max-w-[8rem] flex-col items-center justify-center gap-2 bg-white bg-opacity-20 p-1 hover:bg-opacity-40 active:bg-opacity-20"
-              data-selected={`${i === 0}`}
-              id={`tab-${i}`}
+              data-selected={`${tabIdx === 0}`}
+              data-tab={name.toLowerCase()}
+              id={`tab-${tabIdx}`}
             >
               <div class="absolute hidden h-[3px] w-4 -translate-y-[3px] bg-white content-[''] sm:block" />
               <p class="hidden w-full p-2 text-center text-lg font-bold uppercase group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:block">
                 {name}
               </p>
               <Icon
-                class="h-12 w-full group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:mt-3 sm:group-data-[selected=true]:bg-opacity-0 sm:group-data-[selected=true]:text-white"
+                class="h-12 w-full group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:mt-2 sm:group-data-[selected=true]:bg-opacity-0 sm:group-data-[selected=true]:text-white"
                 pack={pack}
                 name={iconName}
               />
+            </div>
+          ))
+        }
+      </div>
+      <div id="about-details">
+        {
+          aboutTabs.map(({ name, details }, tabIdx) => (
+            <div
+              class="group hidden data-[selected=true]:block"
+              data-selected={`${tabIdx === 0}`}
+              id={`detail-${tabIdx}`}
+            >
+              <p class="mb-4 pl-1 text-2xl font-bold tracking-wider text-white">
+                {name}
+              </p>
+              {name !== "Hobbies" ? (
+                <ul class="px-1">
+                  {details.map(
+                    ({ company, title, date, gpa, points }, detailIdx) => (
+                      <li class="relative flex h-full gap-3">
+                        <div class="mt-1 aspect-square h-3 w-3 rounded-md bg-white" />
+                        <div
+                          class={`absolute top-6 left-1 w-[3px] bg-white ${
+                            detailIdx !== details.length - 1
+                              ? "bottom-1"
+                              : "-bottom-1"
+                          }`}
+                        />
+                        <div class="w-full">
+                          <div class="mb-4 flex w-full flex-col justify-between sm:flex-row">
+                            <div>
+                              <p class="text-2xl font-bold  leading-none">
+                                {company}
+                              </p>
+                              <p class="text-sm uppercase tracking-wider">
+                                {title}
+                              </p>
+                            </div>
+                            <p class="leading-none opacity-75">{date}</p>
+                          </div>
+                          <SquareCornerCard
+                            className={`flex w-full flex-col ${
+                              detailIdx !== details.length - 1 ? "mb-12" : ""
+                            }`}
+                          >
+                            {gpa && (
+                              <div class="flex flex-col justify-between leading-none duration-300 ease-in hover:bg-white hover:bg-opacity-[.15] hover:transition-none sm:flex-row">
+                                <p class="px-2 py-4">GPA</p>
+                                <div class="flex text-center sm:w-1/2">
+                                  <div class="w-full">
+                                    <p class="mb-2 bg-white bg-opacity-30 py-4">
+                                      Cumulative
+                                    </p>
+                                    <p class="bg-highlight bg-opacity-30 py-1">
+                                      {gpa[0]}
+                                    </p>
+                                  </div>
+                                  <div class="w-full">
+                                    <p class="mb-2 bg-white bg-opacity-10 py-4">
+                                      Major
+                                    </p>
+                                    <p class="bg-highlight bg-opacity-20 py-1">
+                                      {gpa[1]}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                            {points.map((point, pointIdx) => (
+                              <div class="px-2 py-4 leading-none duration-300 ease-in even:bg-white even:bg-opacity-10 hover:bg-white hover:bg-opacity-[.15] hover:transition-none hover:even:bg-opacity-20">
+                                {point}
+                              </div>
+                            ))}
+                          </SquareCornerCard>
+                        </div>
+                      </li>
+                    )
+                  )}
+                </ul>
+              ) : (
+                <div>
+                  <SquareCornerCard className="mb-12 p-4">
+                    <p class="mb-4 w-full text-2xl font-bold">Youtube</p>
+                    <a
+                      href="https://www.youtube.com/c/legendaray"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <div class="flex items-center gap-2 bg-white bg-opacity-20 hover:bg-opacity-40 active:bg-opacity-20 sm:gap-6">
+                        <img src={ytLogo} alt="Youtube Logo" />
+                        <div>
+                          <div class="text-2xl font-bold">Legendaray</div>
+                          <div class="text-sm uppercase">
+                            Check out my channel!
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </SquareCornerCard>
+                  <SquareCornerCard className="p-4">
+                    <p class="mb-4 w-full text-2xl font-bold">Origami</p>
+                    <iframe
+                      width="100%"
+                      src="https://www.youtube.com/embed/Suly8B2P6fc"
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen
+                      class="aspect-video"
+                    />
+                  </SquareCornerCard>
+                </div>
+              )}
             </div>
           ))
         }
@@ -121,19 +307,53 @@ const aboutTabs = [
 
 <script>
   // About Tabs
+  const params = new URLSearchParams(location.search);
+  const selectedTab = params.get("tab");
+  let selectedTabFound = false;
   const tabs: HTMLElement[] = [];
+  const details: HTMLElement[] = [];
   for (let i = 0; i < 4; i++) {
-    const el = document.getElementById(`tab-${i}`);
-    if (!el) continue;
+    const tabEl = document.getElementById(`tab-${i}`);
+    const detailEl = document.getElementById(`detail-${i}`);
+    if (!tabEl || !detailEl) continue;
 
-    tabs.push(el);
-    el.addEventListener("click", () => {
+    if (selectedTab) {
+      tabEl.dataset.selected = `${selectedTab === tabEl.dataset.tab}`;
+      detailEl.dataset.selected = `${selectedTab === tabEl.dataset.tab}`;
+      if (selectedTab === tabEl.dataset.tab) {
+        selectedTabFound = true;
+      }
+    }
+
+    tabs.push(tabEl);
+    details.push(detailEl);
+    tabEl.addEventListener("click", (e: any) => {
+      console.log(tabs[i]);
+
+      if (i === 0) {
+        params.delete("tab");
+        window.history.replaceState({}, "", location.pathname);
+      } else {
+        params.set("tab", `${tabs[i].dataset.tab}`);
+        window.history.replaceState(
+          {},
+          "",
+          `${location.pathname}?${params.toString()}`
+        );
+      }
+
       tabs.forEach((tab, tabIdx) => {
         tab.dataset.selected = `${tabIdx === i}`;
       });
+      details.forEach((detail, detailIdx) => {
+        detail.dataset.selected = `${detailIdx === i}`;
+      });
     });
   }
-  console.log(tabs);
+  if (!selectedTabFound) {
+    tabs[0].dataset.selected = `${true}`;
+    details[0].dataset.selected = `${true}`;
+  }
 </script>
 
 <style>

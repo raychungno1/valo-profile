@@ -1,3 +1,7 @@
 :root {
   --color-highlight: 233, 237, 179;
 }
+
+body {
+  min-height: 100vh;
+}
