@@ -1,6 +1,47 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const projects = [1, 2, 3, 4, 5];
 ---
 
 <Layout title="Ray Chung | Projects">
+  <div
+    id="featured-projects"
+    class="container mx-auto mt-14 hidden justify-between gap-3 px-4 text-white lg:flex"
+  >
+    {projects.map((project) => <div class="featured__container">hi</div>)}
+  </div>
 </Layout>
+
+<style>
+  .featured__container {
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 255) 40%
+    );
+    width: 100%;
+    height: clamp(450px, 44vw, 650px);
+  }
+  .featured__container:first-child,
+  .featured__container:last-child {
+    margin-top: 2rem;
+    height: calc(clamp(450px, 44vw, 650px) - 4rem);
+  }
+  .featured__container:nth-child(2),
+  .featured__container:nth-child(4) {
+    margin-top: 1rem;
+    height: calc(clamp(450px, 44vw, 650px) - 2rem);
+  }
+  .featured__container:first-child {
+    margin-left: 1rem;
+  }
+  .featured__container:nth-child(2) {
+    margin-left: 0.5rem;
+  }
+  .featured__container:nth-child(4) {
+    margin-right: 0.5rem;
+  }
+  .featured__container:last-child {
+    margin-right: 1rem;
+  }
+</style>

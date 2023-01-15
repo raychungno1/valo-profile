@@ -1,7 +1,49 @@
 :root {
+  --animation-play: false;
   --color-highlight: 233, 237, 179;
+  --color-highlight-green: 50, 200, 160;
+  --in-out-quint: cubic-bezier(0.19, 1, 0.22, 1);
+  --out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 body {
   min-height: 100vh;
+  background: linear-gradient(
+    45deg,
+    rgba(80, 128, 152, 1) 0%,
+    rgba(34, 44, 80, 1) 100%
+  );
+}
+
+.fade-in {
+  opacity: 1;
+  animation: fade-in 300ms ease-in-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@font-face {
+  font-family: "Just Dance Bold";
+  src: url("/Just\ Dance\ Bold.ttf");
+}
+
+@font-face {
+  font-family: "Just Dance Normal";
+  src: url("/Just\ Dance\ Font\ Regular.ttf");
 }

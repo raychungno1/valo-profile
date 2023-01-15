@@ -5,74 +5,117 @@ import Hamburger from "./Hamburger.astro";
 import SquareCornerCard from "./SquareCornerCard.astro";
 
 const tabs = [
-  { name: "Home", route: "/" },
-  { name: "Projects", route: "/projects" },
-  { name: "Skills", route: "/skills" },
-  { name: "Contact", route: "/contact" },
+  {
+    name: "Skills",
+    pack: "gis",
+    iconName: "network",
+    route: "/skills",
+    small: false,
+    external: false,
+  },
+  {
+    name: "Projects",
+    pack: "ri",
+    iconName: "code-s-slash-fill",
+    route: "/projects",
+    small: true,
+    external: false,
+  },
+  {
+    name: "Home",
+    pack: "ic",
+    iconName: "baseline-home",
+    route: "/",
+    small: false,
+    external: false,
+  },
+  {
+    name: "LinkedIn",
+    pack: "mdi",
+    iconName: "linkedin",
+    route: "https://linkedin.com/in/raychungno1",
+    small: true,
+    external: true,
+  },
+  {
+    name: "Github",
+    pack: "mdi",
+    iconName: "github",
+    route: "https://github.com/raychungno1",
+    small: true,
+    external: true,
+  },
 ];
 ---
 
 <SquareCornerCard
-  className="absolute top-[5vw] left-[5vw] aspect-square h-12 z-50 lg:hidden"
+  className="absolute top-[5vw] left-[5vw] aspect-square h-12 z-50 sm:hidden"
   color="green"
   animation={{ border: true, color: true }}
 >
-  <Hamburger id={"navigation-toggle"} />
+  <Hamburger id="navigation-toggle" />
 </SquareCornerCard>
-<nav class="relative z-40">
+<svg class="hidden sm:block w-[19.5rem] absolute top-0 left-1/2 -translate-x-[9.8rem]" id="nav-decoration" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path id="center-right" class="opacity-0" d="M50 55.5L59.5 46.5L51.5 38.5V21.5C51.5 21.1667 51.2 20.2 50 19C48.5 17.5 47 16 47 14C47 12.4 47 9.33333 47 8L38.5 -0.5" stroke="white" stroke-width="0.5"/>
+  <path id="center-left" class="opacity-0" d="M50 55.5L40.5 46.5L48.5 38.5V21.5C48.5 21.1667 48.8 20.2 50 19C51.5 17.5 53 16 53 14C53 12.4 53 9.33333 53 8L61.5 -0.5" stroke="white" stroke-width="0.5"/>
+  <path id="bottom-arrow" class="opacity-0" d="M48.5 64L50 62.5L51.5 64" stroke="white" stroke-width="0.5" opacity="0.2"/>
+  <path id="bottom-left" class="opacity-0" d="M48.5 48.5L50 50V59.5L48.5 61C48 61.5 47 63 47 65C47 67 47 69.8333 47 71" stroke="white" stroke-width="0.5"/>
+  <path id="bottom-right" class="opacity-0" d="M51.5 48.5L50 50V59.5L51.5 61C52 61.5 53 63 53 65C53 67 53 69.8333 53 71" stroke="white" stroke-width="0.5"/>
+  <path id="inner-left" class="opacity-0" d="M50 12L31 31" stroke="white" stroke-width="0.5"/>
+  <path id="inner-right" class="opacity-0" d="M50 12L69 31" stroke="white" stroke-width="0.5"/>
+  <path id="outer-left-highlight" class="opacity-0" d="M29 31L31 33" stroke="white" stroke-width="0.5"/>
+  <path id="outer-left" class="opacity-0" d="M0 0L48.5 48.5V56.5C48.5 57 48.8 58.3 50 59.5" stroke="white" stroke-width="0.5"/>
+  <path id="outer-right-highlight" class="opacity-0" d="M71 31L69 33" stroke="white" stroke-width="0.5"/>
+  <path id="outer-right" class="opacity-0" d="M100 0L51.5 48.5V56.5C51.5 57 51.2 58.3 50 59.5" stroke="white" stroke-width="0.5"/>
+</svg>
+<nav class="relative z-10 mx-auto w-[38rem]">
   <ul
     id="primary-navigation"
     data-visible="false"
-    class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-4 border-b-2 border-white bg-black bg-opacity-50 text-center font-semibold uppercase backdrop-blur-sm transition-transform duration-700 ease-in-out-quint data-[visible=false]:-translate-x-full lg:static lg:flex-row lg:gap-16 lg:transition-none lg:data-[visible=false]:translate-x-0"
+    class="nav-clip fixed inset-0 z-40 flex flex-col items-center justify-center gap-4 bg-black bg-opacity-50 text-center font-semibold uppercase backdrop-blur-sm transition-transform duration-700 ease-in-out-quint data-[visible=false]:-translate-x-full sm:static sm:flex-row sm:gap-8 sm:bg-opacity-25 sm:transition-none sm:data-[visible=false]:translate-x-0"
+    style="--height:3.5rem"
   >
     {
-      tabs.map(({ name, route }, i) => (
-        <li class="w-full lg:w-auto">
+      tabs.map(({ name, pack, iconName, route, small, external }, tabIdx) => (
+        <li class="w-1/2 sm:w-auto">
           <a
             href={route}
-            class="text-white text-opacity-80 hover:text-opacity-100"
+            class="nav-link relative text-white text-opacity-80 hover:text-highlight-green hover:text-opacity-100"
+            target={`${external ? "_blank" : "_self"}`}
+            rel="noreferrer"
           >
+            {external ? (
+              <Icon class={`mx-auto w-12 ${small ? "sm:w-7" : "sm:w-6 sm:m-[2px]"}`} pack={pack} name={iconName} />
+              <span class="nav-tooltip text-white hidden sm:block font-custom-normal tracking-widest bg-black bg-opacity-50 px-2 py-1 backdrop-blur-sm">{name}</span>
+              <span class="sr-only">{name}</span>
+            ) : tabIdx === Math.floor(tabs.length / 2) ? (
+              <SquareCornerCard
+                className="z-50 mx-auto py-3 text-3xl sm:hidden "
+                animation={{ border: true, color: true }}
+              >
+                {name}
+              </SquareCornerCard>
+              <div
+                class="nav-home bottom-corner-clip w-[19rem] -mx-7 hidden sm:flex justify-center items-center bg-black bg-opacity-25 text-white text-opacity-80 hover:text-opacity-100 hover:bg-opacity-50"
+                style="--height:3.5rem"
+              >
+                <p class="font-custom-heavy text-[2.5rem] leading-none tracking-wider">{name}</p>
+              </div>
+            ) : (
             <SquareCornerCard
-              className="z-50 mx-auto w-1/2 py-3 text-3xl lg:hidden "
+              className="z-50 mx-auto py-3 text-3xl sm:hidden "
               animation={{ border: true, color: true }}
             >
               {name}
             </SquareCornerCard>
-            {i == 0 ? (
-              <div class="nav-home hidden text-2xl lg:block">
-                <span class="nav-home__inner">{name}</span>
-              </div>
-            ) : (
-              <span class="hidden text-xl lg:block">{name}</span>
+            <Icon class={`mx-auto w-12 ${small ? "sm:w-7" : "sm:w-6 sm:m-[2px]"} hidden sm:block`} pack={pack} name={iconName} />
+            <span class="nav-tooltip text-white hidden sm:block font-custom-normal tracking-widest bg-black bg-opacity-50 px-2 py-1 backdrop-blur-sm">{name}</span>
+            <span class="sr-only">{name}</span>
             )}
           </a>
         </li>
       ))
     }
-    <li class="flex items-center justify-center gap-12 text-white">
-      <div>
-        <a
-          href="https://linkedin.com/in/raychungno1"
-          target="_blank"
-          rel="noreferrer"
-          class="opacity-80 hover:opacity-100"
-        >
-          <span class="sr-only">LinkedIn</span>
-          <Icon class="w-12 lg:w-8" pack="mdi" name="linkedin" />
-        </a>
-      </div>
-      <div>
-        <a
-          href="https://github.com/raychungno1"
-          target="_blank"
-          rel="noreferrer"
-          class="opacity-80 hover:opacity-100"
-        >
-          <span class="sr-only">Github</span>
-          <Icon class="w-12 lg:w-8" pack="mdi" name="github" />
-        </a>
-      </div>
-    </li>
   </ul>
 </nav>
 
@@ -102,52 +145,119 @@ const tabs = [
 
 <style>
   .active {
-    color: rgba(var(--color-highlight));
+    color: rgba(var(--color-highlight-green));
   }
 
-  .nav-home {
-    position: relative;
+  @media (min-width: 640px) {
+    .nav-clip {
+      clip-path: polygon(0 0, 100% 0, calc(100% - var(--height)) 100%, 100% 100%, 100% calc(100% + var(--height)), 0% calc(100% + var(--height)), 0% 100%, var(--height) 100%);
+      min-height: var(--height);
+    }
+
+    .nav-tooltip {
+      position: absolute;
+      top: calc(var(--height) * 0.75);
+      right: 50%;
+      transform: translateX(40%);
+      visibility: hidden;
+    }
+
+    .nav-link:hover .nav-tooltip {
+      visibility: visible;
+    }
+
+    .bottom-corner-clip {
+      clip-path: polygon(0 0, 100% 0, calc(100% - var(--height)) 100%, var(--height) 100%);
+      min-height: var(--height);
+    }
   }
 
-  .nav-home::before,
-  .nav-home::after {
-    content: "";
-    position: absolute;
-    height: 101%;
-    border-left: 4px solid white;
-    top: 0;
-    transform-origin: top;
-  }
-
-  .nav-home::before {
-    left: -8px;
-    transform: skewX(45deg);
-  }
-
-  .nav-home::after {
-    right: -8px;
-    transform: skewX(-45deg);
-  }
-
-  .nav-home__inner {
-    height: 3.5rem;
-    width: 20rem;
-    color: #0c1428;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    clip-path: polygon(0 0, 100% 0, calc(100% - 3.5rem) 101%, 3.5rem 101%);
-    outline: 1px solid white;
-  }
-
-  .active .nav-home__inner {
-    text-decoration: underline;
-  }
-
-  .nav-home__inner:hover {
+  .nav-link .nav-home {
+    background-color: rgb(217, 56, 69);
     color: white;
-    background-color: rgba(255, 255, 255, 0.2);
-    outline-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .nav-link:hover .nav-home {
+    background-color: white;
+    color: black;
+    animation: nav-home-hover 500ms linear forwards;
+  }
+
+  .nav-link:active .nav-home {
+    background-color: rgb(65, 79, 91);
+  }
+
+  @keyframes nav-home-hover {
+    0% {
+      color: white;
+    };
+    100% {
+      color: black;
+    };
+  }
+
+  @keyframes animate-path {
+    0% {
+      stroke-dashoffset: var(--path-length);
+    };
+    100% {
+      stroke-dashoffset: 0;
+    };
+  }
+
+  #outer-left, #outer-right {
+    --path-length: 80;
+    opacity: 0.2;
+    stroke-dasharray: var(--path-length);
+    animation: animate-path 300ms ease-in-out;
+  }
+
+  #outer-left-highlight, #outer-right-highlight {
+    --path-length: 4;
+    opacity: 0.2;
+    stroke-dasharray: var(--path-length);
+    animation: animate-path 30ms linear backwards;
+    animation-delay: 150ms;
+  }
+
+  #inner-left, #inner-right {
+    --path-length: 27;
+    opacity: 0.1;
+    stroke-dasharray: var(--path-length);
+    animation: animate-path 100ms ease-in backwards;
+    animation-delay: 150ms;
+  }
+
+  #bottom-left, #bottom-right {
+    --path-length: 25;
+    opacity: 0.1;
+    stroke-dasharray: var(--path-length);
+    animation: animate-path 100ms ease-out backwards;
+    animation-delay: 250ms;
+  }
+
+  #bottom-arrow {
+    opacity: 0.2;
+    animation: bottom-arrow 200ms ease-out backwards;
+    animation-delay: 340ms;
+  }
+
+  @keyframes bottom-arrow {
+    0% {
+      opacity: 0;
+      transform: translateY(5px)
+    };
+    100% {
+      opacity: 1;
+      transform: translateY(0)
+    };
+  }
+
+  #center-left, #center-right {
+    --path-length: 68;
+    opacity: 0.1;
+    stroke-dasharray: var(--path-length);
+    animation: animate-path 300ms ease-out backwards;
+    animation-delay: 340ms;
   }
 </style>
