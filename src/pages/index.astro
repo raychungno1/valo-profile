@@ -325,19 +325,17 @@ const aboutTabs = [
     tabs[0].dataset.selected = `${true}`;
     details[0].dataset.selected = `${true}`;
   }
-</script>
 
-<script is:inline>
   // Valo Profile Images
+  const valoProfilePics: HTMLImageElement[] = [];
+  const animationPlayed = false;
   function valoProfileLoaded() {
-    if (valoProfilePics.every((img) => img.complete)) {
-        console.log("images loaded")
-        valoProfilePics.forEach((img) => img.classList.add(img.id))
+    if (!animationPlayed && valoProfilePics.every((img) => img.complete)) {
+      valoProfilePics.forEach((img) => img.classList.add(img.id))
     }
   }
-  const valoProfilePics = [];
   ["valo-profile", "valo-profile__highlight1", "valo-profile__highlight2", "valo-profile__bg"].forEach((id) => {
-    const el = document.getElementById(id);
+    const el = document.getElementById(id) as HTMLImageElement;
     if (!el) return;
     el.onload = valoProfileLoaded;
     valoProfilePics.push(el);
