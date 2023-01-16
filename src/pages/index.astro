@@ -329,19 +329,20 @@ const aboutTabs = [
 
 <script is:inline>
   // Valo Profile Images
+  function valoProfileLoaded() {
+    if (valoProfilePics.every((img) => img.complete)) {
+        console.log("images loaded")
+        valoProfilePics.forEach((img) => img.classList.add(img.id))
+    }
+  }
   const valoProfilePics = [];
   ["valo-profile", "valo-profile__highlight1", "valo-profile__highlight2", "valo-profile__bg"].forEach((id) => {
     const el = document.getElementById(id);
     if (!el) return;
-    console.log(el.complete)
-    el.onload = () => {
-      if (valoProfilePics.every((img) => img.complete)) {
-        console.log("images loaded")
-        valoProfilePics.forEach((img) => img.classList.add(img.id))
-      }
-    }
+    el.onload = valoProfileLoaded;
     valoProfilePics.push(el);
   })
+  valoProfileLoaded();
 </script>
 
 <style>
