@@ -2,9 +2,7 @@
 import { Icon } from "astro-icon";
 import Layout from "../layouts/Layout.astro";
 import SquareCornerCard from "../components/SquareCornerCard.astro";
-import homeBG from "../images/home-bg.png";
 import ytLogo from "../images/yt-logo.jpg";
-import valoPortrait from "../images/valo-portrait.png";
 import valoPortraitFG from "../images/valo-portrait-fg.png";
 import valoPortraitBG from "../images/valo-portrait-bg.png";
 import valoPortraitHL1 from "../images/valo-portrait-highlight1.png";
@@ -13,7 +11,7 @@ import valoPortraitHL2 from "../images/valo-portrait-highlight2.png";
 const intro = {
   name: "Ray Chung",
   role: "Software Engineer",
-  desc: "I'm a software engineer specializing in full stack development. Based in New York City, I'm currently building out real-time financial solutions at Bloomberg.",
+  desc: "I'm a software engineer specializing in full stack development. Currently based in New York City, I'm building out real-time financial solutions at Bloomberg.",
 };
 
 interface AboutDetail {
@@ -149,11 +147,11 @@ const aboutTabs = [
         </p>
       </div>
       <div id="about-tabs" class="flex items-center justify-center gap-1">
-        <div class="absolute hidden h-2 w-full border-t sm:block"></div>
-        <div
+        <div class="absolute hidden h-[9px] w-full border-t sm:block left-0"></div>
+        <!-- <div
           class="absolute my-8 h-14 w-full border-t border-b before:absolute before:-top-[2px] before:h-[58px] before:w-4 before:border-t-[3px] before:border-b-[3px] before:content-[''] after:absolute after:-top-[2px] after:right-0 after:h-[58px] after:w-4 after:border-t-[3px] after:border-b-[3px] after:content-[''] sm:hidden"
         >
-        </div>
+        </div> -->
         <svg class="absolute left-0 -translate-x-1/2 w-60 -translate-y-1" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="50" cy="50" r="49.875" stroke="white" stroke-width="0.25" opacity="0.2"/>
           <path d="M47 28.25L50 25.25L53 28.25L50 31.25L47 28.25Z" stroke="white" stroke-width="0.25" opacity="0.2"/>
@@ -171,12 +169,12 @@ const aboutTabs = [
               data-tab={name.toLowerCase()}
               id={`tab-${tabIdx}`}
             >
-              <div class="absolute hidden h-[3px] w-4 -translate-y-[3px] bg-white content-[''] sm:block" />
-              <p class="hidden w-full py-2 text-center text-lg font-bold uppercase group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:block">
+              <div class="absolute hidden h-[3px] w-4 -translate-y-[4px] bg-white content-[''] sm:block" />
+              <p class="hidden w-full py-1 text-center text-lg uppercase group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:block">
                 {name}
               </p>
               <Icon
-                class="h-12 w-full group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:mt-2 sm:group-data-[selected=true]:bg-opacity-0 sm:group-data-[selected=true]:text-white"
+                class="h-12 w-full group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:group-data-[selected=true]:bg-opacity-0 sm:group-data-[selected=true]:text-white"
                 pack={pack}
                 name={iconName}
               />
@@ -192,75 +190,65 @@ const aboutTabs = [
               data-selected={`${tabIdx === 0}`}
               id={`detail-${tabIdx}`}
             >
-              <p class="font-custom-heavy mb-4 pl-1 text-4xl font-bold tracking-wider text-white">
+              <p class="mb-4 pl-1 text-4xl font-bold tracking-wider text-highlight">
                 {name}
               </p>
               {name !== "Hobbies" ? (
-                <ul class="px-1">
+                <ul class="px-1 flex flex-col">
                   {details.map(
                     ({ company, title, date, gpa, points }, detailIdx) => (
-                      <li class="relative flex h-full gap-3">
-                        <div class="mt-1 aspect-square h-3 w-3 rounded-md bg-white" />
-                        <div
-                          class={`absolute top-6 left-1 w-[3px] bg-white ${
-                            detailIdx !== details.length - 1
-                              ? "bottom-1"
-                              : "-bottom-1"
-                          }`}
-                        />
-                        <div class="w-full">
-                          <div class="mb-4 flex w-full flex-col justify-between sm:flex-row">
-                            <div>
-                              <p class="text-2xl font-bold  leading-none">
-                                {company}
-                              </p>
-                              <p class="text-sm uppercase tracking-wider">
-                                {title}
-                              </p>
-                            </div>
-                            <p class="leading-none opacity-75">{date}</p>
+                      <li>
+                        <div class="mb-4 flex w-full flex-col justify-between sm:flex-row">
+                          <div>
+                            <p class="text-2xl font-bold  leading-none">
+                              {company}
+                            </p>
+                            <p class="text-sm uppercase tracking-wider">
+                              {title}
+                            </p>
                           </div>
-                          <SquareCornerCard
-                            className={`flex w-full flex-col ${
-                              detailIdx !== details.length - 1 ? "mb-12" : ""
-                            }`}
-                          >
-                            {gpa && (
-                              <div class="flex flex-col justify-between leading-none duration-300 ease-in hover:bg-white hover:bg-opacity-[.15] hover:transition-none sm:flex-row">
-                                <p class="px-2 py-4">GPA</p>
-                                <div class="flex text-center sm:w-1/2">
-                                  <div class="w-full">
-                                    <p class="mb-2 bg-white bg-opacity-30 py-4">
-                                      Cumulative
-                                    </p>
-                                    <p class="bg-highlight bg-opacity-30 py-1">
-                                      {gpa[0]}
-                                    </p>
-                                  </div>
-                                  <div class="w-full">
-                                    <p class="mb-2 bg-white bg-opacity-10 py-4">
-                                      Major
-                                    </p>
-                                    <p class="bg-highlight bg-opacity-20 py-1">
-                                      {gpa[1]}
-                                    </p>
-                                  </div>
+                          <p class="leading-none opacity-75">{date}</p>
+                        </div>
+                        <SquareCornerCard
+                          className={`flex w-full flex-col ${
+                            detailIdx !== details.length - 1 ? "mb-10" : ""
+                          }`}
+                        >
+                          {gpa && (
+                            <div class="flex flex-col justify-between leading-none duration-300 ease-in hover:bg-white hover:bg-opacity-[.15] hover:transition-none sm:flex-row">
+                              <p class="px-2 py-4">GPA</p>
+                              <div class="flex text-center sm:w-1/2">
+                                <div class="w-full">
+                                  <p class="mb-2 bg-white bg-opacity-30 py-4">
+                                    Cumulative
+                                  </p>
+                                  <p class="bg-highlight bg-opacity-30 py-1">
+                                    {gpa[0]}
+                                  </p>
+                                </div>
+                                <div class="w-full">
+                                  <p class="mb-2 bg-white bg-opacity-10 py-4">
+                                    Major
+                                  </p>
+                                  <p class="bg-highlight bg-opacity-20 py-1">
+                                    {gpa[1]}
+                                  </p>
                                 </div>
                               </div>
-                            )}
-                            {points.map((point, pointIdx) => (
-                              <div class="px-2 py-4 leading-none duration-300 ease-in even:bg-white even:bg-opacity-10 hover:bg-white hover:bg-opacity-[.15] hover:transition-none hover:even:bg-opacity-20">
-                                {point}
-                              </div>
-                            ))}
-                          </SquareCornerCard>
-                        </div>
+                            </div>
+                          )}
+                          {points.map((point) => (
+                            <div class="px-2 py-4 leading-none duration-300 ease-in even:bg-white even:bg-opacity-10 hover:bg-white hover:bg-opacity-[.15] hover:transition-none hover:even:bg-opacity-20">
+                              {point}
+                            </div>
+                          ))}
+                        </SquareCornerCard>
                       </li>
                     )
                   )}
                 </ul>
               ) : (
-                <SquareCornerCard className="mb-12 p-4">
+                <SquareCornerCard className="mb-12 p-4 m-1">
                   <p class="mb-4 w-full text-2xl font-bold">Youtube</p>
                   <a
                     href="https://www.youtube.com/c/legendaray"
@@ -278,7 +266,7 @@ const aboutTabs = [
                     </div>
                   </a>
                 </SquareCornerCard>
-                <SquareCornerCard className="p-4">
+                <SquareCornerCard className="p-4  m-1">
                   <p class="mb-4 w-full text-2xl font-bold">Origami</p>
                   <iframe
                     width="100%"
