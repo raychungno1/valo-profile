@@ -327,12 +327,13 @@ const aboutTabs = [
   }
 </script>
 
-<script defer>
+<script is:inline>
   // Valo Profile Images
   const valoProfilePics = [];
   ["valo-profile", "valo-profile__highlight1", "valo-profile__highlight2", "valo-profile__bg"].forEach((id) => {
     const el = document.getElementById(id);
     if (!el) return;
+    console.log(el)
     el.onload = () => {
       if (valoProfilePics.every((img) => img.complete)) {
         console.log("images loaded")
