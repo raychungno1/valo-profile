@@ -333,7 +333,7 @@ const aboutTabs = [
   ["valo-profile", "valo-profile__highlight1", "valo-profile__highlight2", "valo-profile__bg"].forEach((id) => {
     const el = document.getElementById(id);
     if (!el) return;
-    console.log(el)
+    console.log(el.complete)
     el.onload = () => {
       if (valoProfilePics.every((img) => img.complete)) {
         console.log("images loaded")
