@@ -1,0 +1,59 @@
+<!-- <div class="video-background">
+  <div id="video-player"></div>
+</div>
+<img
+  id="video-placeholder"
+  src={homeBG}
+  alt="Video Placeholder"
+  class="fixed inset-0 -top-[1%] h-full w-full scale-[1.15] object-cover transition-all duration-500 data-[visible=false]:opacity-0"
+  data-visible="true"
+/> -->
+<!-- <script is:inline>
+  // Loads the IFrame Player API code asynchronously.
+  var tag = document.createElement("script");
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName("script")[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // Creates an <iframe> after the API code downloads.
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player("video-player", {
+      height: "100%",
+      width: "100%",
+      videoId: "KcFY64yX2bI",
+      playerVars: {
+        autoplay: 1,
+        controls: 0,
+        enablejsapi: 1,
+        iv_load_policy: 3,
+        loop: 1,
+        modestbranding: 1,
+        mute: 1,
+        playsinline: 1,
+        rel: 0,
+        showinfo: 0,
+        origin: window.location.origin,
+      },
+      events: {
+        onReady: onPlayerReady,
+      },
+    });
+  }
+
+  // API will call this function when the video player is ready.
+  function onPlayerReady(event) {
+    event.target.playVideo();
+    player.addEventListener("onStateChange", onStateChange);
+  }
+
+  function onStateChange(event) {
+    const videoPlaceholder = document.getElementById("video-placeholder");
+    if (event.data === 1) {
+      videoPlaceholder.dataset.visible = "false";
+    } else {
+      videoPlaceholder.dataset.visible = "true";
+    }
+  }
+</script> -->
