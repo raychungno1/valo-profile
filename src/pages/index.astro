@@ -325,11 +325,13 @@ const aboutTabs = [
     tabs[0].dataset.selected = `${true}`;
     details[0].dataset.selected = `${true}`;
   }
+</script>
 
+<script defer>
   // Valo Profile Images
-  const valoProfilePics: HTMLImageElement[] = [];
+  const valoProfilePics = [];
   ["valo-profile", "valo-profile__highlight1", "valo-profile__highlight2", "valo-profile__bg"].forEach((id) => {
-    const el = document.getElementById(id) as HTMLImageElement;
+    const el = document.getElementById(id);
     if (!el) return;
     el.onload = () => {
       if (valoProfilePics.every((img) => img.complete)) {
