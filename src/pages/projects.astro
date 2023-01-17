@@ -1,47 +1,361 @@
 ---
 import Layout from "../layouts/Layout.astro";
-const projects = [1, 2, 3, 4, 5];
+import { projectList } from "../utils/projects";
+import { logos } from "../utils/logos";
 ---
 
 <Layout title="Ray Chung | Projects">
   <div
     id="featured-projects"
-    class="container mx-auto mt-14 hidden justify-between gap-3 px-4 text-white lg:flex"
+    class="group container relative mx-auto mt-14 hidden max-h-[750px] min-h-[450px] justify-between gap-3 px-4 text-white lg:flex"
   >
-    {projects.map((project) => <div class="featured__container">hi</div>)}
+    {
+      projectList.slice(0, 5).map(({ bg, title, skills }, pIdx) => (
+        <div id={"featured__container" + pIdx} class="opacity-0">
+          <div class="featured">
+            <img src={bg} alt="Tik Tok Clone" class="featured__img" />
+            <svg
+              class="absolute"
+              viewBox="0 0 100 250"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M5 2V0H39L37 2H5Z" fill="white" />
+              <path d="M95 2V0H61L63 2H95Z" fill="white" />
+              <path
+                d="M2.5 4V46"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+              />
+              <path
+                d="M97.5 4V46"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+              />
+              <path
+                d="M2.5 50.5V152.5"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+              />
+              <path
+                d="M97.5 50.5V152.5"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+              />
+              <path
+                d="M2.5 152.5V181C2.5 182.5 3 183 4 184C5 185 8.5 188.5 10 190"
+                stroke="white"
+                stroke-opacity="0.5"
+                stroke-width="0.5"
+              />
+              <path
+                d="M97.5 152.5V181C97.5 182.5 97 183 96 184C95 185 91.5 188.5 90 190"
+                stroke="white"
+                stroke-opacity="0.5"
+                stroke-width="0.5"
+              />
+              <path
+                d="M5 4V16C5 17.5 4.5 18 3.5 19L2 20.5C1 21.5 0.5 22.5 0.5 23.5V177C0.5 178 1 179 2 180L10 188"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+              />
+              <path
+                d="M95 4V16C95 17.5 95.5 18 96.5 19L98 20.5C99 21.5 99.5 22.5 99.5 23.5V177C99.5 178 99 179 98 180L90 188"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+              />
+              <path
+                d="M4.5 170V190C4.5 191 5 192 6 193L26 213"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+              />
+              <path
+                d="M95.5 170V190C95.5 191 95 192 94 193L74 213"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+              />
+              <path
+                d="M30.5 216L47.5 233"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+              />
+              <path
+                d="M69.5 216L52.5 233"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+              />
+              <path
+                d="M28.5 207.5L30.5 209.5C31.5 210.5 32 211.5 32 212.5V224.5C32 225.5 32.5 226.5 33.5 227.5L50 244C55.1667 238.833 65.5 228.5 66.5 227.5C67.5 226.5 68 225.5 68 224.5C68 220.833 68 213.5 68 212.5C68 211.5 68.5 210.5 69.5 209.5C70.3 208.7 71.1667 207.833 71.5 207.5"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+              />
+              <path
+                d="M28.5 209.5C30.5 211.5 34.5 215.5 35.5 216.5C36.5 217.5 37 218.5 37 219.5V224"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+              />
+              <path
+                d="M37 224V226"
+                stroke="white"
+                stroke-opacity="0.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M71.5 209.5C69.5 211.5 65.5 215.5 64.5 216.5C63.5 217.5 63 218.5 63 219.5V224"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+              />
+              <path
+                d="M63 224V226"
+                stroke="white"
+                stroke-opacity="0.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M49 241C49 240 48.5 239 47.5 238C46.5 237 45.5 236 45 235.5"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+                stroke-linecap="square"
+              />
+              <path
+                d="M51 241C51 240 51.5 239 52.5 238C53.5 237 54.5 236 55 235.5"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+                stroke-linecap="square"
+              />
+              <path
+                d="M48.5 230L50 231.5L51.5 230H48.5Z"
+                fill="white"
+                fill-opacity="0.5"
+              />
+              <path
+                d="M32 216.5C32 215.5 32.5 214.5 33.5 213.5C34.3 212.7 44.8333 202.167 50 197C55.1667 202.167 65.5 212.5 66.5 213.5C67.5 214.5 68 215.5 68 216.5"
+                stroke="white"
+                stroke-opacity="0.2"
+                stroke-width="0.5"
+                stroke-linecap="square"
+              />
+              <path
+                d="M47.5 218.5L50 216L52.5 218.5L50 221L47.5 218.5Z"
+                fill="white"
+                fill-opacity="0.2"
+              />
+              <path
+                d="M45.5 220.5L50 225L54.5 220.5L50 216L45.5 220.5Z"
+                stroke="white"
+                stroke-opacity="0.5"
+                stroke-width="0.5"
+                stroke-linecap="square"
+              />
+              <path
+                d="M51 198.25V212.5C51 213.5 51.5 214.5 52.5 215.5C53.3 216.3 53.5 216.5 53.5 216.5"
+                stroke="white"
+                stroke-opacity="0.1"
+                stroke-width="0.5"
+                stroke-linecap="square"
+              />
+              <path
+                d="M49 198.25V212.5C49 213.5 48.5 214.5 47.5 215.5C46.7 216.3 46.5 216.5 46.5 216.5"
+                stroke="white"
+                stroke-opacity="0.1"
+                stroke-width="0.5"
+                stroke-linecap="square"
+              />
+              <g filter="url(#filter0_f_14_2)">
+                <path
+                  d="M9.5 193V184.5L27.5 202.5C28.5 203.5 29 204.5 29 205.5V214L11 196C10 195 9.5 194 9.5 193Z"
+                  fill="#FDFFE1"
+                  fill-opacity="0.75"
+                />
+              </g>
+              <g filter="url(#filter1_f_14_2)">
+                <path
+                  d="M90.5 193V184.5L72.5 202.5C71.5 203.5 71 204.5 71 205.5V214L89 196C90 195 90.5 194 90.5 193Z"
+                  fill="#FDFFE1"
+                  fill-opacity="0.75"
+                />
+              </g>
+              <path
+                d="M9.5 193V184.5L27.5 202.5C28.5 203.5 29 204.5 29 205.5V214L11 196C10 195 9.5 194 9.5 193Z"
+                fill="#FDFFE1"
+              />
+              <path
+                d="M90.5 193V184.5L72.5 202.5C71.5 203.5 71 204.5 71 205.5V214L89 196C90 195 90.5 194 90.5 193Z"
+                fill="#FDFFE1"
+              />
+              <defs>
+                <filter
+                  id="filter0_f_14_2"
+                  x="5.5"
+                  y="180.5"
+                  width="27.5"
+                  height="37.5"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feGaussianBlur
+                    stdDeviation="2"
+                    result="effect1_foregroundBlur_14_2"
+                  />
+                </filter>
+                <filter
+                  id="filter1_f_14_2"
+                  x="67"
+                  y="180.5"
+                  width="27.5"
+                  height="37.5"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feGaussianBlur
+                    stdDeviation="2"
+                    result="effect1_foregroundBlur_14_2"
+                  />
+                </filter>
+              </defs>
+            </svg>
+            <div class="absolute top-[60%] mx-[0.4rem] w-[calc(100%-0.8rem)] drop-shadow-lg">
+              <p class="featured__title bg-white bg-opacity-50 py-1 text-center text-xl font-semibold">
+                {title}
+              </p>
+              <div class="flex items-center justify-center gap-1 bg-black bg-opacity-40 py-1">
+                {skills.map(
+                  (skill) =>
+                    skill !== "html" &&
+                    skill !== "css" && (
+                      <img
+                        class="aspect-square h-6"
+                        src={logos[skill]}
+                        alt={skill}
+                      />
+                    )
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))
+    }
   </div>
 </Layout>
 
+<script>
+  // Featured Images
+  const featuredEls: HTMLElement[] = [];
+  for (let i = 0; i < 5; i++) {
+    const el = document.querySelector(
+      "#featured__container" + i
+    ) as HTMLElement;
+    if (!el) continue;
+    featuredEls.push(el);
+  }
+  const featuredPics = [
+    ...document.querySelectorAll(".featured__img"),
+  ] as HTMLImageElement[];
+  const animationPlayed = false;
+
+  function featuredLoaded() {
+    if (!animationPlayed && featuredPics.every((img) => img.complete)) {
+      featuredEls.forEach((el) => el.classList.add("featured__container"));
+    }
+  }
+  featuredPics.forEach((el) => (el.onload = featuredLoaded));
+  featuredLoaded();
+</script>
+
 <style>
+  .featured {
+    --base-height: 750px;
+    position: relative;
+    aspect-ratio: 0.4;
+    max-height: calc(var(--base-height));
+    margin: auto;
+  }
+  .featured__container:first-child .featured,
+  .featured__container:last-child .featured {
+    max-height: calc(var(--base-height) - 4rem);
+  }
+  .featured__container:nth-child(2) .featured,
+  .featured__container:nth-child(4) .featured {
+    max-height: calc(var(--base-height) - 2rem);
+  }
+
+  .featured__container:not(:nth-child(3)) .featured__title {
+    text-shadow: 1.5px 1.5px black;
+  }
+  .featured__container:nth-child(3) .featured__title {
+    color: black;
+    background: rgba(var(--color-highlight));
+  }
+
   .featured__container {
-    background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 255) 40%
-    );
-    width: 100%;
-    height: clamp(450px, 44vw, 650px);
+    opacity: 1;
   }
   .featured__container:first-child,
   .featured__container:last-child {
-    margin-top: 2rem;
-    height: calc(clamp(450px, 44vw, 650px) - 4rem);
+    width: 19%;
+    padding-top: 2rem;
+    animation: fade-in 300ms ease-in-out 450ms backwards,
+      featured 600ms var(--out-quint) 450ms backwards;
   }
   .featured__container:nth-child(2),
   .featured__container:nth-child(4) {
-    margin-top: 1rem;
-    height: calc(clamp(450px, 44vw, 650px) - 2rem);
+    width: 20%;
+    padding-top: 1rem;
+    animation: fade-in 300ms ease-in-out 300ms backwards,
+      featured 600ms var(--out-quint) 300ms backwards;
   }
-  .featured__container:first-child {
-    margin-left: 1rem;
+  .featured__container:nth-child(3) {
+    width: 21%;
+    animation: fade-in 300ms ease-in-out 300ms backwards,
+      featured 600ms var(--out-quint) 300ms backwards;
   }
+
+  .featured__container:first-child,
   .featured__container:nth-child(2) {
-    margin-left: 0.5rem;
+    --translateX: 50%;
   }
+
+  .featured__container:last-child,
   .featured__container:nth-child(4) {
-    margin-right: 0.5rem;
+    --translateX: -50%;
   }
-  .featured__container:last-child {
-    margin-right: 1rem;
+
+  @keyframes featured {
+    0% {
+      scale: 0.8;
+      transform: translateX(var(--translateX));
+    }
+    100% {
+      scale: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .featured__img {
+    padding: 0.6rem 1rem;
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 60%,
+      rgba(0, 0, 0, 0) 85%
+    );
   }
 </style>
