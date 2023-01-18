@@ -4,15 +4,17 @@
   --color-highlight-green: 50, 200, 160;
   --in-out-quint: cubic-bezier(0.19, 1, 0.22, 1);
   --out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --background: radial-gradient(
+    circle at 50% 300vh,
+    rgb(34, 52, 80, 1) 60%,
+    rgb(70, 99, 146, 1) 80%,
+    rgba(13, 21, 43, 1) 98%
+  );
 }
 
 body {
   min-height: 100vh;
-  background: linear-gradient(
-    45deg,
-    rgba(80, 128, 152, 1) 0%,
-    rgba(34, 44, 80, 1) 100%
-  );
+  background: var(--background);
 }
 
 .fade-in {
@@ -27,6 +29,11 @@ body {
   100% {
     opacity: 1;
   }
+}
+
+.fade-out {
+  opacity: 0;
+  animation: fade-out 300ms ease-in-out;
 }
 
 @keyframes fade-out {

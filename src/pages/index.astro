@@ -81,62 +81,83 @@ const awards: AboutDetail[] = [
   },
 ];
 
-const aboutTabs = [
+// const aboutTabs = [
+//   {
+//     name: "Experience",
+//     pack: "bi",
+//     iconName: "people-fill",
+//     details: experiences,
+//   },
+//   { name: "Awards", pack: "bi", iconName: "award-fill", details: awards },
+//   { name: "Hobbies", pack: "ion", iconName: "game-controller", details: [] },
+// ];
+interface AboutTab {
+  name: string;
+  pack: string;
+  iconName: string;
+  highlight?: string;
+  title?: string;
+  desc?: string;
+}
+
+const yoe = new Date(Date.now() - +new Date("2021/08/22")).getFullYear() - 1970
+const aboutTabs: AboutTab[] = [
   {
-    name: "Experience",
-    pack: "bi",
-    iconName: "people-fill",
-    details: experiences,
+    name: "Info",
+    pack: "ic",
+    iconName: "baseline-info",
+    highlight: "I'm a software engineer specializing in full stack development. Currently based in New York City, I'm building out real-time financial solutions at Bloomberg.",
+    title: "Software Engineer",
+    desc: "Software engineers design, develop, test, and maintain of software applications, building software solutions for end users."
   },
-  { name: "Awards", pack: "bi", iconName: "award-fill", details: awards },
-  { name: "Hobbies", pack: "ion", iconName: "game-controller", details: [] },
+  { name: "Goal", pack: "fe", iconName: "target", title: "Goals", desc: "My job satisfaction comes from the high impact that my software has on end users. Being able to work on cutting edge technology is why I love computer science." },
+  { name: "Dev", pack: "ri", iconName: "code-s-slash-fill", title: "Software Development", desc: `${yoe} year${yoe > 1 ? "s" : ""} of experience in full stack software development. Industry work at Bloomberg and JPMorgan Chase. I'm always learning new skills to build high-impact solutions.` },
+  { name: "Env", pack: "fluent", iconName: "people-team-16-filled", title: "Work Environment", desc: "I'm a fast learner and am never afraid to take on responsibility.  From agile software engineering teams to solo personal projects, I work effectively in a wide range of environments." },
 ];
 ---
 
-<Layout title="Ray Chung | Software Engineer">
+<Layout title="Ray Chung | Software Engineer" background="linear-gradient(45deg,rgba(80, 128, 152, 1) 0%,rgba(34, 44, 80, 1) 100%)">
+  <div class="home-fade pointer-events-none fixed inset-0 bg-black"></div>
   <img
     id="valo-profile__bg"
-    class="opacity-0 absolute top-0 left-1/2 z-0 h-[100vh] -translate-x-1/2 object-cover md:fixed md:left-1/4 md:-translate-x-[55%]"
+    class="opacity-0 absolute top-0 left-1/2 z-0 h-[100vh] min-h-[800px] -translate-x-1/2 object-cover md:fixed md:left-[22%] lg:left-[28%] md:-translate-x-[75%] xl:left-1/2"
     src={valoPortraitBG}
     alt="Valorant Portrait BG"
   />    
   <img
     id="valo-profile__highlight1"
-    class="opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] object-cover sm:top-0 sm:h-[100vh] md:fixed md:left-1/4"
+    class="opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
     src={valoPortraitHL1}
     alt="Valorant Portrait Highlight 1"
   />
   <img
     id="valo-profile__highlight2"
-    class="opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] object-cover sm:top-0 sm:h-[100vh] md:fixed md:left-1/4"
+    class="opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
     src={valoPortraitHL2}
     alt="Valorant Portrait Highlight 2"
   />
   <img
     id="valo-profile"
-    class="opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] object-cover sm:top-0 sm:h-[100vh] md:fixed md:left-1/4"
+    class="opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
     src={valoPortraitFG}
     alt="Valorant Portrait"
   />
   <div
-    class="relative mx-auto mt-[35vh] my-10 w-[90%] max-w-7xl text-white md:mt-10"
+    class="relative mx-auto mt-[max(280px,35vh)] my-10 w-[90%] max-w-[1536px] text-white md:mt-16"
   >
     <div
       id="about-info"
-      class="mx-auto flex max-w-2xl flex-col gap-12 back bg-black bg-opacity-60 pl-6 pr-3 my-8 pb-8 backdrop-blur-sm md:mr-0 md:w-3/5 md:max-w-4xl md:bg-opacity-20 border-l-2 border-opacity-10 border-white after:content-[' '] after:absolute after:h-full after:border-l-2 after:border-white after:border-opacity-20 after:left-3"
+      class="mx-auto max-w-2xl bg-black bg-opacity-60 pl-6 pb-8 backdrop-blur-sm border-l-[1px] border-opacity-10 border-white md:mr-0 md:w-[450px] md:max-w-4xl md:bg-opacity-0 md:backdrop-blur-none after:content-[' '] after:absolute after:h-full after:border-l-[1px] after:border-white after:border-opacity-20 after:left-3 after:top-0"
     >
-      <div id="about-intro" class="text-center text-xl md:text-left pt-4">
-        <p class="font-light uppercase tracking-wide">{intro.role}</p>
+      <div id="about-intro" class="text-center md:text-left pr-6 md:pr-0">
+        <p class="pt-4 md:pt-0 md:absolute md:-top-8 text-xl font-light uppercase tracking-wide">{intro.role}</p>
         <p
-          class="font-custom-heavy text-9xl font-bold uppercase leading-[6rem] text-highlight mb-2"
+          class="-translate-y-1 font-custom-heavy text-9xl font-bold uppercase leading-[6rem] text-highlight mb-2"
         >
           {intro.name}
         </p>
-        <p class="text-left text-lg font-semibold text-highlight">
-          {intro.desc}
-        </p>
       </div>
-      <div id="about-tabs" class="flex items-center justify-center gap-1">
+      <div id="about-tabs" class="flex items-center justify-center gap-1 mt-12">
         <div class="absolute hidden h-[9px] w-full border-t sm:block left-0"></div>
         <svg class="absolute left-0 -translate-x-1/2 w-60 -translate-y-1" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="50" cy="50" r="49.875" stroke="white" stroke-width="0.5" opacity="0.2"/>
@@ -150,17 +171,17 @@ const aboutTabs = [
         {
           aboutTabs.map(({ name, pack, iconName }, tabIdx) => (
             <div
-              class="group z-10 flex w-1/3 max-w-[8rem] flex-col items-center justify-center gap-2 bg-white bg-opacity-20 p-1 hover:bg-opacity-40 active:bg-opacity-20"
+              class="group z-10 flex w-1/3 flex-col items-center justify-center gap-2 bg-white bg-opacity-20 p-1 hover:bg-opacity-40 active:bg-opacity-20"
               data-selected={`${tabIdx === 0}`}
               data-tab={name.toLowerCase()}
               id={`tab-${tabIdx}`}
             >
-              <div class="absolute hidden h-[3px] w-4 -translate-y-[4px] bg-white content-[''] sm:block" />
+              <div class="absolute hidden h-[2px] w-3 -translate-y-[3px] bg-white content-[''] sm:block" />
               <p class="hidden w-full py-1 text-center text-lg uppercase group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:block">
                 {name}
               </p>
               <Icon
-                class="h-12 w-full group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:group-data-[selected=true]:bg-opacity-0 sm:group-data-[selected=true]:text-white"
+                class="h-10 w-full sm:mt-1 group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:group-data-[selected=true]:bg-opacity-0 sm:group-data-[selected=true]:text-white"
                 pack={pack}
                 name={iconName}
               />
@@ -170,13 +191,22 @@ const aboutTabs = [
       </div>
       <div id="about-details">
         {
-          aboutTabs.map(({ name, details }, tabIdx) => (
+          aboutTabs.map(({ highlight, title, desc }, tabIdx) => (
             <div
-              class="group hidden data-[selected=true]:block"
+              class="group hidden data-[selected=true]:block mt-4"
               data-selected={`${tabIdx === 0}`}
               id={`detail-${tabIdx}`}
             >
-              <p class="mb-4 pl-1 text-4xl font-bold tracking-wider text-highlight">
+              {highlight && (
+                <p class="text-left font-semibold text-highlight">
+                  {highlight}
+                </p>
+              )}
+              <p class="mt-2 text-2xl font-bold uppercase">{title}</p>
+              <p class="text-left">
+                {desc}
+              </p>
+              <!--<p class="mb-4 pl-1 text-4xl font-bold tracking-wider text-highlight">
                 {name}
               </p>
               {name !== "Hobbies" ? (
@@ -263,14 +293,14 @@ const aboutTabs = [
                     class="aspect-video"
                   />
                 </SquareCornerCard>
-              )}
+              )}-->
             </div>
           ))
         }
       </div>
     </div>
   </div>
-  <div>_</div>
+  <!-- <div class="relative z-10 mt-40">Next section</div> -->
 </Layout>
 
 <script>
@@ -339,44 +369,17 @@ const aboutTabs = [
 </script>
 
 <style>
-  .video-background {
-    position: fixed;
-    inset: 0;
-    top: -1%;
-    overflow: hidden;
-    width: 100vw;
-    height: 100vh;
-    scale: 1.15;
+  .home-fade {
+    opacity: 0;
+    animation: home-fade 300ms var(--out-quint);
   }
 
-  .video-background iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100vw;
-    height: 100vh;
-    transform: translate(-50%, -50%);
-  }
-
-  @media (min-aspect-ratio: 16/9) {
-    .video-background iframe {
-      /* height = 100 * (9 / 16) = 56.25 */
-      height: 56.25vw;
+  @keyframes home-fade {
+    0% {
+      opacity: 1;
     }
-  }
-  @media (max-aspect-ratio: 16/9) {
-    .video-background iframe {
-      /* width = 100 / (9 / 16) = 177.777777 */
-      width: 177.78vh;
-    }
-  }
-
-  @media (min-width: 1625px) {
-    .valo-profile,
-    .valo-profile__highlight1,
-    .valo-profile__highlight2,
-    .valo-profile__bg {
-      left: calc(50% - 25rem);
+    100% {
+      opacity: 0;
     }
   }
 
@@ -385,6 +388,17 @@ const aboutTabs = [
     transform: translateX(-50%);
     opacity: 1;
     animation: slide-in 600ms var(--out-quint) 200ms backwards;
+  }
+
+  @media(max-width: 640px) {
+    .valo-profile, .valo-profile__highlight1, .valo-profile__highlight2, .valo-profile__bg {
+
+      mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 60%,
+        rgba(0, 0, 0, 0) 100%
+      );
+    }
   }
 
   .valo-profile__highlight1 {

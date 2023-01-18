@@ -76,7 +76,7 @@ const tabs = [
       "z-40 fixed inset-0 data-[visible=false]:-translate-x-full flex flex-col items-center justify-center gap-4 bg-black bg-opacity-50 text-center font-semibold uppercase backdrop-blur-sm transition-transform duration-700 ease-in-out-quint " +
       "bottom-corner-clip sm:static sm:data-[visible=false]:translate-x-0 sm:flex-row sm:gap-8 sm:bg-opacity-25 sm:transition-none"
     }
-    style="--height:3.5rem"
+    style="--height:3rem"
   >
     {
       tabs.map(({ name, pack, iconName, route, small, external }, tabIdx) => (
@@ -84,7 +84,7 @@ const tabs = [
           <a
             href={route}
             class="nav-link group relative text-white text-opacity-80 hover:text-highlight-green data-[active=true]:text-highlight-green"
-            target={`${external ? "_blank" : "_self"}`}
+            target={external ? "_blank" : "_self"}
             rel="noreferrer"
           >
             {name === "Home" ? (
@@ -94,7 +94,7 @@ const tabs = [
                   "group-hover:transition-colors group-hover:duration-500 group-hover:bg-white group-hover:text-black " +
                   "group-active:bg-[#414f5b] group-active:transition-none"
                 }
-                style="--height:3.5rem"
+                style="--height:3rem"
               >
                 <p class="font-custom-heavy text-[2.5rem] leading-none tracking-wider">{name}</p>
               </div>
@@ -121,7 +121,12 @@ const tabs = [
 <script>
   // Highlight active page
   (document.querySelectorAll(".nav-link") as NodeListOf<HTMLAnchorElement>).forEach((link) => {
-    if (link && link.href === window.location.href) link.dataset.active = "true";
+    if (link && link.href === window.location.href) {
+      link.dataset.active = "true";
+      link.onclick = (e) => {
+        e.preventDefault()
+      }
+    }
   });
 
   // Enables mobile responsive nav
