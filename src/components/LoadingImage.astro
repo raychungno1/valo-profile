@@ -1,0 +1,70 @@
+---
+export interface Props {
+  id?: string;
+  img: string;
+  alt: string;
+  width: number | string;
+  height: number | string;
+  className?: string;
+}
+
+const {
+  id = "loading-image-" + Math.random(),
+  img,
+  alt,
+  width,
+  height,
+  className,
+} = Astro.props;
+---
+
+<div
+  id={id + "-skeleton"}
+  class="loading-image__skeleton relative m-0 flex items-center justify-center overflow-hidden"
+  style={`width: ${width}; height: ${height}`}
+>
+  <!-- <img
+    id={id + "-skeleton"}
+    class="loading-image__skeleton absolute border-none outline-none"
+    width={width}
+    height={height}
+  /> -->
+  <img
+    id={id}
+    class="object-contain object-center"
+    src={img}
+    alt={alt}
+    width={width}
+    height={height}
+    style={`max-width: ${width}; max-height: ${height}`}
+  />
+</div>
+
+<script define:vars={{ id }}>
+  const img = document.getElementById(id);
+  const imgSkeleton = document.getElementById(id + "-skeleton");
+  img.onload = function () {
+    img.classList.add("fade-in");
+    imgSkeleton.classList.add("out");
+  };
+</script>
+
+<style>
+  .loading-image__skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 80%, 0.2);
+    }
+    100% {
+      background-color: hsl(200, 20%, 95%, 0.2);
+    }
+  }
+
+  .loading-image__skeleton.out {
+    animation: none;
+    background-color: transparent;
+  }
+</style>

@@ -1,9 +1,171 @@
 ---
+import { Icon } from "astro-icon";
+import LoadingImage from "../components/LoadingImage.astro";
 import Layout from "../layouts/Layout.astro";
+import { logos } from "../utils/logos";
+import { frameworks, languages, libs, tools } from "../utils/skills";
+
+const skillTabs = [
+  {
+    name: "Languages",
+    pack: "mdi",
+    iconName: "file-document",
+    skills: languages,
+  },
+  {
+    name: "Frameworks",
+    pack: "mdi",
+    iconName: "crane",
+    skills: frameworks,
+  },
+  {
+    name: "Libraries",
+    pack: "ri",
+    iconName: "book-2-fill",
+    skills: libs,
+  },
+  {
+    name: "Tools",
+    pack: "ic",
+    iconName: "baseline-construction",
+    skills: tools,
+  },
+];
 ---
 
 <Layout title="Ray Chung | Skills">
-  <div class="group container relative flex gap-4 mx-auto mt-10 w-[95%] h-[calc(100vh-8rem)] bg-black bg-opacity-50">
-
+  <ul
+    id="skill-tabs"
+    class="relative z-10 mx-auto flex w-[95%] flex-row flex-wrap justify-center uppercase text-white sm:mt-4"
+  >
+    {
+      skillTabs.map(({ name }, tabIdx) => (
+        <li
+          class={
+            "group relative w-1/2 border-b-[1px] py-1 text-center after:absolute after:-bottom-[2px] after:left-0 after:h-[3px] sm:w-32 " +
+            "after:w-full after:scale-x-0 after:bg-highlight-light-green after:shadow-md after:shadow-highlight-light-green after:content-[''] hover:text-highlight-light-green hover:after:scale-x-100 hover:after:transition-transform " +
+            "data-[selected=true]:text-highlight-light-green data-[selected=true]:after:scale-x-100"
+          }
+          data-selected={`${tabIdx === 0}`}
+          data-tab={name.toLowerCase()}
+          id={`tab-${tabIdx}`}
+        >
+          <svg
+            class="absolute left-1/2 -bottom-[25px] w-12 -translate-x-1/2 scale-x-0 opacity-0 group-data-[selected=true]:scale-x-100 group-data-[selected=true]:opacity-100 group-data-[selected=true]:transition-all group-data-[selected=true]:duration-300"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M65 50L50 35L35 50L50 65L65 50Z" fill="#AFFFF8" />
+            <path d="M37 48L35 50H65L63 48H37Z" fill="#CBFFFF" />
+            <path
+              d="M0 50C10 50 26.5 51.5 36.5 61.5C42.5 67.5 48 76 50 80C52 76 57.5 67.5 63.5 61.5C73.5 51.5 90 50 100 50"
+              stroke="#22FFDA"
+              stroke-width="5"
+            />
+          </svg>
+          <p class="group-active:translate-y-[2px]">{name}</p>
+        </li>
+      ))
+    }
+  </ul>
+  <div id="skill-details" class="relative z-10">
+    {
+      skillTabs.map(({ name, pack, iconName, skills }, tabIdx) => (
+        <div
+          class="hidden text-white data-[selected=true]:block"
+          data-selected={`${tabIdx === 0}`}
+          id={`detail-${tabIdx}`}
+        >
+          <Icon
+            class="mx-auto mt-8 w-20 rounded-full bg-slate-600 bg-opacity-100 p-2"
+            pack={pack}
+            name={iconName}
+          />
+          <h1 class="mt-4 text-center font-custom-heavy text-5xl uppercase">
+            {name}
+          </h1>
+          <div class="bg-opacity-50 mx-auto mt-8 w-[95%] max-w-6xl bg-black">
+            {skills.map(({ experience, label, type, value, loc }) => (
+              <div class="flex">
+                <LoadingImage
+                  img={logos[value]}
+                  alt={label}
+                  width="48px"
+                  height="48px"
+                />
+                {label}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
   </div>
+  <!-- <div class="group container relative flex gap-4 mx-auto mt-10 w-[95%] h-[calc(100vh-8rem)] bg-black bg-opacity-50">
+
+  </div> -->
 </Layout>
+
+<script>
+  // Skill Tabs
+  const params = new URLSearchParams(location.search);
+  const selectedTab = params.get("tab");
+  let selectedTabFound = false;
+  const tabs: HTMLElement[] = [];
+  const details: HTMLElement[] = [];
+  for (let i = 0; i < 4; i++) {
+    const tabEl = document.getElementById(`tab-${i}`);
+    const detailEl = document.getElementById(`detail-${i}`);
+    if (!tabEl || !detailEl) continue;
+
+    if (selectedTab) {
+      tabEl.dataset.selected = `${selectedTab === tabEl.dataset.tab}`;
+      detailEl.dataset.selected = `${selectedTab === tabEl.dataset.tab}`;
+      if (selectedTab === tabEl.dataset.tab) {
+        selectedTabFound = true;
+      }
+    }
+
+    tabs.push(tabEl);
+    details.push(detailEl);
+    tabEl.addEventListener("click", (e: any) => {
+      if (i === 0) {
+        params.delete("tab");
+        window.history.replaceState({}, "", location.pathname);
+      } else {
+        params.set("tab", `${tabs[i].dataset.tab}`);
+        window.history.replaceState(
+          {},
+          "",
+          `${location.pathname}?${params.toString()}`
+        );
+      }
+
+      tabs.forEach((tab, tabIdx) => {
+        tab.dataset.selected = `${tabIdx === i}`;
+      });
+      details.forEach((detail, detailIdx) => {
+        detail.dataset.selected = `${detailIdx === i}`;
+      });
+    });
+  }
+  if (!selectedTabFound) {
+    tabs[0].dataset.selected = `${true}`;
+    details[0].dataset.selected = `${true}`;
+  }
+</script>
+
+<style>
+  #skill-tabs li[data-selected="true"]::after {
+    animation: nav-highlight 300ms ease-in-out !important;
+  }
+  @keyframes nav-highlight {
+    0% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+  }
+</style>

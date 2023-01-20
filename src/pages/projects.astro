@@ -7,7 +7,7 @@ import { logos } from "../utils/logos";
 <Layout title="Ray Chung | Projects">
   <div
     id="featured-projects"
-    class="group container relative mx-auto mt-10 hidden max-h-[750px] min-h-[450px] w-[95%] justify-between gap-3 text-white lg:flex"
+    class="group container relative mx-auto mt-10 hidden max-h-[750px] min-h-[400px] w-[95%] justify-between gap-3 text-white md:flex md:max-w-full lg:container"
   >
     {
       projectList.slice(0, 5).map(({ bg, title, skills }, pIdx) => (
@@ -229,8 +229,8 @@ import { logos } from "../utils/logos";
                 </filter>
               </defs>
             </svg>
-            <div class="absolute top-[60%] mx-[0.4rem] w-[calc(100%-0.8rem)] drop-shadow-lg">
-              <p class="featured__title bg-white bg-opacity-50 py-1 text-center text-xl font-semibold">
+            <div class="absolute top-[55%] mx-[0.4rem] w-[calc(100%-0.8rem)] drop-shadow-lg">
+              <p class="featured__title bg-white bg-opacity-50 lg:py-1 text-center lg:text-xl font-semibold">
                 {title}
               </p>
               <div class="flex items-center justify-center gap-1 bg-black bg-opacity-40 py-1">
@@ -240,7 +240,7 @@ import { logos } from "../utils/logos";
                     skill !== "css" &&
                     (skill !== "js" || !skills.includes("ts")) && (
                       <img
-                        class="aspect-square h-6"
+                        class="aspect-square h-4 lg:h-6"
                         src={logos[skill]}
                         alt={skill}
                       />

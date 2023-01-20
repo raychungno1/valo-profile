@@ -151,13 +151,13 @@ const aboutTabs: AboutTab[] = [
     >
       <div id="about-intro" class="text-center md:text-left pr-6 md:pr-0">
         <p class="pt-4 md:pt-0 md:absolute md:-top-8 text-xl font-light uppercase tracking-wide">{intro.role}</p>
-        <p
+        <h1
           class="-translate-y-1 font-custom-heavy text-9xl font-bold uppercase leading-[6rem] text-highlight mb-2"
         >
           {intro.name}
-        </p>
+        </h1>
       </div>
-      <div id="about-tabs" class="flex items-center justify-center gap-1 mt-12">
+      <div id="about-tabs" class="flex items-center mt-12">
         <div class="absolute hidden h-[9px] w-full border-t sm:block left-0"></div>
         <svg class="absolute left-0 -translate-x-1/2 w-60 -translate-y-1" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="50" cy="50" r="49.875" stroke="white" stroke-width="0.5" opacity="0.2"/>
@@ -168,26 +168,28 @@ const aboutTabs: AboutTab[] = [
           <path d="M50 52L52 50L50 48L48 50L50 52Z" fill="white"/>
           <path d="M55.5 31V41C55.5 43.1667 56.5 48 60.5 50C56.5 52 55.5 57 55.5 59C55.5 63 55.5 67.6667 55.5 69" stroke="white" />
         </svg>
-        {
-          aboutTabs.map(({ name, pack, iconName }, tabIdx) => (
-            <div
-              class="group z-10 flex w-1/3 flex-col items-center justify-center gap-2 bg-white bg-opacity-20 p-1 hover:bg-opacity-40 active:bg-opacity-20"
-              data-selected={`${tabIdx === 0}`}
-              data-tab={name.toLowerCase()}
-              id={`tab-${tabIdx}`}
-            >
-              <div class="absolute hidden h-[2px] w-3 -translate-y-[3px] bg-white content-[''] sm:block" />
-              <p class="hidden w-full py-1 text-center text-lg uppercase group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:block">
-                {name}
-              </p>
-              <Icon
-                class="h-10 w-full sm:mt-1 group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:group-data-[selected=true]:bg-opacity-0 sm:group-data-[selected=true]:text-white"
-                pack={pack}
-                name={iconName}
-              />
-            </div>
-          ))
-        }
+        <ul class="w-full flex items-center justify-center gap-1">
+          {
+            aboutTabs.map(({ name, pack, iconName }, tabIdx) => (
+              <li
+                class="group z-10 flex w-1/3 flex-col items-center justify-center gap-2 bg-white bg-opacity-20 p-1 hover:bg-opacity-40 active:bg-opacity-20"
+                data-selected={`${tabIdx === 0}`}
+                data-tab={name.toLowerCase()}
+                id={`tab-${tabIdx}`}
+              >
+                <div class="absolute hidden h-[2px] w-3 -translate-y-[3px] bg-white content-[''] sm:block" />
+                <p class="hidden w-full py-1 text-center text-lg uppercase group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:block">
+                  {name}
+                </p>
+                <Icon
+                  class="h-10 w-full sm:mt-1 group-data-[selected=true]:bg-white group-data-[selected=true]:bg-opacity-50 group-data-[selected=true]:text-[#0c1428] sm:group-data-[selected=true]:bg-opacity-0 sm:group-data-[selected=true]:text-white"
+                  pack={pack}
+                  name={iconName}
+                />
+              </li>
+            ))
+          }
+        </ul>
       </div>
       <div id="about-details">
         {

@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         highlight: "rgba(233, 237, 179)",
+        "highlight-light-green": "#22ffda",
         "highlight-green": "rgba(50, 200, 160)",
         "highlight-red": "rgba(217, 56, 69)"
       },
