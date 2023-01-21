@@ -45,5 +45,8 @@ const {
     imageEl.onload = function () {
       skeletonEl.classList.remove("skeleton");
     };
+    if (imageEl.complete) {
+      skeletonEl.classList.remove("skeleton");
+    }
   </script>
 )}
