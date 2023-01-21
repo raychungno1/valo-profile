@@ -1,0 +1,49 @@
+---
+interface SharedProps {
+  id?: string;
+  width: number | string;
+  height: number | string;
+  className?: string;
+}
+
+interface GeneralProps extends SharedProps {
+  isImg?: false;
+  children: any;
+}
+
+interface ImgProps extends SharedProps {
+  isImg?: true;
+  src: string;
+  alt: string;
+}
+
+type Props = GeneralProps | ImgProps;
+
+const {
+  id = "loading-image-" + Math.random(),
+  isImg = false,
+  src,
+  alt,
+  width,
+  height,
+  className,
+} = Astro.props;
+---
+
+<div
+  id={id}
+  class="skeleton skeleton__container"
+  style={`--width: ${width}; --height: ${height}`}
+>
+  {isImg ? <img src={src} alt={alt} /> : <slot />}
+</div>
+
+{isImg && (
+  <script define:vars={{ id }}>
+    const skeletonEl = document.getElementById(id);
+    const imageEl = skeletonEl.querySelector("img");
+    imageEl.onload = function () {
+      skeletonEl.classList.remove("skeleton");
+    };
+  </script>
+)}

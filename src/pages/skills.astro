@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon";
 import LoadingImage from "../components/LoadingImage.astro";
+import Skeleton from "../components/Skeleton.astro";
 import Layout from "../layouts/Layout.astro";
 import { logos } from "../utils/logos";
 import { frameworks, languages, libs, tools } from "../utils/skills";
@@ -46,7 +47,7 @@ const skillTabs = [
             "after:w-full after:scale-x-0 after:bg-highlight-light-green after:shadow-md after:shadow-highlight-light-green after:content-[''] hover:text-highlight-light-green hover:after:scale-x-100 hover:after:transition-transform " +
             "data-[selected=true]:text-highlight-light-green data-[selected=true]:after:scale-x-100"
           }
-          data-selected={`${tabIdx === 0}`}
+          data-selected="false"
           data-tab={name.toLowerCase()}
           id={`tab-${tabIdx}`}
         >
@@ -74,7 +75,7 @@ const skillTabs = [
       skillTabs.map(({ name, pack, iconName, skills }, tabIdx) => (
         <div
           class="hidden text-white data-[selected=true]:block"
-          data-selected={`${tabIdx === 0}`}
+          data-selected="false"
           id={`detail-${tabIdx}`}
         >
           <Icon
@@ -82,17 +83,20 @@ const skillTabs = [
             pack={pack}
             name={iconName}
           />
-          <h1 class="mt-4 text-center font-custom-heavy text-5xl uppercase">
+          <h1
+            class="mt-4 text-center font-custom-heavy text-5xl uppercase leading-none"
+          >
             {name}
           </h1>
-          <div class="bg-opacity-50 mx-auto mt-8 w-[95%] max-w-6xl bg-black">
+          <div class="mx-auto mt-8 w-[95%] max-w-6xl bg-black bg-opacity-50">
             {skills.map(({ experience, label, type, value, loc }) => (
               <div class="flex">
-                <LoadingImage
-                  img={logos[value]}
-                  alt={label}
+                <Skeleton
                   width="48px"
                   height="48px"
+                  isImg={true}
+                  src={logos[value]}
+                  alt={label}
                 />
                 {label}
               </div>

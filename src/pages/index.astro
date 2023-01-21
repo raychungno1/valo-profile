@@ -173,7 +173,7 @@ const aboutTabs: AboutTab[] = [
             aboutTabs.map(({ name, pack, iconName }, tabIdx) => (
               <li
                 class="group z-10 flex w-1/3 flex-col items-center justify-center gap-2 bg-white bg-opacity-20 p-1 hover:bg-opacity-40 active:bg-opacity-20"
-                data-selected={`${tabIdx === 0}`}
+                data-selected="false"
                 data-tab={name.toLowerCase()}
                 id={`tab-${tabIdx}`}
               >
@@ -196,7 +196,7 @@ const aboutTabs: AboutTab[] = [
           aboutTabs.map(({ highlight, title, desc }, tabIdx) => (
             <div
               class="group hidden data-[selected=true]:block mt-4"
-              data-selected={`${tabIdx === 0}`}
+              data-selected="false"
               id={`detail-${tabIdx}`}
             >
               {highlight && (

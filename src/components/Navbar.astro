@@ -89,6 +89,7 @@ const tabs = [
           >
             {name === "Home" ? (
               <div
+                id="nav-home"
                 class={
                   "hidden sm:flex justify-center items-center w-[19rem] -mx-7 bottom-corner-clip bg-highlight-red text-white " +
                   "group-hover:transition-colors group-hover:duration-500 group-hover:bg-white group-hover:text-black " +
@@ -96,11 +97,11 @@ const tabs = [
                 }
                 style="--height:3rem"
               >
-                <p class="font-custom-heavy text-[2.5rem] leading-none tracking-wider">{name}</p>
+                <p class="font-custom-heavy font-thin text-[2.5rem] leading-none" style="--font-size: 2.2rem">{name}</p>
               </div>
             ) : (
               <Icon class={`mx-auto w-12 ${small ? "sm:w-7" : "sm:w-6 sm:m-[2px]"} ${!external ? "hidden sm:block" : ""}`} pack={pack} name={iconName} />
-              <span class="hidden sm:block absolute top-[2.6rem] left-1/2 -translate-x-[57%] invisible group-hover:visible text-white font-custom-normal tracking-widest bg-black bg-opacity-50 px-2 py-1 backdrop-blur-sm">{name}</span>
+              <span class="hidden sm:block absolute top-[2.6rem] left-1/2 -translate-x-[57%] invisible group-hover:visible text-white bg-black bg-opacity-50 px-2 py-1 backdrop-blur-sm">{name}</span>
               <span class="sr-only">{name}</span>
             )}
             {!external && (
