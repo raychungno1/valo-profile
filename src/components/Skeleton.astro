@@ -32,7 +32,7 @@ const {
 
 <div
   id={id}
-  class="skeleton skeleton__container"
+  class={"skeleton skeleton__container " + (className ? className : "")}
   style={`--width: ${width}; --height: ${height}`}
 >
   {isImg ? <img src={src} alt={alt} /> : <slot />}

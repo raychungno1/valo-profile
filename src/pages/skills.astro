@@ -83,22 +83,72 @@ const skillTabs = [
             pack={pack}
             name={iconName}
           />
-          <h1
-            class="mt-4 text-center font-custom-heavy text-5xl uppercase leading-none"
-          >
+          <h1 class="mt-6 text-center font-custom-heavy text-5xl uppercase leading-none">
             {name}
           </h1>
-          <div class="mx-auto mt-8 w-[95%] max-w-6xl bg-black bg-opacity-50">
+          <div class="mx-auto mt-16 w-[95%] max-w-6xl bg-black bg-opacity-0 pb-6">
             {skills.map(({ experience, label, type, value, loc }) => (
-              <div class="flex">
+              <div
+                class={
+                  "mb-[2px] flex items-center gap-6 border-l-4 bg-opacity-20 " +
+                  (experience > 6
+                    ? "border-highlight-green bg-highlight-light-green "
+                    : experience > 4
+                    ? "border-white bg-white "
+                    : "border-highlight-red bg-red-300 ")
+                }
+              >
                 <Skeleton
-                  width="48px"
-                  height="48px"
+                  width="56px"
+                  height="56px"
                   isImg={true}
                   src={logos[value]}
                   alt={label}
+                  className="bg-black bg-opacity-30"
                 />
-                {label}
+                <Icon
+                  class="w-10 rounded-full bg-slate-600 bg-opacity-100 p-2"
+                  pack={pack}
+                  name={iconName}
+                />
+                <div class="flex gap-4 leading-none">
+                  <div class="">
+                    <p class="uppercase">Level</p>
+                    {loc && (
+                      <p class="mt-1 text-sm leading-none opacity-60">
+                        Lines of Code
+                      </p>
+                    )}
+                  </div>
+                  <div class="w-20">
+                    <p class="flex items-center gap-[2px] capitalize">
+                      {experience}
+                      <span class="text-sm font-light leading-none opacity-60">
+                        /
+                      </span>
+                      10
+                    </p>
+                    {loc && (
+                      <p class="mt-1 text-sm leading-none">
+                        {Intl.NumberFormat(undefined, {
+                          notation: "compact",
+                        }).format(loc)}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <p
+                  class={
+                    "skill__title ml-6 text-xl font-semibold uppercase " +
+                    (experience > 6
+                      ? "text-highlight-green "
+                      : experience > 4
+                      ? "text-highlight "
+                      : "text-highlight-red ")
+                  }
+                >
+                  {label}
+                </p>
               </div>
             ))}
           </div>
@@ -106,9 +156,6 @@ const skillTabs = [
       ))
     }
   </div>
-  <!-- <div class="group container relative flex gap-4 mx-auto mt-10 w-[95%] h-[calc(100vh-8rem)] bg-black bg-opacity-50">
-
-  </div> -->
 </Layout>
 
 <script>
@@ -171,5 +218,9 @@ const skillTabs = [
     100% {
       transform: scaleX(1);
     }
+  }
+
+  .skill__title {
+    text-shadow: 1.5px 1.5px rgb(0, 0, 0, 0.3);
   }
 </style>

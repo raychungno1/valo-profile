@@ -9,26 +9,34 @@ import css from "../images/logos/css.svg";
 import sql from "../images/logos/sql.svg";
 import csharp from "../images/logos/csharp.svg";
 import ruby from "../images/logos/ruby.svg";
+import matlab from "../images/logos/matlab.svg";
 import swift from "../images/logos/swift.svg";
 import asm from "../images/logos/asm.png";
 
-import springboot from "../images/logos/springboot.png";
+import spring from "../images/logos/spring.svg";
 import rails from "../images/logos/rails.svg";
 import django from "../images/logos/django.svg";
+import flask from "../images/logos/flask.svg";
 import express from "../images/logos/express.svg";
+import nextjs from "../images/logos/nextjs.svg";
+import astro from "../images/logos/astro.svg";
+
 import react from "../images/logos/react.svg";
 import redux from "../images/logos/redux.svg";
-import nextjs from "../images/logos/nextjs.svg";
 import cython from "../images/logos/cython.svg";
-import pygame from "../images/logos/pygame.png";
+import pygame from "../images/logos/pygame.svg";
 import numpy from "../images/logos/numpy.svg";
+import trpc from "../images/logos/trpc.svg";
+import zod from "../images/logos/zod.svg";
+import prisma from "../images/logos/prisma.svg";
+import nextauth from "../images/logos/nextauth.png";
 import jquery from "../images/logos/jquery.svg";
 import mui from "../images/logos/mui.svg";
-import chartjs from "../images/logos/chartjs.png";
+import chartjs from "../images/logos/chartjs.svg";
 import tailwind from "../images/logos/tailwind.svg";
 
 import node from "../images/logos/node.svg";
-import linux from "../images/logos/linux.png";
+import linux from "../images/logos/linux.svg";
 import git from "../images/logos/git.svg";
 import windows from "../images/logos/windows.svg";
 import azure from "../images/logos/azure.svg";
@@ -58,23 +66,31 @@ export const logos: { [name: string]: string } = {
   sql,
   csharp,
   ruby,
+  matlab,
   swift,
   asm,
 
-  springboot,
+  spring,
   rails,
   django,
+  flask,
   express,
+  nextjs,
+  astro,
+
   react,
   redux,
-  nextjs,
+  tailwind,
+  numpy,
+  trpc,
+  zod,
+  prisma,
+  nextauth,
   cython,
   pygame,
-  numpy,
   jquery,
   mui,
   chartjs,
-  tailwind,
 
   node,
   git,
