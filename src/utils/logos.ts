@@ -26,6 +26,7 @@ import redux from "../images/logos/redux.svg";
 import cython from "../images/logos/cython.svg";
 import pygame from "../images/logos/pygame.svg";
 import numpy from "../images/logos/numpy.svg";
+import pytorch from "../images/logos/pytorch.svg";
 import trpc from "../images/logos/trpc.svg";
 import zod from "../images/logos/zod.svg";
 import prisma from "../images/logos/prisma.svg";
@@ -38,7 +39,10 @@ import tailwind from "../images/logos/tailwind.svg";
 import node from "../images/logos/node.svg";
 import linux from "../images/logos/linux.svg";
 import git from "../images/logos/git.svg";
+import github from "../images/logos/github.svg";
+import bitbucket from "../images/logos/bitbucket.svg";
 import windows from "../images/logos/windows.svg";
+import mac from "../images/logos/mac.svg";
 import azure from "../images/logos/azure.svg";
 
 import postgresql from "../images/logos/postgresql.svg";
@@ -46,6 +50,7 @@ import mysql from "../images/logos/mysql.svg";
 import oracle from "../images/logos/oracle.svg";
 import firebase from "../images/logos/firebase.svg";
 import mongo from "../images/logos/mongo.svg";
+import planetscale from "../images/logos/planetscale.svg";
 
 import junit from "../images/logos/junit.png";
 import cucumber from "../images/logos/cucumber.svg";
@@ -82,6 +87,7 @@ export const logos: { [name: string]: string } = {
   redux,
   tailwind,
   numpy,
+  pytorch,
   trpc,
   zod,
   prisma,
@@ -94,8 +100,11 @@ export const logos: { [name: string]: string } = {
 
   node,
   git,
+  github,
+  bitbucket,
   linux,
   windows,
+  mac,
   azure,
 
   postgresql,
@@ -103,6 +112,7 @@ export const logos: { [name: string]: string } = {
   oracle,
   firebase,
   mongo,
+  planetscale,
 
   junit,
   cucumber,
