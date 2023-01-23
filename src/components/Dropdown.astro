@@ -1,0 +1,146 @@
+---
+import { Icon } from "astro-icon";
+
+interface Props {
+  id: string;
+  value?: string;
+  placeholder?: string;
+  options?: { name: string; value: string }[];
+  className?: string;
+}
+
+const { id, value, placeholder, options = [], className } = Astro.props;
+const closeId = "close-" + Math.random();
+const dropId = "drop-" + Math.random();
+---
+
+<div class="relative">
+  <div class="input-container relative">
+    <input
+      id={id}
+      type="text"
+      class={"input py-3 px-6 rounded-sm " + (className ? className : "")}
+      value={value}
+      placeholder={placeholder}
+    />
+    <Icon
+      id={closeId}
+      pack="ic"
+      name="baseline-close"
+      class="input-close absolute w-4 h-4 right-4 top-1/2 -translate-y-1/2 text-[#818385] hover:text-white cursor-pointer"
+      style="opacity: 0;"
+    />
+  </div>
+  <ul
+    id={dropId}
+    class="absolute top-0 max-h-64 w-full translate-y-14 overflow-y-scroll rounded-sm bg-[#3d4044] py-[2px] text-white"
+    style="display: none;"
+  >
+    {
+      options.map(({ name, value }) => (
+        <li
+          class="py-2 px-4 data-[hovered=true]:bg-[#7cc5c3] data-[selected=true]:bg-[#7cc5c3] data-[hovered=true]:bg-opacity-50 data-[selected=true]:bg-opacity-100"
+          data-value={value}
+          data-name={name}
+          data-selected="false"
+          data-hovered="false"
+        >
+          {name}
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script define:vars={{ id, dropId, closeId }}>
+  const inputEl = document.getElementById(id);
+  const dropEl = document.getElementById(dropId);
+  const options = dropEl.querySelectorAll("li");
+  const closeEl = document.getElementById(closeId);
+
+  let inputValue = "";
+  let rawInput = "";
+  inputEl.oninput = (e) => {
+    rawInput = e.target.value;
+    console.log(rawInput);
+    closeEl.style.opacity = e.target.value ? 1 : 0;
+    filterSearch();
+  };
+
+  inputEl.onfocus = () => {
+    inputValue = inputEl.value;
+    inputEl.value = "";
+    dropEl.style.display = "block";
+  };
+
+  inputEl.onblur = () => {
+    inputEl.value = inputValue;
+    dropEl.style.display = "none";
+    rawInput = "";
+    filterSearch();
+  };
+
+  options.forEach((option) => {
+    option.onmousedown = () => {
+      inputValue = option.dataset.name;
+      closeEl.style.opacity = 1;
+      options.forEach((o) => {
+        o.dataset.selected = `${option.dataset.name === o.dataset.name}`;
+      });
+    };
+    option.addEventListener("mouseover", (e) => {
+      options.forEach((o) => {
+        o.dataset.hovered = `${o.dataset.value === e.target.dataset.value}`;
+      });
+    });
+  });
+
+  closeEl.onclick = () => {
+    inputEl.value = "";
+    closeEl.style.opacity = 0;
+    options.forEach((o) => {
+      o.dataset.selected = "false";
+    });
+  };
+
+  function filterSearch() {
+    options.forEach((option) => {
+      if (
+        option.dataset.value.toLowerCase().indexOf(rawInput.toLowerCase()) >
+          -1 ||
+        option.dataset.name.toLowerCase().indexOf(rawInput.toLowerCase()) > -1
+      ) {
+        option.style.display = "block";
+      } else {
+        option.style.display = "none";
+      }
+    });
+  }
+</script>
+
+<style>
+  .input {
+    --outline-width: 3px;
+    background-color: #3d4044;
+    color: white;
+    outline-offset: calc(-1 * var(--outline-width));
+  }
+
+  .input-container:hover input {
+    background-color: #262b2e;
+    outline: var(--outline-width) solid #2a2e31;
+  }
+
+  .input:active,
+  .input:focus {
+    background-color: #3d4044 !important;
+    outline: var(--outline-width) solid #464a4d !important;
+  }
+
+  .input::placeholder {
+    opacity: var(--placeholder-opacity);
+  }
+
+  .input-container {
+  }
+</style>

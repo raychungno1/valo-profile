@@ -2,12 +2,15 @@
 import Layout from "../layouts/Layout.astro";
 import { projectList } from "../utils/projects";
 import { logos } from "../utils/logos";
+import SquareCornerCard from "../components/SquareCornerCard.astro";
+import Dropdown from "../components/Dropdown.astro";
+import { languages } from "../utils/skills";
 ---
 
 <Layout title="Ray Chung | Projects">
   <div
     id="featured-projects"
-    class="group container relative mx-auto mt-10 hidden max-h-[750px] min-h-[400px] w-[95%] justify-between gap-3 text-white md:flex md:max-w-full lg:container"
+    class="container mx-auto mt-10 hidden max-h-[750px] min-h-[400px] w-[95%] justify-between gap-3 text-white md:flex md:max-w-full lg:container"
   >
     {
       projectList.slice(0, 5).map(({ bg, title, skills }, pIdx) => (
@@ -230,7 +233,7 @@ import { logos } from "../utils/logos";
               </defs>
             </svg>
             <div class="absolute top-[55%] mx-[0.4rem] w-[calc(100%-0.8rem)] drop-shadow-lg">
-              <p class="featured__title bg-white bg-opacity-50 lg:py-1 text-center lg:text-xl font-semibold">
+              <p class="featured__title bg-white bg-opacity-50 text-center font-semibold lg:py-1 lg:text-xl">
                 {title}
               </p>
               <div class="flex items-center justify-center gap-1 bg-black bg-opacity-40 py-1">
@@ -252,6 +255,81 @@ import { logos } from "../utils/logos";
         </div>
       ))
     }
+  </div>
+  <div
+    class={"container relative mx-auto my-10 w-[95%] bg-[#1e2328] border-t-2 border-t-white border-b-2 border-b-white " +
+      "before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:h-4 before:w-4 before:rounded-full before:border-2 before:border-white " +
+      "after:content-[''] after:absolute after:-top-[2px] after:left-1/2 after:-translate-x-1/2 after:h-5 after:w-1 after:rounded-[2px] after:bg-white after:outline after:outline-[rgba(255,255,255,0.5)] after:outline-2"}
+  >
+    <h1 class="mt-8 mb-4 text-center text-4xl font-medium uppercase text-white">
+      All Projects
+    </h1>
+    <div class="flex items-center justify-center gap-4 bg-[#181c20] py-8">
+      <svg
+        class="absolute left-0 h-10 opacity-40"
+        viewBox="0 0 100 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="22" cy="9" r="3" fill="#D9D9D9"></circle>
+        <circle cx="22" cy="37" r="3" fill="#D9D9D9"></circle>
+        <circle cx="40" cy="37" r="3" fill="#D9D9D9"></circle>
+        <circle cx="58" cy="37" r="3" fill="#D9D9D9"></circle>
+        <circle cx="40" cy="63" r="3" fill="#D9D9D9"></circle>
+        <circle cx="58" cy="63" r="3" fill="#D9D9D9"></circle>
+        <circle cx="22" cy="63" r="3" fill="#D9D9D9"></circle>
+        <circle cx="22" cy="91" r="3" fill="#D9D9D9"></circle>
+      </svg>
+      <svg
+        class="absolute right-0 h-10 -scale-x-100 opacity-40"
+        viewBox="0 0 100 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="22" cy="9" r="3" fill="#D9D9D9"></circle>
+        <circle cx="22" cy="37" r="3" fill="#D9D9D9"></circle>
+        <circle cx="40" cy="37" r="3" fill="#D9D9D9"></circle>
+        <circle cx="58" cy="37" r="3" fill="#D9D9D9"></circle>
+        <circle cx="40" cy="63" r="3" fill="#D9D9D9"></circle>
+        <circle cx="58" cy="63" r="3" fill="#D9D9D9"></circle>
+        <circle cx="22" cy="63" r="3" fill="#D9D9D9"></circle>
+        <circle cx="22" cy="91" r="3" fill="#D9D9D9"></circle>
+      </svg>
+      <Dropdown
+        id="skill-dropdown"
+        placeholder="Skills..."
+        options={languages.map(({ value, label }) => ({ name: label, value }))}
+        className="w-[50vw] max-w-xl"
+      />
+      <SquareCornerCard
+        className="uppercase text-white py-2 px-12"
+        color="green"
+        animation={{ color: true, border: true }}
+      >
+        Search
+      </SquareCornerCard>
+    </div>
+    <ul
+      class="grid gap-4 px-8 py-6 text-white sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    >
+      {
+        projectList.map(({ bg, title, skills, desc }, pIdx) => (
+          <li class="my-2 border-t-2 border-b-2 border-t-white border-b-white border-opacity-60">
+            <p class="bg-[#b8babe] px-4 py-6 text-xl font-bold leading-none text-black">
+              {title}
+            </p>
+            <ul class="flex gap-4 bg-[rgba(124,197,195,0.6)] bg-opacity-60 p-2">
+              {skills.map((skill) => (
+                <li class="flex aspect-square h-4 rotate-45 items-center justify-center overflow-hidden bg-black bg-opacity-40 outline outline-[3px] outline-[rgba(255,255,255,0.5)]">
+                  <img class="-rotate-45" src={logos[skill]} alt={skill} />
+                </li>
+              ))}
+            </ul>
+            <div class="h-24 bg-[#3d4044] bg-opacity-50 py-2 px-2">{desc}</div>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </Layout>
 

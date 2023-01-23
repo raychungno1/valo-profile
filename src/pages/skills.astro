@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon";
 import Skeleton from "../components/Skeleton.astro";
+import SquareCornerCard from "../components/SquareCornerCard.astro";
 import Layout from "../layouts/Layout.astro";
 import { logos } from "../utils/logos";
 import {
@@ -48,7 +49,7 @@ const skillTabs = [
       skillTabs.map(({ name }, tabIdx) => (
         <li
           class={
-            "group relative w-1/2 border-b-[1px] py-1 text-center after:absolute after:-bottom-[2px] after:left-0 after:h-[3px] sm:w-32 " +
+            "group relative w-1/2 cursor-pointer border-b-[1px] py-1 text-center after:absolute after:-bottom-[2px] after:left-0 after:h-[3px] sm:w-32 " +
             "after:w-full after:scale-x-0 after:bg-highlight-light-green after:shadow-md after:shadow-highlight-light-green after:content-[''] hover:text-highlight-light-green hover:after:scale-x-100 hover:after:transition-transform " +
             "data-[selected=true]:text-highlight-light-green data-[selected=true]:after:scale-x-100"
           }
@@ -91,16 +92,16 @@ const skillTabs = [
           <h1 class="mt-6 text-center font-custom-heavy text-5xl uppercase leading-none">
             {name}
           </h1>
-          <div class="fade-in mx-auto mt-8 w-[95%] max-w-4xl bg-black bg-opacity-0 pb-6">
+          <ul class="fade-in mx-auto mt-8 w-[95%] max-w-4xl bg-black bg-opacity-0 pb-6">
             {skills.map(({ experience, label, type, value, loc }) => (
-              <div
+              <lu
                 class={
-                  "relative mb-[2px] flex items-center gap-6 border-l-4 bg-opacity-20 transition-all duration-300 hover:bg-opacity-30 hover:transition-none " +
+                  "relative mb-[2px] flex items-center gap-6 border-l-4 border-opacity-60 bg-opacity-20 transition-all duration-300 hover:bg-opacity-30 hover:transition-none " +
                   (experience > 6
                     ? "border-highlight-green bg-highlight-light-green "
                     : experience > 4
                     ? "border-white bg-white "
-                    : "border-highlight-red bg-red-300 ")
+                    : "border-red-400 bg-red-200 ")
                 }
               >
                 <div class="absolute right-0 bg-gradient-to-l from-black to-transparent">
@@ -130,7 +131,7 @@ const skillTabs = [
                     {type}
                   </span>
                 </div>
-                <div class="z-10 hidden sm:flex gap-4 leading-none">
+                <div class="z-10 hidden gap-4 leading-none sm:flex">
                   <div class="">
                     <p class="uppercase">Level</p>
                     {loc && (
@@ -158,19 +159,25 @@ const skillTabs = [
                 </div>
                 <p
                   class={
-                    "skill__title z-10 text-xl font-semibold uppercase " +
+                    "text-shadow z-10 text-xl font-semibold uppercase " +
                     (experience > 6
                       ? "text-highlight-green "
                       : experience > 4
                       ? "text-highlight "
-                      : "text-highlight-red ")
+                      : "text-red-400 ")
                   }
                 >
                   {label}
                 </p>
-              </div>
+                <SquareCornerCard
+                  className="ml-auto mr-4 px-2 py-1 backdrop-blur-sm"
+                  animation={{ border: true, color: true }}
+                >
+                  <a href={`/projects/?skill=${value}`}>Projects</a>
+                </SquareCornerCard>
+              </lu>
             ))}
-          </div>
+          </ul>
         </div>
       ))
     }
@@ -237,10 +244,6 @@ const skillTabs = [
     100% {
       transform: scaleX(1);
     }
-  }
-
-  .skill__title {
-    text-shadow: 1.5px 1.5px rgb(0, 0, 0, 0.3);
   }
 
   .skill__bg {
