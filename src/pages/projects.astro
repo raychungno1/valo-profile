@@ -5,17 +5,19 @@ import { logos } from "../utils/logos";
 import SquareCornerCard from "../components/SquareCornerCard.astro";
 import Dropdown from "../components/Dropdown.astro";
 import { languages } from "../utils/skills";
+import { Icon } from "astro-icon";
+import Skeleton from "../components/Skeleton.astro";
 ---
 
 <Layout title="Ray Chung | Projects">
-  <div
+  <ul
     id="featured-projects"
     class="container mx-auto mt-10 hidden max-h-[750px] min-h-[400px] w-[95%] justify-between gap-3 text-white md:flex md:max-w-full lg:container"
   >
     {
       projectList.slice(0, 5).map(({ bg, title, skills }, pIdx) => (
-        <div id={"featured__container" + pIdx} class="opacity-0">
-          <div class="featured">
+        <li id={"featured__container" + pIdx} class="w-[21%] opacity-0">
+          <div class="featured cursor-pointer">
             <img src={bg} alt="Tik Tok Clone" class="featured__img" />
             <svg
               class="absolute"
@@ -252,12 +254,13 @@ import { languages } from "../utils/skills";
               </div>
             </div>
           </div>
-        </div>
+        </li>
       ))
     }
-  </div>
+  </ul>
   <div
-    class={"container relative mx-auto my-10 w-[95%] bg-[#1e2328] border-t-2 border-t-white border-b-2 border-b-white " +
+    id="all-projects"
+    class={"container relative mx-auto my-10 w-[95%] bg-[#1e2328] border-t-2 border-t-white border-b-2 border-b-white scroll-m-8 " +
       "before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:h-4 before:w-4 before:rounded-full before:border-2 before:border-white " +
       "after:content-[''] after:absolute after:-top-[2px] after:left-1/2 after:-translate-x-1/2 after:h-5 after:w-1 after:rounded-[2px] after:bg-white after:outline after:outline-[rgba(255,255,255,0.5)] after:outline-2"}
   >
@@ -299,33 +302,78 @@ import { languages } from "../utils/skills";
         id="skill-dropdown"
         placeholder="Skills..."
         options={languages.map(({ value, label }) => ({ name: label, value }))}
-        className="w-[50vw] max-w-xl"
+        className="w-[80vw] max-w-xl"
       />
-      <SquareCornerCard
-        className="uppercase text-white py-2 px-12"
-        color="green"
-        animation={{ color: true, border: true }}
-      >
-        Search
-      </SquareCornerCard>
     </div>
+    <p id="projects-search-msg" class="mx-8 mt-6 text-2xl text-white">
+      Projects ({projectList.length})
+    </p>
     <ul
-      class="grid gap-4 px-8 py-6 text-white sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      class="grid gap-8 px-8 py-6 text-white sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
       {
-        projectList.map(({ bg, title, skills, desc }, pIdx) => (
-          <li class="my-2 border-t-2 border-b-2 border-t-white border-b-white border-opacity-60">
-            <p class="bg-[#b8babe] px-4 py-6 text-xl font-bold leading-none text-black">
-              {title}
-            </p>
-            <ul class="flex gap-4 bg-[rgba(124,197,195,0.6)] bg-opacity-60 p-2">
-              {skills.map((skill) => (
-                <li class="flex aspect-square h-4 rotate-45 items-center justify-center overflow-hidden bg-black bg-opacity-40 outline outline-[3px] outline-[rgba(255,255,255,0.5)]">
-                  <img class="-rotate-45" src={logos[skill]} alt={skill} />
-                </li>
-              ))}
-            </ul>
-            <div class="h-24 bg-[#3d4044] bg-opacity-50 py-2 px-2">{desc}</div>
+        projectList.map(({ bg, title, skills, desc, code, demo }, pIdx) => (
+          <li class="project-card" data-skills={JSON.stringify(skills)}>
+            <SquareCornerCard
+              animation={{ border: true, color: true }}
+              className="group overflow-hidden p-4 lg:p-8"
+            >
+              <img
+                src={bg}
+                alt={title}
+                class="absolute inset-0 left-1/2 right-1/2 -translate-x-1/2 -translate-y-[19%] opacity-30"
+              />
+              <div class="absolute inset-0 bg-sky-900 opacity-50 transition-opacity group-hover:opacity-0" />
+              <p class="relative text-center text-2xl font-semibold uppercase">
+                {title}
+              </p>
+              <div class="relative z-10 flex h-6 justify-center gap-4 uppercase underline">
+                {demo && (
+                  <a
+                    href={demo}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="project__link relative hover:text-highlight-green"
+                  >
+                    <Icon class="w-6" pack="mdi" name="external-link" />
+                    <span class="project__link-text invisible absolute top-6 left-1/2 z-20 -translate-x-1/2 bg-black bg-opacity-50 px-2 py-1 uppercase text-white backdrop-blur-sm">
+                      Demo
+                    </span>
+                    <span class="sr-only">Demo</span>
+                  </a>
+                )}
+                {code && (
+                  <a
+                    href={code}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="project__link relative hover:text-highlight-green"
+                  >
+                    <Icon class="w-6" pack="ri" name="code-s-slash-fill" />
+                    <span class="project__link-text invisible absolute top-6 left-1/2 z-20 -translate-x-1/2 bg-black bg-opacity-50 px-2 py-1 uppercase text-white backdrop-blur-sm">
+                      Code
+                    </span>
+                    <span class="sr-only">Code</span>
+                  </a>
+                )}
+              </div>
+              <div class="relative mt-2 h-[1px] w-full bg-white before:absolute before:left-0 before:-top-[1px] before:h-[3px] before:w-2 before:bg-white before:content-[''] after:absolute after:right-0 after:-top-[1px] after:h-[3px] after:w-2 after:bg-white after:content-['']" />
+              <p class="relative mt-2 h-28">{desc}</p>
+              <ul class="absolute bottom-8 left-0 right-0 flex justify-center gap-4">
+                {skills.map((skill) => (
+                  <li class="flex aspect-square h-5 rotate-45 items-center justify-center overflow-hidden bg-black bg-opacity-40 outline outline-[3px] outline-white">
+                    <Skeleton
+                      width="20px"
+                      height="20px"
+                      isImg={true}
+                      src={logos[skill]}
+                      alt={skill}
+                      className="-rotate-45"
+                    />
+                  </li>
+                ))}
+              </ul>
+            </SquareCornerCard>
           </li>
         ))
       }
@@ -355,6 +403,50 @@ import { languages } from "../utils/skills";
   }
   featuredPics.forEach((el) => (el.onload = featuredLoaded));
   featuredLoaded();
+
+  // Search submit
+  const params = new URLSearchParams(location.search);
+  const skillInput = document.getElementById("skill-dropdown") as any;
+  const projectCard = document.querySelectorAll(".project-card");
+  skillInput.newOption = () => {
+    if (!skillInput.dataset.value) {
+      params.delete("tab");
+      window.history.replaceState({}, "", location.pathname);
+    } else {
+      params.set("skill", skillInput.dataset.value);
+      window.history.replaceState(
+        {},
+        "",
+        `${location.pathname}?${params.toString()}`
+      );
+    }
+
+    projectCard.forEach((project) => {
+      const p: any = project;
+      const skills: string[] = JSON.parse(p.dataset.skills);
+      p.style.display =
+        !skillInput.dataset.value || skills.includes(skillInput.dataset.value)
+          ? "block"
+          : "none";
+    });
+  };
+
+  // Featured onclick
+  const allProjects = document.getElementById("all-projects");
+  featuredEls.forEach(
+    (el) =>
+      (el.onclick = () => {
+        skillInput.setOption("");
+        allProjects?.scrollIntoView({ behavior: "smooth" });
+      })
+  );
+
+  // Skill query param
+  const selectedSkill = params.get("skill");
+  if (selectedSkill) {
+    skillInput.setOption(selectedSkill);
+    allProjects?.scrollIntoView();
+  }
 </script>
 
 <style>
@@ -436,5 +528,9 @@ import { languages } from "../utils/skills";
       rgba(0, 0, 0, 1) 60%,
       rgba(0, 0, 0, 0) 85%
     );
+  }
+
+  .project__link:hover .project__link-text {
+    visibility: visible;
   }
 </style>

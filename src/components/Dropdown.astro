@@ -28,22 +28,23 @@ const dropId = "drop-" + Math.random();
       pack="ic"
       name="baseline-close"
       class="input-close absolute w-4 h-4 right-4 top-1/2 -translate-y-1/2 text-[#818385] hover:text-white cursor-pointer"
-      style="opacity: 0;"
+      style="display: none;"
     />
   </div>
   <ul
     id={dropId}
-    class="absolute top-0 max-h-64 w-full translate-y-14 overflow-y-scroll rounded-sm bg-[#3d4044] py-[2px] text-white"
+    class="absolute top-0 z-40 max-h-64 w-full translate-y-14 overflow-y-scroll rounded-sm bg-[#3d4044] py-[2px] text-white"
     style="display: none;"
   >
     {
-      options.map(({ name, value }) => (
+      options.map(({ name, value }, optionIdx) => (
         <li
           class="py-2 px-4 data-[hovered=true]:bg-[#7cc5c3] data-[selected=true]:bg-[#7cc5c3] data-[hovered=true]:bg-opacity-50 data-[selected=true]:bg-opacity-100"
           data-value={value}
           data-name={name}
           data-selected="false"
           data-hovered="false"
+          data-idx={optionIdx}
         >
           {name}
         </li>
@@ -58,63 +59,127 @@ const dropId = "drop-" + Math.random();
   const options = dropEl.querySelectorAll("li");
   const closeEl = document.getElementById(closeId);
 
+  let inputName = "";
   let inputValue = "";
-  let rawInput = "";
+  let hoverIdx = -1;
+  let selectIdx = -1;
+
   inputEl.oninput = (e) => {
-    rawInput = e.target.value;
-    console.log(rawInput);
-    closeEl.style.opacity = e.target.value ? 1 : 0;
-    filterSearch();
+    filterSearch(e.target.value);
+    closeEl.style.display = e.target.value ? "block" : "none";
   };
 
   inputEl.onfocus = () => {
-    inputValue = inputEl.value;
+    hoverOption(-1);
+    filterSearch("");
+    inputName = inputEl.value;
     inputEl.value = "";
     dropEl.style.display = "block";
+    window.addEventListener("keydown", focusListener);
   };
 
-  inputEl.onblur = () => {
-    inputEl.value = inputValue;
+  inputEl.onblur = () => blurInput();
+  function blurInput() {
+    inputEl.value = inputName;
+    inputEl.dataset.value = inputValue;
+    inputEl.blur();
     dropEl.style.display = "none";
-    rawInput = "";
-    filterSearch();
+    closeEl.style.display = inputEl.value ? "block" : "none";
+    window.removeEventListener("keydown", focusListener);
+  }
+
+  inputEl.setOption = (value) => {
+    let idx = -1;
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].dataset.value === value) {
+        idx = i;
+        break;
+      }
+    }
+    selectOption(idx);
   };
 
-  options.forEach((option) => {
-    option.onmousedown = () => {
-      inputValue = option.dataset.name;
-      closeEl.style.opacity = 1;
-      options.forEach((o) => {
-        o.dataset.selected = `${option.dataset.name === o.dataset.name}`;
-      });
-    };
-    option.addEventListener("mouseover", (e) => {
-      options.forEach((o) => {
-        o.dataset.hovered = `${o.dataset.value === e.target.dataset.value}`;
-      });
-    });
+  options.forEach((option, idx) => {
+    option.onmousedown = () => selectOption(idx);
+    option.onmouseover = () => hoverOption(idx);
   });
 
-  closeEl.onclick = () => {
-    inputEl.value = "";
-    closeEl.style.opacity = 0;
-    options.forEach((o) => {
-      o.dataset.selected = "false";
-    });
+  closeEl.onmouseup = () => {
+    selectOption(-1);
+    hoverOption(-1);
+    closeEl.style.display = "none";
+    if (inputEl.newOption) inputEl.newOption();
   };
 
-  function filterSearch() {
-    options.forEach((option) => {
+  function hoverOption(i) {
+    hoverIdx = +i;
+    options.forEach((option, idx) => {
+      option.dataset.hovered = `${hoverIdx === idx}`;
+    });
+  }
+
+  function selectOption(i) {
+    selectIdx = +i;
+    inputName = options[selectIdx]?.dataset.name || "";
+    inputEl.value = inputName;
+
+    inputValue = options[selectIdx]?.dataset.value || "";
+    inputEl.dataset.value = inputValue;
+
+    closeEl.style.display = inputName ? "block" : "none";
+
+    options.forEach((o, idx) => {
+      o.dataset.selected = `${selectIdx === idx}`;
+    });
+
+    if (inputEl.newOption) inputEl.newOption();
+  }
+
+  function filterSearch(filter) {
+    filter = filter.toLowerCase();
+    let firstHighlighted = false;
+
+    options.forEach(({ style, dataset }, idx) => {
       if (
-        option.dataset.value.toLowerCase().indexOf(rawInput.toLowerCase()) >
-          -1 ||
-        option.dataset.name.toLowerCase().indexOf(rawInput.toLowerCase()) > -1
+        dataset.value.toLowerCase().indexOf(filter.toLowerCase()) > -1 ||
+        dataset.name.toLowerCase().indexOf(filter.toLowerCase()) > -1
       ) {
-        option.style.display = "block";
+        dataset.hovered = `${!firstHighlighted}`;
+        style.display = "block";
+        if (!firstHighlighted) {
+          hoverIdx = idx;
+          firstHighlighted = true;
+        }
       } else {
-        option.style.display = "none";
+        style.display = "none";
       }
     });
+  }
+
+  function hoverNextIndex(dir) {
+    do {
+      hoverIdx =
+        (((hoverIdx + (dir === "up" ? -1 : 1)) % options.length) +
+          options.length) %
+        options.length;
+    } while (
+      options[hoverIdx].style.display &&
+      options[hoverIdx].style.display === "none"
+    );
+    hoverOption(hoverIdx);
+  }
+
+  function focusListener(e) {
+    if (e.key === "ArrowUp") {
+      hoverNextIndex("up");
+    } else if (e.key === "ArrowDown") {
+      hoverNextIndex("down");
+    } else if (e.key === "Enter") {
+      selectOption(hoverIdx);
+      blurInput();
+    } else if (e.key === "Escape") {
+      blurInput();
+    }
   }
 </script>
 

@@ -41,7 +41,7 @@ export const projectList: ProjectProps[] = [
   },
   {
     title: "Chess AI",
-    desc: "A chess engine playing that performs at a 1700 rating on chess.com.",
+    desc: "A chess engine that performs at a 1700 rating on chess.com.",
     code: "https://github.com/raychungno1/chess-ai",
     demo: "https://youtu.be/oOvJXMsbHoo/",
     skills: ["python", "c", "cython", "pygame"],
@@ -79,7 +79,7 @@ export const projectList: ProjectProps[] = [
     bg: valoProfile,
   },
   {
-    title: "Learning Manager",
+    title: "Learning Mgmt.",
     desc: "A learning management system web application.",
     skills: [
       "html",
@@ -95,7 +95,7 @@ export const projectList: ProjectProps[] = [
   },
   {
     title: "Voronoi",
-    desc: "A webpage that generates a voronoi diagram using Fortune's Algorithm. Calculated in O(n * log(n)) time using red-black trees.",
+    desc: "A voronoi diagram generator using Fortune's Algorithm.",
     skills: ["html", "css", "js"],
     code: "https://github.com/raychungno1/Voronoi",
     demo: "https://raychungno1.github.io/Voronoi/",
