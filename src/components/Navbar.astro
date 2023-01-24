@@ -123,7 +123,7 @@ const tabs = [
   // Highlight active page
   (document.querySelectorAll(".nav-link") as NodeListOf<HTMLAnchorElement>).forEach((link) => {
     console.log(link.pathname, window.location.pathname)
-    if (link && link.pathname === window.location.pathname) {
+    if (window.location.pathname === link.pathname || window.location.pathname === link.pathname + "/") {
       link.dataset.active = "true";
       link.onclick = (e) => {
         e.preventDefault()
