@@ -305,9 +305,6 @@ import Skeleton from "../components/Skeleton.astro";
         className="w-[80vw] max-w-xl"
       />
     </div>
-    <p id="projects-search-msg" class="mx-8 mt-6 text-2xl text-white">
-      Projects ({projectList.length})
-    </p>
     <ul
       class="grid gap-8 px-8 py-6 text-white sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
@@ -316,63 +313,65 @@ import Skeleton from "../components/Skeleton.astro";
           <li class="project-card" data-skills={JSON.stringify(skills)}>
             <SquareCornerCard
               animation={{ border: true, color: true }}
-              className="group overflow-hidden p-4 lg:p-8"
+              className="group"
             >
-              <img
-                src={bg}
-                alt={title}
-                class="absolute inset-0 left-1/2 right-1/2 -translate-x-1/2 -translate-y-[19%] opacity-30"
-              />
-              <div class="absolute inset-0 bg-sky-900 opacity-50 transition-opacity group-hover:opacity-0" />
-              <p class="relative text-center text-2xl font-semibold uppercase">
-                {title}
-              </p>
-              <div class="relative z-10 flex h-6 justify-center gap-4 uppercase underline">
-                {demo && (
-                  <a
-                    href={demo}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="project__link relative hover:text-highlight-green"
-                  >
-                    <Icon class="w-6" pack="mdi" name="external-link" />
-                    <span class="project__link-text invisible absolute top-6 left-1/2 z-20 -translate-x-1/2 bg-black bg-opacity-50 px-2 py-1 uppercase text-white backdrop-blur-sm">
-                      Demo
-                    </span>
-                    <span class="sr-only">Demo</span>
-                  </a>
-                )}
-                {code && (
-                  <a
-                    href={code}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="project__link relative hover:text-highlight-green"
-                  >
-                    <Icon class="w-6" pack="ri" name="code-s-slash-fill" />
-                    <span class="project__link-text invisible absolute top-6 left-1/2 z-20 -translate-x-1/2 bg-black bg-opacity-50 px-2 py-1 uppercase text-white backdrop-blur-sm">
-                      Code
-                    </span>
-                    <span class="sr-only">Code</span>
-                  </a>
-                )}
+              <div class="relative overflow-hidden p-4 lg:p-8">
+                <img
+                  src={bg}
+                  alt={title}
+                  class="absolute inset-0 left-1/2 right-1/2 -translate-x-1/2 -translate-y-[19%] opacity-30"
+                />
+                <div class="absolute inset-0 bg-sky-900 opacity-50 transition-opacity group-hover:opacity-0" />
+                <p class="relative text-center text-2xl font-semibold uppercase">
+                  {title}
+                </p>
+                <div class="relative z-10 flex h-6 justify-center gap-4 uppercase underline">
+                  {demo && (
+                    <a
+                      href={demo}
+                      target="_blank"
+                      rel="noreferrer"
+                      class="project__link relative hover:text-highlight-green"
+                    >
+                      <Icon class="w-6" pack="mdi" name="external-link" />
+                      <span class="project__link-text invisible absolute top-6 left-1/2 z-20 -translate-x-1/2 bg-black bg-opacity-50 px-2 py-1 uppercase text-white backdrop-blur-sm">
+                        Demo
+                      </span>
+                      <span class="sr-only">Demo</span>
+                    </a>
+                  )}
+                  {code && (
+                    <a
+                      href={code}
+                      target="_blank"
+                      rel="noreferrer"
+                      class="project__link relative hover:text-highlight-green"
+                    >
+                      <Icon class="w-6" pack="ri" name="code-s-slash-fill" />
+                      <span class="project__link-text invisible absolute top-6 left-1/2 z-20 -translate-x-1/2 bg-black bg-opacity-50 px-2 py-1 uppercase text-white backdrop-blur-sm">
+                        Code
+                      </span>
+                      <span class="sr-only">Code</span>
+                    </a>
+                  )}
+                </div>
+                <div class="relative mt-2 h-[1px] w-full bg-white before:absolute before:left-0 before:-top-[1px] before:h-[3px] before:w-2 before:bg-white before:content-[''] after:absolute after:right-0 after:-top-[1px] after:h-[3px] after:w-2 after:bg-white after:content-['']" />
+                <p class="relative mt-2 h-28">{desc}</p>
+                <ul class="absolute bottom-8 left-0 right-0 flex justify-center gap-4">
+                  {skills.map((skill) => (
+                    <li class="flex aspect-square h-5 rotate-45 items-center justify-center overflow-hidden bg-black bg-opacity-40 outline outline-[3px] outline-white">
+                      <Skeleton
+                        width="20px"
+                        height="20px"
+                        isImg={true}
+                        src={logos[skill]}
+                        alt={skill}
+                        className="-rotate-45"
+                      />
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div class="relative mt-2 h-[1px] w-full bg-white before:absolute before:left-0 before:-top-[1px] before:h-[3px] before:w-2 before:bg-white before:content-[''] after:absolute after:right-0 after:-top-[1px] after:h-[3px] after:w-2 after:bg-white after:content-['']" />
-              <p class="relative mt-2 h-28">{desc}</p>
-              <ul class="absolute bottom-8 left-0 right-0 flex justify-center gap-4">
-                {skills.map((skill) => (
-                  <li class="flex aspect-square h-5 rotate-45 items-center justify-center overflow-hidden bg-black bg-opacity-40 outline outline-[3px] outline-white">
-                    <Skeleton
-                      width="20px"
-                      height="20px"
-                      isImg={true}
-                      src={logos[skill]}
-                      alt={skill}
-                      className="-rotate-45"
-                    />
-                  </li>
-                ))}
-              </ul>
             </SquareCornerCard>
           </li>
         ))
