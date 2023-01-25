@@ -15,7 +15,11 @@ const skillCollections = (await getCollection("skills"))
   .sort((a, b) => (a.tabIdx > b.tabIdx ? 1 : -1));
 ---
 
-<Layout title="Ray Chung | Skills" backgroundImage={true}>
+<Layout
+  title="Ray Chung | Skills"
+  description="My Skills Page"
+  backgroundImage={true}
+>
   <ul
     id="skill-tabs"
     class="relative z-10 mx-auto flex w-[95%] flex-row flex-wrap justify-center uppercase text-white sm:mt-4"

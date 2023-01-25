@@ -1,0 +1,8 @@
+{
+  "title": "Ray Chung Profile Website",
+  "description": "My software engineer protfolio.",
+  "image": {
+    "src": "/image-default.jpg",
+    "alt": "My Profile Website"
+  }
+}

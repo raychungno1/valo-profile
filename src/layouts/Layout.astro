@@ -2,17 +2,26 @@
 import { Image } from "@astrojs/image/components";
 
 import Navbar from "../components/Navbar.astro";
-import "../styles/global.css";
+import Seo from "../components/Seo.astro";
 
+import "../styles/global.css";
 import bg from "../images/bg.png";
 
 export interface Props {
   title: string;
+  description: string;
+  image?: string;
   background?: string;
   backgroundImage?: boolean;
 }
 
-const { title, background, backgroundImage = false } = Astro.props;
+const {
+  title,
+  description,
+  image,
+  background,
+  backgroundImage = false,
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -20,13 +29,12 @@ const { title, background, backgroundImage = false } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/ico" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content="Profile website for Ray Chung. This portfolio website provides a quick introduction about me and my work experience, projects, and skills. "
-    />
     <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <Seo title={title} description={description} image={image} />
   </head>
   <body>
     <div class="relative h-[100vh] overflow-x-hidden">
@@ -49,38 +57,37 @@ const { title, background, backgroundImage = false } = Astro.props;
         <slot />
       </main>
     </div>
+    <script define:vars={{ background }}>
+      if (background) {
+        document.documentElement.style.setProperty("--background", background);
+      }
+
+      const imgEl = document.getElementById("bg");
+      function bgLoaded() {
+        if (imgEl.complete) {
+          imgEl.classList.add("fade-in");
+          imgEl.classList.remove("opacity-0");
+        }
+      }
+      if (imgEl) {
+        imgEl.onload = bgLoaded;
+        bgLoaded();
+      }
+    </script>
+
+    <style>
+      #bg {
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 1) 90%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 1) 90%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+    </style>
   </body>
 </html>
-
-<script define:vars={{ background }}>
-  if (background) {
-    document.documentElement.style.setProperty("--background", background);
-  }
-
-  const imgEl = document.getElementById("bg");
-  function bgLoaded() {
-    if (imgEl.complete) {
-      imgEl.classList.add("fade-in");
-      imgEl.classList.remove("opacity-0");
-    }
-  }
-  if (imgEl) {
-    imgEl.onload = bgLoaded;
-    bgLoaded();
-  }
-</script>
-
-<style>
-  #bg {
-    mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 1) 90%,
-      rgba(0, 0, 0, 0) 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 1) 90%,
-      rgba(0, 0, 0, 0) 100%
-    );
-  }
-</style>
