@@ -7,11 +7,18 @@ import Layout from "../layouts/Layout.astro";
 import Skeleton from "../components/Skeleton.astro";
 import SquareCornerCard from "../components/SquareCornerCard.astro";
 
+// import { importImage, processImageFolder } from "../utils/loadImageFolder";
 import { logos } from "../utils/logos";
 
 const skillCollections = (await getCollection("skills"))
   .map(({ data }) => data)
   .sort((a, b) => (a.tabIdx > b.tabIdx ? 1 : -1));
+// const skillBG = processImageFolder(await Astro.glob("../images/skill-bg/*"));
+// console.log(skillCollections[0].types["language"].bg);
+
+// const test = await import(`/src/images/skill-bg/${"language"}.png`);
+// const test = await import(skillCollections[0].types["language"].bg);
+// console.log("TEST", test.default);
 ---
 
 <Layout title="Ray Chung | Skills" backgroundImage={true}>
