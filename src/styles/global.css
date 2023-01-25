@@ -1,14 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --animation-play: false;
   --color-highlight: 233, 237, 179;
   --color-highlight-green: 50, 200, 160;
   --in-out-quint: cubic-bezier(0.19, 1, 0.22, 1);
   --out-quint: cubic-bezier(0.22, 1, 0.36, 1);
-  --background: radial-gradient(
+  /* --background: radial-gradient(
     circle at 50% 300vh,
     rgb(34, 52, 80, 1) 60%,
     rgb(70, 99, 146, 1) 80%,
     rgba(13, 21, 43, 1) 98%
+  ); */
+  --background: radial-gradient(
+    circle at 50% 400vh,
+    #183244 75%,
+    #121c25 80%,
+    #063854 90%
   );
 }
 
@@ -23,8 +33,9 @@ img {
 }
 
 .fade-in {
+  --duration: 300ms;
   opacity: 1;
-  animation: fade-in 300ms ease-in-out;
+  animation: fade-in var(--duration) ease-in-out;
 }
 
 @keyframes fade-in {
@@ -52,7 +63,10 @@ img {
 
 @font-face {
   font-family: "Just Dance Bold";
-  src: url("/valo-font.ttf");
+  src: url("valo-font-webfont.woff2") format("woff2"),
+    url("valo-font-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 .skeleton__container * {
@@ -75,4 +89,17 @@ img {
 
 .text-shadow {
   text-shadow: 1.5px 1.5px rgb(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(237, 237, 237);
+  border-radius: 40px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #181c20;
 }

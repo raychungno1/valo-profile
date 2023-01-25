@@ -1,52 +1,26 @@
 ---
+import { getCollection } from "astro:content";
 import { Icon } from "astro-icon";
+import { Image } from "@astrojs/image/components";
+
+import Layout from "../layouts/Layout.astro";
 import Skeleton from "../components/Skeleton.astro";
 import SquareCornerCard from "../components/SquareCornerCard.astro";
-import Layout from "../layouts/Layout.astro";
-import { logos } from "../utils/logos";
-import {
-  frameworks,
-  languages,
-  libs,
-  skillTypes,
-  tools,
-} from "../utils/skills";
 
-const skillTabs = [
-  {
-    name: "Languages",
-    pack: "mdi",
-    iconName: "file-document",
-    skills: languages,
-  },
-  {
-    name: "Frameworks",
-    pack: "mdi",
-    iconName: "crane",
-    skills: frameworks,
-  },
-  {
-    name: "Libraries",
-    pack: "ri",
-    iconName: "book-2-fill",
-    skills: libs,
-  },
-  {
-    name: "Tools",
-    pack: "ic",
-    iconName: "baseline-construction",
-    skills: tools,
-  },
-];
+import { logos } from "../utils/logos";
+
+const skillCollections = (await getCollection("skills"))
+  .map(({ data }) => data)
+  .sort((a, b) => (a.tabIdx > b.tabIdx ? 1 : -1));
 ---
 
-<Layout title="Ray Chung | Skills">
+<Layout title="Ray Chung | Skills" backgroundImage={true}>
   <ul
     id="skill-tabs"
     class="relative z-10 mx-auto flex w-[95%] flex-row flex-wrap justify-center uppercase text-white sm:mt-4"
   >
     {
-      skillTabs.map(({ name }, tabIdx) => (
+      skillCollections.map(({ name }, tabIdx) => (
         <li
           class={
             "group relative w-1/2 cursor-pointer border-b-[1px] py-1 text-center after:absolute after:-bottom-[2px] after:left-0 after:h-[3px] sm:w-32 " +
@@ -78,113 +52,116 @@ const skillTabs = [
   </ul>
   <div id="skill-details" class="relative z-10">
     {
-      skillTabs.map(({ name, pack, iconName, skills }, tabIdx) => (
-        <div
-          class="hidden text-white data-[selected=true]:block"
-          data-selected="false"
-          id={`detail-${tabIdx}`}
-        >
-          <Icon
-            class="mx-auto mt-8 w-20 rounded-full bg-slate-600 bg-opacity-100 p-2"
-            pack={pack}
-            name={iconName}
-          />
-          <h1 class="mt-6 text-center font-custom-heavy text-5xl uppercase leading-none">
-            {name}
-          </h1>
-          <ul class="fade-in mx-auto mt-8 w-[95%] max-w-4xl bg-black bg-opacity-0 pb-6">
-            {skills.map(({ experience, label, type, value, loc }) => (
-              <lu
-                class={
-                  "relative mb-[2px] flex items-center gap-6 border-l-4 border-opacity-60 bg-opacity-20 transition-all duration-300 hover:bg-opacity-30 hover:transition-none " +
-                  (experience > 6
-                    ? "border-highlight-green bg-highlight-light-green "
-                    : experience > 4
-                    ? "border-white bg-white "
-                    : "border-red-400 bg-red-200 ")
-                }
-              >
-                <div class="absolute right-0 bg-gradient-to-l from-black to-transparent">
-                  <Skeleton
-                    width="256px"
-                    height="56px"
-                    isImg={true}
-                    src={skillTypes[type].bg}
-                    alt={type}
-                    className="skill__bg opacity-70 blur-sm md:blur-none"
-                  />
-                </div>
-                <Skeleton
-                  width="56px"
-                  height="56px"
-                  isImg={true}
-                  src={logos[value]}
-                  alt={label}
-                  className="z-10 bg-black bg-opacity-30"
-                />
-                <div class="group relative hidden w-10 rounded-full bg-slate-600 bg-opacity-100 p-2 sm:block">
-                  <Icon
-                    pack={skillTypes[type]?.pack || pack}
-                    name={skillTypes[type]?.iconName || type}
-                  />
-                  <span class="invisible absolute top-[2.6rem] left-1/2 z-20 -translate-x-1/2 bg-black bg-opacity-50 px-2 py-1 uppercase backdrop-blur-sm group-hover:visible">
-                    {type}
-                  </span>
-                </div>
-                <div class="z-10 hidden gap-4 leading-none sm:flex">
-                  <div class="">
-                    <p class="uppercase">Level</p>
-                    {loc && (
-                      <p class="mt-1 text-sm leading-none opacity-60">
-                        Lines of Code
-                      </p>
-                    )}
-                  </div>
-                  <div class="w-20">
-                    <p class="flex items-center gap-[2px] capitalize">
-                      {experience}
-                      <span class="text-sm font-light leading-none opacity-60">
-                        /
-                      </span>
-                      10
-                    </p>
-                    {loc && (
-                      <p class="mt-1 text-sm leading-none">
-                        {Intl.NumberFormat(undefined, {
-                          notation: "compact",
-                        }).format(loc)}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <p
+      skillCollections.map(
+        ({ name, pack, iconName, types, skills }, tabIdx) => (
+          <div
+            class="hidden text-white data-[selected=true]:block"
+            data-selected="false"
+            id={`detail-${tabIdx}`}
+          >
+            <Icon
+              class="mx-auto mt-8 w-20 rounded-full bg-slate-600 bg-opacity-100 p-2"
+              pack={pack}
+              name={iconName}
+            />
+            <h1 class="mt-6 text-center font-custom-heavy text-5xl uppercase leading-none">
+              {name}
+            </h1>
+            <ul class="fade-in mx-auto mt-8 w-[95%] max-w-4xl bg-black bg-opacity-0 pb-6">
+              {skills.map(({ experience, label, type, value, loc }) => (
+                <li
                   class={
-                    "text-shadow z-10 text-xl font-semibold uppercase " +
+                    "relative mb-[2px] flex items-center gap-6 border-l-4 border-opacity-60 bg-opacity-30 backdrop-blur-sm transition-all duration-300 hover:bg-opacity-40 hover:transition-none " +
                     (experience > 6
-                      ? "text-highlight-green "
+                      ? "border-[#66c5a7] bg-[#8dcfba] "
                       : experience > 4
-                      ? "text-highlight "
-                      : "text-red-400 ")
+                      ? "border-white bg-white "
+                      : "border-[#f85950] bg-[#ffb3af] ")
                   }
                 >
-                  {label}
-                </p>
-                {name === "Languages" && (
-                  <SquareCornerCard
-                    className="ml-auto mr-4 px-2 py-1 backdrop-blur-sm"
-                    animation={{ border: true, color: true }}
-                    color="green"
+                  <div class="absolute right-0 bg-gradient-to-l from-black to-transparent">
+                    <Image
+                      width={256}
+                      height={56}
+                      src={types[type].bg}
+                      alt={type}
+                      class="skill__bg blur-sm md:blur-none"
+                      format="webp"
+                      quality={50}
+                    />
+                  </div>
+                  <Skeleton
+                    width={56}
+                    height={56}
+                    isImg={true}
+                    src={logos[value]}
+                    alt={label}
+                    className="z-10"
+                  />
+                  <div class="group relative hidden w-10 rounded-full bg-slate-600 bg-opacity-100 p-2 sm:block">
+                    <Icon
+                      pack={types[type]?.pack || pack}
+                      name={types[type]?.iconName || type}
+                    />
+                    <span class="invisible absolute top-[2.6rem] left-1/2 z-20 -translate-x-1/2 bg-black bg-opacity-50 px-2 py-1 uppercase backdrop-blur-sm group-hover:visible">
+                      {type}
+                    </span>
+                  </div>
+                  <div class="z-10 hidden gap-4 leading-none sm:flex">
+                    <div class="">
+                      <p class="uppercase">Level</p>
+                      {loc && (
+                        <p class="mt-1 text-sm leading-none opacity-60">
+                          Lines of Code
+                        </p>
+                      )}
+                    </div>
+                    <div class="w-20">
+                      <p class="flex items-center gap-[2px] capitalize">
+                        {experience}
+                        <span class="text-sm font-light leading-none opacity-60">
+                          /
+                        </span>
+                        10
+                      </p>
+                      {loc && (
+                        <p class="mt-1 text-sm leading-none">
+                          {Intl.NumberFormat(undefined, {
+                            notation: "compact",
+                          }).format(loc)}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <p
+                    class={
+                      "z-10 text-xl font-semibold uppercase " +
+                      (experience > 6
+                        ? "text-[#66c5a7] "
+                        : experience > 4
+                        ? "text-highlight "
+                        : "text-[#f85950] ")
+                    }
                   >
-                    <a href={`/projects/?skill=${value}`} class="uppercase">
-                      Projects
-                    </a>
-                  </SquareCornerCard>
-                )}
-              </lu>
-            ))}
-          </ul>
-        </div>
-      ))
+                    {label}
+                  </p>
+                  {name === "Languages" && (
+                    <SquareCornerCard
+                      className="ml-auto mr-4 px-2 py-1 backdrop-blur-sm"
+                      animation={{ border: true, color: true }}
+                      color="green"
+                    >
+                      <a href={`/projects/?skill=${value}`} class="uppercase">
+                        Projects
+                      </a>
+                    </SquareCornerCard>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      )
     }
   </div>
 </Layout>
@@ -253,6 +230,11 @@ const skillTabs = [
 
   .skill__bg {
     mask-image: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    -webkit-mask-image: linear-gradient(
       to left,
       rgba(0, 0, 0, 1) 0%,
       rgba(0, 0, 0, 0) 100%

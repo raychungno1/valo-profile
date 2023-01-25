@@ -1,146 +1,53 @@
 ---
+import { getEntryBySlug } from "astro:content";
+import { Image } from '@astrojs/image/components';
 import { Icon } from "astro-icon";
+
 import Layout from "../layouts/Layout.astro";
 import SquareCornerCard from "../components/SquareCornerCard.astro";
-import ytLogo from "../images/yt-logo.jpg";
+
 import valoPortraitFG from "../images/valo-portrait-fg.png";
 import valoPortraitBG from "../images/valo-portrait-bg.png";
 import valoPortraitHL1 from "../images/valo-portrait-highlight1.png";
 import valoPortraitHL2 from "../images/valo-portrait-highlight2.png";
 
-const intro = {
-  name: "Ray Chung",
-  role: "Software Engineer",
-  desc: "I'm a software engineer specializing in full stack development. Currently based in New York City, I'm building out real-time financial solutions at Bloomberg.",
-};
-
-interface AboutDetail {
-  company: string;
-  title: string;
-  date: string;
-  points: string[];
-  gpa?: string[];
-}
-
-const experiences: AboutDetail[] = [
-  {
-    company: "JP Morgan Chase",
-    title: "Software Engineer Intern",
-    date: "June - August 2022",
-    points: [
-      "Developed a web application with Java Spring Boot, Node, & React to summarize loan application data",
-      "Within one week of use, tool identified a bottleneck affecting 60% of automated loan applications, increasing automated loan approvals by 10%",
-      "Implemented a solution to store loan application data in the cloud, creating a schema & automating data storage in an Oracle database",
-      "Decreased app maintenance 33% by developing a Spring Boot Admin monitoring tool for microservices",
-      "Selected as a top 2 intern project among 113 interns and 33 teams",
-    ],
-  },
-  {
-    company: "Ohio State University",
-    title: "B.S. Computer Science",
-    date: "August 2019 - December 2022",
-    gpa: ["3.9", "4.0"],
-    points: [
-      "Graduated Summa Cum Laude with a B.S. in Computer Science & Engineering",
-      "AI specialization with coursework Neural Networks, NLP, Computer Vision",
-      "NLP research in chain-of-thought prompting",
-    ],
-  },
-];
-
-const awards: AboutDetail[] = [
-  {
-    company: "ASA DataFest",
-    title: "Winner",
-    date: "March 2021",
-    points: [
-      "Won best visualization award among 35 teams",
-      "Performed data analysis with RStudio, providing business insights to an anonymous data provider",
-      "Used statistical techniques to identify issues and developed actionable conclusions",
-    ],
-  },
-  {
-    company: "PLTW Engineering",
-    title: "Winner",
-    date: "August 2018 - May 2019",
-    points: [
-      "Won audience choice award among 30 teams",
-      "Cooperated in a team of 4 to produce a garage door add-on that automatically operated a garage door",
-      "Developed a fully functional app through Swift using XCode with a customizable, toggleable geo-fence",
-    ],
-  },
-  {
-    company: "Boy Scouts of America",
-    title: "Eagle Scout, Gold Palm",
-    date: "May 2016",
-    points: [
-      "Eagle Project - Refurbished a Tzu Chi recycling center in Shanghai, China",
-      "Earned Gold Palm beyond rank of Eagle",
-      "Order of the Arrow (OA) member",
-    ],
-  },
-];
-
-// const aboutTabs = [
-//   {
-//     name: "Experience",
-//     pack: "bi",
-//     iconName: "people-fill",
-//     details: experiences,
-//   },
-//   { name: "Awards", pack: "bi", iconName: "award-fill", details: awards },
-//   { name: "Hobbies", pack: "ion", iconName: "game-controller", details: [] },
-// ];
-interface AboutTab {
-  name: string;
-  pack: string;
-  iconName: string;
-  highlight?: string;
-  title?: string;
-  desc?: string;
-}
-
-const yoe = new Date(Date.now() - +new Date("2021/08/22")).getFullYear() - 1970
-const aboutTabs: AboutTab[] = [
-  {
-    name: "Info",
-    pack: "ic",
-    iconName: "baseline-info",
-    highlight: "I'm a software engineer specializing in full stack development. Currently based in New York City, I'm building out real-time financial solutions at Bloomberg.",
-    title: "Software Engineer",
-    desc: "Software engineers design, develop, test, and maintain of software applications, building software solutions for end users."
-  },
-  { name: "Goal", pack: "fe", iconName: "target", title: "Goals", desc: "My job satisfaction comes from the high impact that my software has on end users. Being able to work on cutting edge technology is why I love computer science." },
-  { name: "Dev", pack: "ri", iconName: "code-s-slash-fill", title: "Software Development", desc: `${yoe} year${yoe > 1 ? "s" : ""} of experience in full stack software development. Industry work at Bloomberg and JPMorgan Chase. I'm always learning new skills to build high-impact solutions.` },
-  { name: "Env", pack: "fluent", iconName: "people-team-16-filled", title: "Work Environment", desc: "I'm a fast learner and am never afraid to take on responsibility.  From agile software engineering teams to solo personal projects, I work effectively in a wide range of environments." },
-];
+const { data: ray } = await getEntryBySlug("about", "ray");
 ---
 
-<Layout title="Ray Chung | Software Engineer" background="linear-gradient(45deg,rgba(80, 128, 152, 1) 0%,rgba(34, 44, 80, 1) 100%)">
+<!-- <Layout title="Ray Chung | Software Engineer" background="linear-gradient(45deg,rgba(80, 128, 152, 1) 0%,rgba(34, 44, 80, 1) 100%)"> -->
+<Layout title="Ray Chung | Software Engineer" background="linear-gradient(135deg, #497797 0%, #28406a 50%, #1a1938 100%)">
   <div class="home-fade pointer-events-none fixed inset-0 bg-black"></div>
-  <img
+  <Image
     id="valo-profile__bg"
     class="opacity-0 absolute top-0 left-1/2 z-0 h-[100vh] min-h-[800px] -translate-x-1/2 object-cover md:fixed md:left-[22%] lg:left-[28%] md:-translate-x-[75%] xl:left-1/2"
     src={valoPortraitBG}
     alt="Valorant Portrait BG"
+    format="webp"
+    quality={50}
   />    
-  <img
+  <Image
     id="valo-profile__highlight1"
     class="opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
     src={valoPortraitHL1}
     alt="Valorant Portrait Highlight 1"
+    format="webp"
+    quality={1}
   />
-  <img
+  <Image
     id="valo-profile__highlight2"
     class="opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
     src={valoPortraitHL2}
     alt="Valorant Portrait Highlight 2"
+    format="webp"
+    quality={1}
   />
-  <img
+  <Image
     id="valo-profile"
     class="opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
     src={valoPortraitFG}
     alt="Valorant Portrait"
+    format="webp"
+    quality={50}
   />
   <div
     class="relative mx-auto mt-[max(280px,35vh)] my-10 w-[90%] max-w-[1536px] text-white md:mt-16"
@@ -150,11 +57,11 @@ const aboutTabs: AboutTab[] = [
       class="mx-auto max-w-2xl bg-black bg-opacity-60 pl-6 pb-8 backdrop-blur-sm border-l-[1px] border-opacity-10 border-white md:mr-0 md:w-[450px] md:max-w-4xl md:bg-opacity-0 md:backdrop-blur-none after:content-[' '] after:absolute after:h-full after:border-l-[1px] after:border-white after:border-opacity-20 after:left-3 after:top-0"
     >
       <div id="about-intro" class="text-center md:text-left pr-6 md:pr-0">
-        <p class="pt-4 md:pt-0 md:absolute md:-top-8 text-xl font-light uppercase tracking-wide">{intro.role}</p>
+        <p class="pt-4 md:pt-0 md:absolute md:-top-8 text-xl font-light uppercase tracking-wide">{ray.role}</p>
         <h1
           class="-translate-y-1 font-custom-heavy text-9xl font-bold uppercase leading-[6rem] text-highlight mb-2"
         >
-          {intro.name}
+          {ray.name}
         </h1>
       </div>
       <div id="about-tabs" class="flex items-center mt-12">
@@ -170,7 +77,7 @@ const aboutTabs: AboutTab[] = [
         </svg>
         <ul class="w-full flex items-center justify-center gap-1">
           {
-            aboutTabs.map(({ name, pack, iconName }, tabIdx) => (
+            ray.about.map(({ name, pack, iconName }, tabIdx) => (
               <li
                 class="group z-10 flex w-1/3 flex-col items-center justify-center gap-2 bg-white bg-opacity-20 p-1 hover:bg-opacity-40 active:bg-opacity-20"
                 data-selected="false"
@@ -193,7 +100,7 @@ const aboutTabs: AboutTab[] = [
       </div>
       <div id="about-details">
         {
-          aboutTabs.map(({ highlight, title, desc }, tabIdx) => (
+          ray.about.map(({ highlight, title, desc }, tabIdx) => (
             <div
               class="group hidden data-[selected=true]:block mt-4"
               data-selected="false"
@@ -302,7 +209,6 @@ const aboutTabs: AboutTab[] = [
       </div>
     </div>
   </div>
-  <!-- <div class="relative z-10 mt-40">Next section</div> -->
 </Layout>
 
 <script>
@@ -395,6 +301,11 @@ const aboutTabs: AboutTab[] = [
   @media(max-width: 640px) {
     .valo-profile, .valo-profile__highlight1, .valo-profile__highlight2, .valo-profile__bg {
       mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 60%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      -webkit-mask-image: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 1) 60%,
         rgba(0, 0, 0, 0) 100%

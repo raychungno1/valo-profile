@@ -1,15 +1,21 @@
 ---
+import { Image } from "@astrojs/image/components";
+
+import { getEntryBySlug } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import { projectList } from "../utils/projects";
 import { logos } from "../utils/logos";
 import SquareCornerCard from "../components/SquareCornerCard.astro";
 import Dropdown from "../components/Dropdown.astro";
-import { languages } from "../utils/skills";
 import { Icon } from "astro-icon";
 import Skeleton from "../components/Skeleton.astro";
+
+const {
+  data: { skills: languages },
+} = await getEntryBySlug("skills", "languages");
 ---
 
-<Layout title="Ray Chung | Projects">
+<Layout title="Ray Chung | Projects" backgroundImage={true}>
   <ul
     id="featured-projects"
     class="container mx-auto mt-10 hidden max-h-[750px] min-h-[400px] w-[95%] justify-between gap-3 text-white md:flex md:max-w-full lg:container"
@@ -18,7 +24,13 @@ import Skeleton from "../components/Skeleton.astro";
       projectList.slice(0, 5).map(({ bg, title, skills }, pIdx) => (
         <li id={"featured__container" + pIdx} class="w-[21%] opacity-0">
           <div class="featured cursor-pointer">
-            <img src={bg} alt="Tik Tok Clone" class="featured__img" />
+            <Image
+              src={bg}
+              alt={title}
+              class="featured__img"
+              format="webp"
+              height={750}
+            />
             <svg
               class="absolute"
               viewBox="0 0 100 250"
@@ -244,10 +256,12 @@ import Skeleton from "../components/Skeleton.astro";
                     skill !== "html" &&
                     skill !== "css" &&
                     (skill !== "js" || !skills.includes("ts")) && (
-                      <img
+                      <Image
                         class="aspect-square h-4 lg:h-6"
                         src={logos[skill]}
                         alt={skill}
+                        width={24}
+                        height={24}
                       />
                     )
                 )}
@@ -316,10 +330,16 @@ import Skeleton from "../components/Skeleton.astro";
               className="group"
             >
               <div class="relative overflow-hidden p-4 lg:p-8">
-                <img
+                <Image
                   src={bg}
                   alt={title}
-                  class="absolute inset-0 left-1/2 right-1/2 -translate-x-1/2 -translate-y-[19%] opacity-30"
+                  class="absolute inset-0 w-full opacity-30"
+                  format="webp"
+                  quality={50}
+                  height={500}
+                  width={500}
+                  fit="cover"
+                  position="attention"
                 />
                 <div class="absolute inset-0 bg-sky-900 opacity-50 transition-opacity group-hover:opacity-0" />
                 <p class="relative text-center text-2xl font-semibold uppercase">
@@ -361,8 +381,8 @@ import Skeleton from "../components/Skeleton.astro";
                   {skills.map((skill) => (
                     <li class="flex aspect-square h-5 rotate-45 items-center justify-center overflow-hidden bg-black bg-opacity-40 outline outline-[3px] outline-white">
                       <Skeleton
-                        width="20px"
-                        height="20px"
+                        width={20}
+                        height={20}
                         isImg={true}
                         src={logos[skill]}
                         alt={skill}
@@ -523,6 +543,11 @@ import Skeleton from "../components/Skeleton.astro";
     object-fit: cover;
     height: 100%;
     mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 60%,
+      rgba(0, 0, 0, 0) 85%
+    );
+    -webkit-mask-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 1) 60%,
       rgba(0, 0, 0, 0) 85%

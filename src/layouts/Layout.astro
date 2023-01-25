@@ -1,13 +1,18 @@
 ---
+import { Image } from "@astrojs/image/components";
+
 import Navbar from "../components/Navbar.astro";
 import "../styles/global.css";
+
+import bg from "../images/bg.png";
 
 export interface Props {
   title: string;
   background?: string;
+  backgroundImage?: boolean;
 }
 
-const { title, background } = Astro.props;
+const { title, background, backgroundImage = false } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -24,7 +29,21 @@ const { title, background } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <div class="relative overflow-x-hidden h-[100vh]">
+    <div class="relative h-[100vh] overflow-x-hidden">
+      {
+        backgroundImage && (
+          <Image
+            id="bg"
+            src={bg}
+            alt="Background Image"
+            class="absolute w-full h-[100vh] object-cover opacity-0"
+            style="--duration: 2000ms"
+            format="webp"
+            width={1280}
+            quality={75}
+          />
+        )
+      }
       <Navbar />
       <main>
         <slot />
@@ -37,4 +56,29 @@ const { title, background } = Astro.props;
   if (background) {
     document.documentElement.style.setProperty("--background", background);
   }
+
+  const imgEl = document.getElementById("bg");
+  function bgLoaded() {
+    if (imgEl.complete) {
+      imgEl.classList.add("fade-in");
+      imgEl.classList.remove("opacity-0");
+    }
+  }
+  imgEl.onload = bgLoaded;
+  bgLoaded();
 </script>
+
+<style>
+  #bg {
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 90%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 90%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+</style>

@@ -19,7 +19,7 @@ export interface ProjectProps {
   code?: string;
   demo?: string;
   skills: string[];
-  bg: string;
+  bg: ImageMetadata;
 }
 
 export const projectList: ProjectProps[] = [

@@ -1,8 +1,10 @@
 ---
+import { Image } from "@astrojs/image/components";
+
 interface SharedProps {
   id?: string;
-  width: number | string;
-  height: number | string;
+  width: number;
+  height: number;
   className?: string;
 }
 
@@ -33,7 +35,7 @@ const {
 <div
   id={id}
   class={"skeleton skeleton__container " + (className ? className : "")}
-  style={`--width: ${width}; --height: ${height}`}
+  style={`--width: ${width}px; --height: ${height}px`}
 >
   {isImg ? <img src={src} alt={alt} /> : <slot />}
 </div>

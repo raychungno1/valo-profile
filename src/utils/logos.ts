@@ -73,7 +73,7 @@ export const logos: { [name: string]: string } = {
   ruby,
   matlab,
   swift,
-  asm,
+  asm: "src/images/logos/asm.png",
 
   spring,
   rails,
@@ -91,7 +91,7 @@ export const logos: { [name: string]: string } = {
   trpc,
   zod,
   prisma,
-  nextauth,
+  nextauth: "src/images/logos/nextauth.png",
   cython,
   pygame,
   jquery,
@@ -114,7 +114,7 @@ export const logos: { [name: string]: string } = {
   mongo,
   planetscale,
 
-  junit,
+  junit: "src/images/logos/junit.png",
   cucumber,
   jest,
 
