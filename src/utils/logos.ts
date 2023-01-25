@@ -60,7 +60,7 @@ import heroku from "../images/logos/heroku.svg";
 import netlify from "../images/logos/netlify.svg";
 import vercel from "../images/logos/vercel.svg";
 
-export const logos: { [name: string]: string } = {
+export const logos: { [name: string]: string | ImageMetadata } = {
   python,
   java,
   ts,
@@ -73,7 +73,7 @@ export const logos: { [name: string]: string } = {
   ruby,
   matlab,
   swift,
-  asm: "src/images/logos/asm.png",
+  asm,
 
   spring,
   rails,
@@ -91,7 +91,7 @@ export const logos: { [name: string]: string } = {
   trpc,
   zod,
   prisma,
-  nextauth: "src/images/logos/nextauth.png",
+  nextauth,
   cython,
   pygame,
   jquery,
@@ -114,7 +114,7 @@ export const logos: { [name: string]: string } = {
   mongo,
   planetscale,
 
-  junit: "src/images/logos/junit.png",
+  junit,
   cucumber,
   jest,
 

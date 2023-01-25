@@ -15,7 +15,7 @@ interface GeneralProps extends SharedProps {
 
 interface ImgProps extends SharedProps {
   isImg?: true;
-  src: string;
+  src: string | ImageMetadata;
   alt: string;
 }
 
@@ -30,6 +30,8 @@ const {
   height,
   className,
 } = Astro.props;
+
+const unoptimized = typeof src === "string";
 ---
 
 <div
@@ -37,7 +39,7 @@ const {
   class={"skeleton skeleton__container " + (className ? className : "")}
   style={`--width: ${width}px; --height: ${height}px`}
 >
-  {isImg ? <img src={src} alt={alt} /> : <slot />}
+  {unoptimized ? <img src={src} alt={alt} /> : <Image src={src} alt={alt}/>}
 </div>
 
 {isImg && (

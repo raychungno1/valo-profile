@@ -256,8 +256,9 @@ const {
                     skill !== "html" &&
                     skill !== "css" &&
                     (skill !== "js" || !skills.includes("ts")) && (
-                      <Image
-                        class="aspect-square h-4 lg:h-6"
+                      <Skeleton
+                        className="aspect-square h-4 lg:h-6"
+                        isImg={true}
                         src={logos[skill]}
                         alt={skill}
                         width={24}
