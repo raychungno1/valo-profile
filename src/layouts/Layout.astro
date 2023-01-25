@@ -36,7 +36,7 @@ const { title, background, backgroundImage = false } = Astro.props;
             id="bg"
             src={bg}
             alt="Background Image"
-            class="absolute w-full h-[100vh] object-cover opacity-0"
+            class="absolute h-[100vh] w-full object-cover opacity-0"
             style="--duration: 2000ms"
             format="webp"
             width={1280}
@@ -64,8 +64,10 @@ const { title, background, backgroundImage = false } = Astro.props;
       imgEl.classList.remove("opacity-0");
     }
   }
-  imgEl.onload = bgLoaded;
-  bgLoaded();
+  if (imgEl) {
+    imgEl.onload = bgLoaded;
+    bgLoaded();
+  }
 </script>
 
 <style>
