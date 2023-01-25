@@ -11,5 +11,4 @@ export function processImageFolder(images: Record<string, any>[]) {
 export async function importImage(url: string) {
   const img: ImageMetadata = await import(url);
   return img;
-  // return { default: img };
 }

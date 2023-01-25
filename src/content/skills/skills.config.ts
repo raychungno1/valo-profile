@@ -7,14 +7,6 @@ export const skillsCollection = defineCollection({
     iconName: z.string(),
     tabIdx: z.number(),
 
-    types: z.record(
-      z.object({
-        pack: z.string(),
-        iconName: z.string(),
-        bg: z.string(),
-      })
-    ),
-
     skills: z.array(
       z.object({
         value: z.string(),
