@@ -63,8 +63,8 @@ img {
 
 @font-face {
   font-family: "Just Dance Bold";
-  src: url("valo-font-webfont.woff2") format("woff2"),
-    url("valo-font-webfont.woff") format("woff");
+  src: url("/valo-font-webfont.woff2") format("woff2"),
+    url("/valo-font-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
