@@ -218,19 +218,22 @@ const { data: ray } = await getEntryBySlug("about", "ray");
       format="webp"
       width={1280}
       quality={50}
-      />
-      <Image
+      loading="eager"
+    />
+    <Image
       src={islandMid}
       alt="Island Mid"
       class="island parallax-foreground absolute w-full opacity-0"
       format="webp"
       quality={50}
+      loading="eager"
     />
     <Image
       src={islandFG}
       alt="Island FG"
       class="island w-full opacity-0"
       format="webp"
+      loading="eager"
     />
     <div class="relative h-[150vh] -mt-2 bg-[#091721] text-white">Hi</div>
   </div>
