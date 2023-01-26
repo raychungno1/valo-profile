@@ -10,46 +10,52 @@ import valoPortraitBG from "../images/valo-portrait-bg.png";
 import valoPortraitHL1 from "../images/valo-portrait-highlight1.png";
 import valoPortraitHL2 from "../images/valo-portrait-highlight2.png";
 
+import islandFG from "../images/island-fg.png";
+import islandMid from "../images/island-mid.png";
+import islandBG from "../images/island-bg.png";
+
 const { data: ray } = await getEntryBySlug("about", "ray");
 ---
 <Layout title="Ray Chung | Software Engineer" description="My Home Page" background="linear-gradient(135deg, #497797 0%, #28406a 50%, #1a1938 100%)">
-  <Image
-    class="valo-profile bg opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover -translate-x-1/2 sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2 md:-translate-x-[75%]"
-    src={valoPortraitBG}
-    alt="Valorant Portrait BG"
-    format="webp"
-    quality={50}
-  />
-  <Image
-    class="valo-profile highlight opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover -translate-x-1/2 sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
-    src={valoPortraitHL1}
-    alt="Valorant Portrait Highlight 1"
-    format="webp"
-    quality={1}
-    style="--startPos: -10%; --slide-duration: 650ms; --slide-delay: 200ms;"
-  />
-  <Image
-    class="valo-profile highlight opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover -translate-x-1/2 sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
-    src={valoPortraitHL2}
-    alt="Valorant Portrait Highlight 2"
-    format="webp"
-    quality={1}
-    style="--startPos: -45%; --slide-duration: 300ms; --slide-delay: 375ms;"
-  />
-  <Image
-    class="valo-profile opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover -translate-x-1/2 sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
-    src={valoPortraitFG}
-    alt="Valorant Portrait"
-    format="webp"
-    quality={50}
-    style="--startPos: -20%;"
-  />
+  <div class="valo-profile__container absolute -z-10 w-full -top-[5vh] md:top-0 h-[100vh] min-h-[800px] max-h-[1000px]">
+    <Image
+      class="valo-profile bg opacity-0 absolute h-full left-1/2 object-cover -translate-x-1/2 md:left-[23%] md:-translate-x-[75%] lg:left-[28%] xl:left-1/2"
+      src={valoPortraitBG}
+      alt="Valorant Portrait BG"
+      format="webp"
+      quality={50}
+    />
+    <Image
+      class="valo-profile highlight opacity-0 absolute h-full left-1/2 object-cover -translate-x-1/2 md:left-[23%] lg:left-[28%] xl:left-1/2"
+      src={valoPortraitHL1}
+      alt="Valorant Portrait Highlight 1"
+      format="webp"
+      quality={1}
+      style="--startPos: -10%; --slide-duration: 650ms; --slide-delay: 200ms;"
+    />
+    <Image
+      class="valo-profile highlight opacity-0 absolute h-full left-1/2 object-cover -translate-x-1/2 md:left-[23%] lg:left-[28%] xl:left-1/2"
+      src={valoPortraitHL2}
+      alt="Valorant Portrait Highlight 2"
+      format="webp"
+      quality={1}
+      style="--startPos: -45%; --slide-duration: 300ms; --slide-delay: 375ms;"
+    />
+    <Image
+      class="valo-profile opacity-0 absolute h-full left-1/2 object-cover -translate-x-1/2 md:left-[23%] lg:left-[28%] xl:left-1/2"
+      src={valoPortraitFG}
+      alt="Valorant Portrait"
+      format="webp"
+      quality={50}
+      style="--startPos: -20%;"
+    />
+  </div>
   <div
-    class="relative mx-auto mt-[max(280px,50vh)] my-10 w-full md:w-[90%] max-w-[1536px] text-white md:mt-16"
+    class="relative z-10 h-[600px] mx-auto mt-[clamp(320px,40vh,400px)] my-10 w-full md:w-[90%] max-w-[1536px] text-white md:mt-16 backdrop-blur-sm md:backdrop-blur-none "
   >
     <div
       id="about-info"
-      class="mx-auto bg-black bg-opacity-60 pl-6 pb-8 backdrop-blur-sm border-l-[1px] border-opacity-10 border-white md:mr-0 md:w-[450px] md:max-w-4xl md:bg-opacity-0 md:backdrop-blur-none after:content-[' '] after:absolute after:h-full after:border-l-[1px] after:border-white after:border-opacity-20 after:left-3 after:top-0"
+      class="relative mx-auto h-[600px] bg-black bg-opacity-60 pl-6 pb-8 border-l-[1px] border-opacity-10 border-white md:mr-0 md:w-[450px] md:max-w-4xl md:bg-opacity-0 after:content-[' '] after:absolute after:h-full after:border-l-[1px] after:border-white after:border-opacity-20 after:left-3 after:top-0"
     >
       <div id="about-intro" class="text-center md:text-left pr-6 md:pr-0">
         <p class="pt-4 md:pt-0 md:absolute md:-top-8 text-xl font-light uppercase tracking-wide">{ray.role}</p>
@@ -204,6 +210,30 @@ const { data: ray } = await getEntryBySlug("about", "ray");
       </div>
     </div>
   </div>
+  <div class="parallax relative z-10 w-full -mt-16 md:-mt-32 aspect-video">
+    <Image
+      src={islandBG}
+      alt="Island BG"
+      class="island parallax-background absolute w-full opacity-0"
+      format="webp"
+      width={1280}
+      quality={50}
+      />
+      <Image
+      src={islandMid}
+      alt="Island Mid"
+      class="island parallax-foreground absolute w-full opacity-0"
+      format="webp"
+      quality={50}
+    />
+    <Image
+      src={islandFG}
+      alt="Island FG"
+      class="island w-full opacity-0"
+      format="webp"
+    />
+    <div class="relative h-[150vh] -mt-2 bg-[#091721] text-white">Hi</div>
+  </div>
 </Layout>
 
 <script>
@@ -272,13 +302,61 @@ const { data: ray } = await getEntryBySlug("about", "ray");
     tabs[0].dataset.selected = `${true}`;
     details[0].dataset.selected = `${true}`;
   }
+
+  // Island images
+  const islandPics: HTMLImageElement[] = [
+    ...(document.querySelectorAll(
+      ".island"
+    ) as NodeListOf<HTMLImageElement>),
+  ];
+  const islandAnimationPlayed = false;
+  function islandLoaded() {
+    if (!islandAnimationPlayed && islandPics.every((img) => img.complete)) {
+      islandPics.forEach((img) => img.classList.add("fade-in"));
+    }
+  }
+
+  islandPics.forEach((img) => {
+    img.onload = islandLoaded;
+  });
+  islandLoaded();
 </script>
 
 
 <style>
+  .valo-profile__container {
+    transform-style: flat;
+  }
+  
+  .valo-profile {
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 70%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 70%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
   .valo-profile.loaded {
     opacity: 1;
     animation: slide-in 600ms var(--out-quint) 200ms backwards;
+  }
+
+  .valo-profile.highlight{
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 60%,
+      rgba(0, 0, 0, 0) 70%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 60%,
+      rgba(0, 0, 0, 0) 70%
+    );
   }
 
   .valo-profile.highlight.loaded {
@@ -287,6 +365,7 @@ const { data: ray } = await getEntryBySlug("about", "ray");
         var(--slide-delay) backwards,
       fade-out 300ms ease-in-out 700ms;
   }
+
 
   .valo-profile.bg.loaded {
     opacity: 1;
@@ -303,19 +382,12 @@ const { data: ray } = await getEntryBySlug("about", "ray");
       transform: translateX(-50%);
     }
   }
-
-  @media (max-width: 768px) {
-    .valo-profile {
-      mask-image: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 1) 60%,
-        rgba(0, 0, 0, 0) 100%
-      );
-      -webkit-mask-image: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 1) 60%,
-        rgba(0, 0, 0, 0) 100%
-      );
-    }
+  
+  .island.parallax-background {
+    transform: translateZ(-5px) scale(1.5) translateY(15%);
+  }
+  
+  .island.parallax-foreground {
+    transform: translateZ(-2.5px) scale(1.25) translateY(7.5%);
   }
 </style>

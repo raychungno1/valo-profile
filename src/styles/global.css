@@ -103,3 +103,20 @@ img {
 ::-webkit-scrollbar-track {
   background-color: #181c20;
 }
+
+.parallax-wrapper {
+  perspective: 10px;
+}
+
+.parallax {
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.parallax-background {
+  transform: translateZ(-10px) scale(2);
+}
+
+.parallax-foreground {
+  transform: translateZ(-5px) scale(1.5);
+}

@@ -24,14 +24,5 @@ export const aboutCollection = defineCollection({
     ),
     experiences: z.array(event),
     awards: z.array(event),
-    hobbies: z.array(
-      z.object({
-        media: z.enum(["link", "video"]),
-        title: z.string(),
-        url: z.string(),
-        logo: z.string().optional(),
-        desc: z.string().optional(),
-      })
-    ),
   }),
 });
