@@ -4,7 +4,6 @@ import { Image } from '@astrojs/image/components';
 import { Icon } from "astro-icon";
 
 import Layout from "../layouts/Layout.astro";
-import SquareCornerCard from "../components/SquareCornerCard.astro";
 
 import valoPortraitFG from "../images/valo-portrait-fg.png";
 import valoPortraitBG from "../images/valo-portrait-bg.png";
@@ -13,48 +12,44 @@ import valoPortraitHL2 from "../images/valo-portrait-highlight2.png";
 
 const { data: ray } = await getEntryBySlug("about", "ray");
 ---
-
-<!-- <Layout title="Ray Chung | Software Engineer" background="linear-gradient(45deg,rgba(80, 128, 152, 1) 0%,rgba(34, 44, 80, 1) 100%)"> -->
 <Layout title="Ray Chung | Software Engineer" description="My Home Page" background="linear-gradient(135deg, #497797 0%, #28406a 50%, #1a1938 100%)">
-  <div class="home-fade pointer-events-none fixed inset-0 bg-black"></div>
   <Image
-    id="valo-profile__bg"
-    class="opacity-0 absolute top-0 left-1/2 z-0 h-[100vh] min-h-[800px] -translate-x-1/2 object-cover md:fixed md:left-[22%] lg:left-[28%] md:-translate-x-[75%] xl:left-1/2"
+    class="valo-profile bg opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover -translate-x-1/2 sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2 md:-translate-x-[75%]"
     src={valoPortraitBG}
     alt="Valorant Portrait BG"
     format="webp"
     quality={50}
-  />    
+  />
   <Image
-    id="valo-profile__highlight1"
-    class="opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
+    class="valo-profile highlight opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover -translate-x-1/2 sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
     src={valoPortraitHL1}
     alt="Valorant Portrait Highlight 1"
     format="webp"
     quality={1}
+    style="--startPos: -10%; --slide-duration: 650ms; --slide-delay: 200ms;"
   />
   <Image
-    id="valo-profile__highlight2"
-    class="opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
+    class="valo-profile highlight opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover -translate-x-1/2 sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
     src={valoPortraitHL2}
     alt="Valorant Portrait Highlight 2"
     format="webp"
     quality={1}
+    style="--startPos: -45%; --slide-duration: 300ms; --slide-delay: 375ms;"
   />
   <Image
-    id="valo-profile"
-    class="opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
+    class="valo-profile opacity-0 absolute -top-[5vh] left-1/2 z-0 h-[105vh] min-h-[800px] object-cover -translate-x-1/2 sm:top-0 sm:h-[100vh] md:fixed md:left-[22%] lg:left-[28%] xl:left-1/2"
     src={valoPortraitFG}
     alt="Valorant Portrait"
     format="webp"
     quality={50}
+    style="--startPos: -20%;"
   />
   <div
-    class="relative mx-auto mt-[max(280px,35vh)] my-10 w-[90%] max-w-[1536px] text-white md:mt-16"
+    class="relative mx-auto mt-[max(280px,50vh)] my-10 w-full md:w-[90%] max-w-[1536px] text-white md:mt-16"
   >
     <div
       id="about-info"
-      class="mx-auto max-w-2xl bg-black bg-opacity-60 pl-6 pb-8 backdrop-blur-sm border-l-[1px] border-opacity-10 border-white md:mr-0 md:w-[450px] md:max-w-4xl md:bg-opacity-0 md:backdrop-blur-none after:content-[' '] after:absolute after:h-full after:border-l-[1px] after:border-white after:border-opacity-20 after:left-3 after:top-0"
+      class="mx-auto bg-black bg-opacity-60 pl-6 pb-8 backdrop-blur-sm border-l-[1px] border-opacity-10 border-white md:mr-0 md:w-[450px] md:max-w-4xl md:bg-opacity-0 md:backdrop-blur-none after:content-[' '] after:absolute after:h-full after:border-l-[1px] after:border-white after:border-opacity-20 after:left-3 after:top-0"
     >
       <div id="about-intro" class="text-center md:text-left pr-6 md:pr-0">
         <p class="pt-4 md:pt-0 md:absolute md:-top-8 text-xl font-light uppercase tracking-wide">{ray.role}</p>
@@ -65,7 +60,7 @@ const { data: ray } = await getEntryBySlug("about", "ray");
         </h1>
       </div>
       <div id="about-tabs" class="flex items-center mt-12">
-        <div class="absolute hidden h-[9px] w-full border-t sm:block left-0"></div>
+        <div class="absolute left-0 h-[9px] w-full border-t opacity-20 sm:opacity-100"></div>
         <svg class="absolute left-0 -translate-x-1/2 w-60 -translate-y-1" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="50" cy="50" r="49.875" stroke="white" stroke-width="0.5" opacity="0.2"/>
           <path d="M47 28.25L50 25.25L53 28.25L50 31.25L47 28.25Z" stroke="white" stroke-width="0.5" opacity="0.2"/>
@@ -79,7 +74,7 @@ const { data: ray } = await getEntryBySlug("about", "ray");
           {
             ray.about.map(({ name, pack, iconName }, tabIdx) => (
               <li
-                class="group z-10 flex w-1/3 flex-col items-center justify-center gap-2 bg-white bg-opacity-20 p-1 hover:bg-opacity-40 active:bg-opacity-20"
+                class="group z-10 flex w-24 flex-col items-center justify-center gap-2 bg-white bg-opacity-20 p-1 hover:bg-opacity-40 active:bg-opacity-20"
                 data-selected="false"
                 data-tab={name.toLowerCase()}
                 id={`tab-${tabIdx}`}
@@ -98,11 +93,11 @@ const { data: ray } = await getEntryBySlug("about", "ray");
           }
         </ul>
       </div>
-      <div id="about-details">
+      <div id="about-details" class="mt-4 pr-6 md:pr-0">
         {
           ray.about.map(({ highlight, title, desc }, tabIdx) => (
             <div
-              class="group hidden data-[selected=true]:block mt-4"
+              class="group hidden data-[selected=true]:block max-w-lg mx-auto"
               data-selected="false"
               id={`detail-${tabIdx}`}
             >
@@ -212,6 +207,25 @@ const { data: ray } = await getEntryBySlug("about", "ray");
 </Layout>
 
 <script>
+  // Valo Profile Images
+  const valoProfilePics: HTMLImageElement[] = [
+    ...(document.querySelectorAll(
+      ".valo-profile"
+    ) as NodeListOf<HTMLImageElement>),
+  ];
+  
+  const animationPlayed = false;
+  function valoProfileLoaded() {
+    if (!animationPlayed && valoProfilePics.every((img) => img.complete)) {
+      valoProfilePics.forEach((img) => img.classList.add("loaded"));
+    }
+  }
+
+  valoProfilePics.forEach((img) => {
+    img.onload = valoProfileLoaded;
+  });
+  valoProfileLoaded();
+
   // About Tabs
   const params = new URLSearchParams(location.search);
   const selectedTab = params.get("tab");
@@ -258,78 +272,23 @@ const { data: ray } = await getEntryBySlug("about", "ray");
     tabs[0].dataset.selected = `${true}`;
     details[0].dataset.selected = `${true}`;
   }
-
-  // Valo Profile Images
-  const valoProfilePics: HTMLImageElement[] = [];
-  const animationPlayed = false;
-  function valoProfileLoaded() {
-    if (!animationPlayed && valoProfilePics.every((img) => img.complete)) {
-      valoProfilePics.forEach((img) => img.classList.add(img.id))
-    }
-  }
-  ["valo-profile", "valo-profile__highlight1", "valo-profile__highlight2", "valo-profile__bg"].forEach((id) => {
-    const el = document.getElementById(id) as HTMLImageElement;
-    if (!el) return;
-    el.onload = valoProfileLoaded;
-    valoProfilePics.push(el);
-  })
-  valoProfileLoaded();
 </script>
 
+
 <style>
-  .home-fade {
-    opacity: 0;
-    animation: home-fade 300ms var(--out-quint);
-  }
-
-  @keyframes home-fade {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
-  .valo-profile {
-    --startPos: -20%;
-    transform: translateX(-50%);
+  .valo-profile.loaded {
     opacity: 1;
     animation: slide-in 600ms var(--out-quint) 200ms backwards;
   }
 
-  @media(max-width: 640px) {
-    .valo-profile, .valo-profile__highlight1, .valo-profile__highlight2, .valo-profile__bg {
-      mask-image: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 1) 60%,
-        rgba(0, 0, 0, 0) 100%
-      );
-      -webkit-mask-image: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 1) 60%,
-        rgba(0, 0, 0, 0) 100%
-      );
-    }
-  }
-
-  .valo-profile__highlight1 {
-    --startPos: 10%;
-    transform: translateX(-50%);
+  .valo-profile.highlight.loaded {
     opacity: 0;
-    animation: slide-in 650ms var(--in-out-quint) 200ms backwards,
+    animation: slide-in var(--slide-duration) var(--out-quint)
+        var(--slide-delay) backwards,
       fade-out 300ms ease-in-out 700ms;
   }
 
-  .valo-profile__highlight2 {
-    --startPos: -45%;
-    transform: translateX(-50%);
-    opacity: 0;
-    animation: slide-in 300ms var(--out-quint) 375ms backwards,
-      fade-out 300ms ease-in-out 700ms;
-  }
-
-  .valo-profile__bg {
+  .valo-profile.bg.loaded {
     opacity: 1;
     animation: fade-in 300ms ease-in-out;
   }
@@ -342,6 +301,21 @@ const { data: ray } = await getEntryBySlug("about", "ray");
     100% {
       opacity: 1;
       transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .valo-profile {
+      mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 60%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 60%,
+        rgba(0, 0, 0, 0) 100%
+      );
     }
   }
 </style>
