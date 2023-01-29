@@ -1,0 +1,18 @@
+---
+interface Props {
+  id: string;
+  tabs: {}[];
+  class?: string;
+}
+
+const { id, tabs, class: className } = Astro.props;
+---
+
+<nav aria-label={id} id={id} class={className}>
+  <slot name="decoration" />
+  {
+    tabs.map((tab) => (
+      <Fragment set:html={Astro.slots.render("tab", [tab])} />
+    ))
+  }
+</nav>

@@ -1,6 +1,7 @@
 ---
 export interface Props {
   id?: string;
+  tabInfo: { name: string; pack: string; iconName: string }[];
 }
 
 const { id = "hamburger-" + Math.random() } = Astro.props;

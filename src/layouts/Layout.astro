@@ -33,26 +33,23 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
-
     <Seo title={title} description={description} image={image} />
   </head>
-  <body class="h-[100vh]">
+  <body class="relative overflow-x-hidden">
     {
       backgroundImage && (
         <Image
           id="bg"
           src={bg}
           alt="Background Image"
-          class="absolute h-[100vh] w-full object-cover opacity-0"
+          class="fixed h-[100vh] w-full object-cover opacity-0"
           style="--duration: 2000ms"
           format="webp"
           quality={75}
         />
       )
     }
-    <main
-      class="parallax-wrapper absolute inset-0 overflow-y-auto overflow-x-hidden"
-    >
+    <main>
       <Navbar />
       <slot />
     </main>
@@ -74,7 +71,7 @@ const {
       }
     </script>
 
-    <style>
+    <!-- <style>
       #bg {
         mask-image: linear-gradient(
           to bottom,
@@ -87,6 +84,6 @@ const {
           rgba(0, 0, 0, 0) 100%
         );
       }
-    </style>
+    </style> -->
   </body>
 </html>

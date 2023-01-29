@@ -112,11 +112,3 @@ img {
   height: 100%;
   transform-style: preserve-3d;
 }
-
-.parallax-background {
-  transform: translateZ(-10px) scale(2);
-}
-
-.parallax-foreground {
-  transform: translateZ(-5px) scale(1.5);
-}
