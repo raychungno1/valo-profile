@@ -173,19 +173,22 @@ const { data: ray } = await getEntryBySlug("about", "ray");
         id="island-bg"
         src={islandBG}
         alt="Island BG"
-        class="island absolute inset-0 pointer-events-none origin-bottom"
+        class="island absolute inset-0 pointer-events-none origin-bottom opacity-0"
+        loading="eager"
       />
       <Image
         id="island-mid"
         src={islandMid}
         alt="Island Mid"
-        class="island absolute inset-0 pointer-events-none origin-bottom"
+        class="island absolute inset-0 pointer-events-none origin-bottom opacity-0"
+        loading="eager"
       />
       <Image
         id="island-fg"
         src={islandFG}
         alt="Island FG"
-        class="island absolute z-20 inset-0 pointer-events-none origin-bottom"
+        class="island absolute z-20 inset-0 pointer-events-none origin-bottom opacity-0"
+        loading="eager"
       />
       <p class="relative z-10 font-custom-heavy text-[min(20vw,20rem)]">
         Experience
