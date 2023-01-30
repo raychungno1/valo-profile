@@ -5,6 +5,7 @@
 :root {
   --animation-play: false;
   --color-highlight: 233, 237, 179;
+  --color-highlight-red: 217, 56, 69;
   --color-highlight-green: 50, 200, 160;
   --in-out-quint: cubic-bezier(0.19, 1, 0.22, 1);
   --out-quint: cubic-bezier(0.22, 1, 0.36, 1);

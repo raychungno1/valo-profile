@@ -35,24 +35,26 @@ const {
     <meta name="description" content={description} />
     <Seo title={title} description={description} image={image} />
   </head>
-  <body class="relative overflow-x-hidden">
-    {
-      backgroundImage && (
-        <Image
-          id="bg"
-          src={bg}
-          alt="Background Image"
-          class="fixed h-[100vh] w-full object-cover opacity-0"
-          style="--duration: 2000ms"
-          format="webp"
-          quality={75}
-        />
-      )
-    }
-    <main>
-      <Navbar />
-      <slot />
-    </main>
+  <body>
+    <div class="relative overflow-x-hidden">
+      {
+        backgroundImage && (
+          <Image
+            id="bg"
+            src={bg}
+            alt="Background Image"
+            class="fixed h-[100vh] w-full object-cover opacity-0"
+            style="--duration: 2000ms"
+            format="webp"
+            quality={75}
+          />
+        )
+      }
+      <main>
+        <Navbar />
+        <slot />
+      </main>
+    </div>
     <script define:vars={{ background }}>
       if (background) {
         document.documentElement.style.setProperty("--background", background);

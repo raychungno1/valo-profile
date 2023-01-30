@@ -2,6 +2,7 @@ import { z, defineCollection } from "astro:content";
 
 const event = z.object({
   company: z.string(),
+  value: z.string(),
   title: z.string(),
   date: z.string(),
   gpa: z.array(z.string()).length(2).optional(),
