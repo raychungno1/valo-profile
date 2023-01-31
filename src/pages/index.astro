@@ -4,6 +4,9 @@ import { Image } from "@astrojs/image/components";
 import { Icon } from "astro-icon";
 
 import Layout from "../layouts/Layout.astro";
+import SquareCornerCard from "../components/SquareCornerCard.astro";
+
+import { companies } from "../utils/companies";
 
 import valoPortraitFG from "../images/valo-portrait-fg.png";
 import valoPortraitBG from "../images/valo-portrait-bg.png";
@@ -13,8 +16,9 @@ import valoPortraitHL2 from "../images/valo-portrait-highlight2.png";
 import islandFG from "../images/island-fg.png";
 import islandMid from "../images/island-mid.png";
 import islandBG from "../images/island-bg.png";
-import { companies } from "../utils/companies";
-import SquareCornerCard from "../components/SquareCornerCard.astro";
+import ascentFG from "../images/ascent-fg.png";
+import ascentMid from "../images/ascent-mid.png";
+import ascentBG from "../images/ascent-bg.png";
 
 const { data: ray } = await getEntryBySlug("about", "ray");
 ---
@@ -166,9 +170,11 @@ const { data: ray } = await getEntryBySlug("about", "ray");
   </section>
   <section
     id="timeline"
-    class="relative mx-auto mb-16 min-h-[100vh] max-w-[1536px] overflow-hidden bg-[#091721] text-white md:w-[90%] md:border md:border-b-0"
+    class="relative mx-auto mb-16 min-h-[100vh] max-w-[1536px] bg-[#091721] text-white md:w-[90%] md:border md:border-b-0"
   >
-    <div class="flex aspect-video w-full items-center justify-center">
+    <div
+      class="relative flex aspect-video w-full items-center justify-center overflow-hidden"
+    >
       <Image
         id="island-bg"
         src={islandBG}
@@ -193,67 +199,8 @@ const { data: ray } = await getEntryBySlug("about", "ray");
       <p class="relative z-10 font-custom-heavy text-[clamp(4rem,20vw,20rem)]">
         Experience
       </p>
-      <script
-        is:inline
-        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"
-      ></script>
-      <script
-        is:inline
-        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"
-      ></script>
-      <script is:inline>
-        gsap.fromTo(
-          "#island-bg",
-          {
-            scrollTrigger: {
-              scrub: true,
-            },
-            scale: 1.5,
-            y: "50%",
-          },
-          {
-            scrollTrigger: {
-              scrub: true,
-            },
-            scale: 1,
-            y: "0%",
-          }
-        );
-        gsap.fromTo(
-          "#island-mid",
-          {
-            scrollTrigger: {
-              scrub: true,
-            },
-            scale: 1.2,
-            y: "10%",
-          },
-          {
-            scrollTrigger: {
-              scrub: true,
-            },
-            scale: 1,
-            y: "-10%",
-          }
-        );
-        gsap.fromTo(
-          "#island-fg",
-          {
-            scrollTrigger: {
-              scrub: true,
-            },
-            scale: 1,
-          },
-          {
-            scrollTrigger: {
-              scrub: true,
-            },
-            scale: 1.2,
-          }
-        );
-      </script>
     </div>
-    <div class="relative -mt-1 bg-[#091721]">
+    <div class="relative -mt-1 bg-[#091721] pb-12">
       {
         ray.experiences.map(({ company, value, title, date, gpa, points }) => (
           <article class="experience relative flex flex-col items-center justify-center gap-8 py-8 md:flex-row md:items-start md:gap-16 lg:gap-20 xl:gap-24">
@@ -263,16 +210,113 @@ const { data: ray } = await getEntryBySlug("about", "ray");
               <div class="h-3 w-16 -translate-x-1/2 skew-y-[30deg] border-2 border-highlight-red content-[''] lg:h-4 lg:w-20 xl:w-24" />
             </div>
             <div class="relative flex w-full items-center justify-center text-center md:w-2/5">
-              <div class="absolute left-16 h-[2px] w-1/3 bg-highlight-red content-[''] md:left-auto md:-right-9 md:w-1/2 lg:-right-10 xl:-right-12" />
-              {companies[value] && (
+              <div class="timeline-horizontal-line absolute -right-9 hidden h-[2px] w-1/2 content-[''] md:block lg:-right-10 xl:-right-12" />
+              {companies[value] ? (
                 <Image
                   src={companies[value]}
                   alt={company}
                   width={150}
                   height={150}
                   format="webp"
-                  class="relative"
+                  class="relative opacity-50"
                 />
+              ) : (
+                <div class="content-[' '] min-h-[150px]" />
+              )}
+              <div class="absolute mx-8">
+                <h1 class="-mt-1 font-custom-heavy text-6xl">{company}</h1>
+                <p class="text-xl font-bold uppercase text-white">{title}</p>
+                <p class="text-white text-opacity-80">{date}</p>
+              </div>
+            </div>
+            <div class="w-full md:w-3/5">
+              <div class="px-[5%] md:pr-[15%] md:pt-8">
+                <SquareCornerCard className="flex w-full flex-col">
+                  {gpa && (
+                    <div class="flex flex-col justify-between leading-none duration-300 ease-in hover:bg-white hover:bg-opacity-[.15] hover:transition-none sm:flex-row">
+                      <p class="px-2 py-4">GPA</p>
+                      <div class="flex text-center sm:w-1/2">
+                        <div class="w-full">
+                          <p class="mb-2 bg-white bg-opacity-30 py-4">
+                            Cumulative
+                          </p>
+                          <p class="bg-highlight bg-opacity-30 py-1">
+                            {gpa[0]}
+                          </p>
+                        </div>
+                        <div class="w-full">
+                          <p class="mb-2 bg-white bg-opacity-10 py-4">Major</p>
+                          <p class="bg-highlight bg-opacity-20 py-1">
+                            {gpa[1]}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {points.map((point) => (
+                    <div class="px-2 py-4 leading-none duration-300 ease-in even:bg-white even:bg-opacity-10 hover:bg-white hover:bg-opacity-[.15] hover:transition-none hover:even:bg-opacity-20">
+                      {point}
+                    </div>
+                  ))}
+                </SquareCornerCard>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+    <div
+      class="relative flex aspect-video w-full items-center justify-center overflow-hidden"
+    >
+      <Image
+        id="ascent-bg"
+        src={ascentBG}
+        alt="Ascent BG"
+        class="ascent absolute inset-0 pointer-events-none origin-bottom opacity-0"
+        loading="eager"
+      />
+      <Image
+        id="ascent-mid"
+        src={ascentMid}
+        alt="Ascent Mid"
+        class="ascent absolute inset-0 pointer-events-none origin-bottom opacity-0"
+        loading="eager"
+      />
+      <Image
+        id="ascent-fg"
+        src={ascentFG}
+        alt="Ascent FG"
+        class="ascent absolute z-20 inset-0 pointer-events-none origin-bottom opacity-0"
+        loading="eager"
+      />
+      <div class="parallax-fade content-[' '] absolute z-20 h-full w-full">
+      </div>
+      <p class="relative z-10 font-custom-heavy text-[clamp(4rem,20vw,20rem)]">
+        Awards
+      </p>
+    </div>
+    <div class="relative -mt-1 bg-[#091721] pb-12">
+      {
+        ray.awards.map(({ company, value, title, date, gpa, points }) => (
+          <article class="experience relative flex flex-col items-center justify-center gap-8 py-8 md:flex-row md:items-start md:gap-16 lg:gap-20 xl:gap-24">
+            <div class="divider absolute left-16 flex h-full w-1 flex-col gap-3 bg-highlight-red pt-[78px] content-[''] md:left-[41%] md:pt-[34px] lg:gap-4">
+              <div class="h-3 w-16 -translate-x-1/2 skew-y-[30deg] border-2 border-highlight-red content-[''] lg:h-4 lg:w-20 xl:w-24" />
+              <div class="h-3 w-16 -translate-x-1/2 skew-y-[30deg] bg-highlight-red content-[''] lg:h-4 lg:w-20 xl:w-24" />
+              <div class="h-3 w-16 -translate-x-1/2 skew-y-[30deg] border-2 border-highlight-red content-[''] lg:h-4 lg:w-20 xl:w-24" />
+            </div>
+            <div class="relative flex w-full items-center justify-center text-center md:w-2/5">
+              <div class="timeline-horizontal-line absolute -right-9 hidden h-[2px] w-1/2 content-[''] md:block lg:-right-10 xl:-right-12" />
+              {companies[value] ? (
+                <Image
+                  src={companies[value]}
+                  alt={company}
+                  width={150}
+                  height={150}
+                  format="webp"
+                  class="relative opacity-50"
+                />
+              ) : (
+                <div class="content-[' '] min-h-[150px]" />
               )}
               <div class="absolute mx-8">
                 <h1 class="-mt-1 font-custom-heavy text-6xl">{company}</h1>
@@ -402,8 +446,65 @@ const { data: ray } = await getEntryBySlug("about", "ray");
       img.onload = islandLoaded;
     });
     islandLoaded();
+
+    // Ascent images
+    const ascentPics: HTMLImageElement[] = [
+      ...(document.querySelectorAll(".ascent") as NodeListOf<HTMLImageElement>),
+    ];
+    const ascentAnimationPlayed = false;
+    function ascentLoaded() {
+      if (!ascentAnimationPlayed && ascentPics.every((img) => img.complete)) {
+        ascentPics.forEach((img) => img.classList.add("fade-in"));
+      }
+    }
+
+    ascentPics.forEach((img) => {
+      img.onload = ascentLoaded;
+    });
+    ascentLoaded();
   </script>
 
+  <script
+    is:inline
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"
+  ></script>
+  <script
+    is:inline
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"
+  ></script>
+  <script is:inline>
+    function parallax(id, scale = [1, 1], x = [0, 0], y = [0, 0]) {
+      gsap.fromTo(
+        id,
+        {
+          scrollTrigger: {
+            scrub: 1,
+            start: "top bottom",
+            end: "bottom top",
+          },
+          scale: scale[0],
+          x: x[0],
+          y: y[0],
+        },
+        {
+          scrollTrigger: {
+            scrub: 1,
+            start: "top bottom",
+            end: "bottom top",
+          },
+          scale: scale[1],
+          x: x[1],
+          y: y[1],
+        }
+      );
+    }
+    parallax("#island-bg", [2, 1], [0, 0], ["100%", "0%"]);
+    parallax("#island-mid", [1.5, 1], [0, 0], ["20%", "-20%"]);
+    parallax("#island-fg", [1, 1.5], [0, 0], ["0%", "10%"]);
+    parallax("#ascent-bg", [2, 1], [0, 0], ["100%", "0%"]);
+    parallax("#ascent-mid", [2, 1.5], [0, 0], ["50%", "0%"]);
+    parallax("#ascent-fg", [1, 1.5], [0, 0], ["0%", "10%"]);
+  </script>
   <style>
     .valo-profile.loaded {
       opacity: 1;
@@ -472,6 +573,18 @@ const { data: ray } = await getEntryBySlug("about", "ray");
         rgb(var(--color-highlight-red)) 75%,
         #091721 100%
       );
+    }
+
+    .timeline-horizontal-line {
+      background: linear-gradient(
+        90deg,
+        #091721 0%,
+        rgb(var(--color-highlight-red)) 25%
+      );
+    }
+
+    .parallax-fade {
+      background: linear-gradient(transparent 80%, #091721 100%);
     }
   </style>
 </Layout>
