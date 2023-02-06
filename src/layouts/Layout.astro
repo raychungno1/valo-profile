@@ -9,7 +9,7 @@ import bg from "../images/bg.png";
 
 export interface Props {
   title: string;
-  description: string;
+  description?: string;
   image?: string;
   background?: string;
   backgroundImage?: boolean;
@@ -72,20 +72,5 @@ const {
         bgLoaded();
       }
     </script>
-
-    <!-- <style>
-      #bg {
-        mask-image: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 1) 90%,
-          rgba(0, 0, 0, 0) 100%
-        );
-        -webkit-mask-image: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 1) 90%,
-          rgba(0, 0, 0, 0) 100%
-        );
-      }
-    </style> -->
   </body>
 </html>
