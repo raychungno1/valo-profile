@@ -1,8 +1,8 @@
 {
-  "title": "Ray Chung's Profile Website",
+  "title": "Portfolio Website",
   "description": "I'm Ray Chung, a software engineer specializing in full stack development. Currently based in New York City, I'm building out real-time financial solutions at Bloomberg.",
   "image": {
     "src": "/image-default.jpg",
-    "alt": "Ray Chung's Profile Website"
+    "alt": "Portfolio Website"
   }
 }
